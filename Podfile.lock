@@ -4,24 +4,6 @@ PODS:
     - Alamofire (~> 4.8)
   - MVVM-Swift (1.1.0)
   - ObjectMapper (3.5.1)
-  - SwiftDate (5.1.0)
-  - SwifterSwift (4.6.0):
-    - SwifterSwift/AppKit (= 4.6.0)
-    - SwifterSwift/CoreGraphics (= 4.6.0)
-    - SwifterSwift/CoreLocation (= 4.6.0)
-    - SwifterSwift/Foundation (= 4.6.0)
-    - SwifterSwift/MapKit (= 4.6.0)
-    - SwifterSwift/SpriteKit (= 4.6.0)
-    - SwifterSwift/SwiftStdlib (= 4.6.0)
-    - SwifterSwift/UIKit (= 4.6.0)
-  - SwifterSwift/AppKit (4.6.0)
-  - SwifterSwift/CoreGraphics (4.6.0)
-  - SwifterSwift/CoreLocation (4.6.0)
-  - SwifterSwift/Foundation (4.6.0)
-  - SwifterSwift/MapKit (4.6.0)
-  - SwifterSwift/SpriteKit (4.6.0)
-  - SwifterSwift/SwiftStdlib (4.6.0)
-  - SwifterSwift/UIKit (4.6.0)
   - SwiftLint (0.38.0)
 
 DEPENDENCIES:
@@ -29,18 +11,14 @@ DEPENDENCIES:
   - AlamofireNetworkActivityIndicator
   - MVVM-Swift
   - ObjectMapper
-  - SwiftDate (= 5.1.0)
-  - SwifterSwift (= 4.6.0)
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - AlamofireNetworkActivityIndicator
     - MVVM-Swift
     - ObjectMapper
-    - SwiftDate
-    - SwifterSwift
     - SwiftLint
 
 SPEC CHECKSUMS:
@@ -48,10 +26,8 @@ SPEC CHECKSUMS:
   AlamofireNetworkActivityIndicator: 9acc3de3ca6645bf0efed462396b0df13dd3e7b8
   MVVM-Swift: 54749cc12bb30af41632f30a2c576a18bf9e4bc8
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
-  SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
-  SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
   SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
 
-PODFILE CHECKSUM: a65608f9aa1bb371ff0bc6de2b8e69fd55d3bd62
+PODFILE CHECKSUM: d6bd5ea819d00097c6f6d137ea9fc92b5ac30def
 
 COCOAPODS: 1.8.4
