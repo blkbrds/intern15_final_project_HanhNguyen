@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		127B9770A279B13341E06E01 /* libPods-MyApp-MyAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF62E22018F616391D17EE68 /* libPods-MyApp-MyAppTests.a */; };
 		50E4C1BF2C5C2C907A76741A /* libPods-MyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B32930BC64DF18BB73EECD15 /* libPods-MyApp.a */; };
+		8A284F2123ED44690095052E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A284F1F23ED44690095052E /* HomeViewController.swift */; };
+		8A284F2223ED44690095052E /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A284F2023ED44690095052E /* HomeViewController.xib */; };
+		8A284F2623ED449E0095052E /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A284F2423ED449E0095052E /* PopularViewController.swift */; };
+		8A284F2723ED449E0095052E /* PopularViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A284F2523ED449E0095052E /* PopularViewController.xib */; };
+		8A284F2B23ED44C10095052E /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A284F2923ED44C10095052E /* ChannelViewController.swift */; };
+		8A284F2C23ED44C10095052E /* ChannelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A284F2A23ED44C10095052E /* ChannelViewController.xib */; };
+		8A284F3023ED44E20095052E /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A284F2E23ED44E10095052E /* LibraryViewController.swift */; };
+		8A284F3123ED44E20095052E /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A284F2F23ED44E10095052E /* LibraryViewController.xib */; };
 		EC0105521E8F8AE000CE013D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC0105401E8F8ADF00CE013D /* Assets.xcassets */; };
 		EC0105541E8F8AE000CE013D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0105441E8F8ADF00CE013D /* AppDelegate.swift */; };
 		EC2C488D1EAF011C00B22F4B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2C488C1EAF011C00B22F4B /* Utils.swift */; };
@@ -71,6 +79,14 @@
 		47FCF93A9948D710C06CECAF /* Pods-MyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyApp/Pods-MyApp.release.xcconfig"; sourceTree = "<group>"; };
 		48F8D478234569385F88AC15 /* Pods-MyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyApp/Pods-MyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		8A284F1923ED3DD70095052E /* MyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyApp.entitlements; sourceTree = "<group>"; };
+		8A284F1F23ED44690095052E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8A284F2023ED44690095052E /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		8A284F2423ED449E0095052E /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
+		8A284F2523ED449E0095052E /* PopularViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularViewController.xib; sourceTree = "<group>"; };
+		8A284F2923ED44C10095052E /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
+		8A284F2A23ED44C10095052E /* ChannelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelViewController.xib; sourceTree = "<group>"; };
+		8A284F2E23ED44E10095052E /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		8A284F2F23ED44E10095052E /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 		B32930BC64DF18BB73EECD15 /* libPods-MyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF62E22018F616391D17EE68 /* libPods-MyApp-MyAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyApp-MyAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC0105401E8F8ADF00CE013D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -143,6 +159,42 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8A284F1E23ED44510095052E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8A284F1F23ED44690095052E /* HomeViewController.swift */,
+				8A284F2023ED44690095052E /* HomeViewController.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8A284F2323ED44920095052E /* Popular */ = {
+			isa = PBXGroup;
+			children = (
+				8A284F2423ED449E0095052E /* PopularViewController.swift */,
+				8A284F2523ED449E0095052E /* PopularViewController.xib */,
+			);
+			path = Popular;
+			sourceTree = "<group>";
+		};
+		8A284F2823ED44B40095052E /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				8A284F2923ED44C10095052E /* ChannelViewController.swift */,
+				8A284F2A23ED44C10095052E /* ChannelViewController.xib */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		8A284F2D23ED44CD0095052E /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				8A284F2E23ED44E10095052E /* LibraryViewController.swift */,
+				8A284F2F23ED44E10095052E /* LibraryViewController.xib */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		E7A23BB3FDC7E19F0663DF69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +250,10 @@
 		EC0105431E8F8ADF00CE013D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8A284F2D23ED44CD0095052E /* Library */,
+				8A284F2823ED44B40095052E /* Channel */,
+				8A284F2323ED44920095052E /* Popular */,
+				8A284F1E23ED44510095052E /* Home */,
 				EC5337BF1EF7933A00ACE038 /* Base */,
 				F1C6352A1EF141F300D0A1A0 /* Storyboard */,
 			);
@@ -437,7 +493,11 @@
 			files = (
 				EC0105521E8F8AE000CE013D /* Assets.xcassets in Resources */,
 				EC5337BA1EF78E4D00ACE038 /* Localizable.strings in Resources */,
+				8A284F2C23ED44C10095052E /* ChannelViewController.xib in Resources */,
+				8A284F3123ED44E20095052E /* LibraryViewController.xib in Resources */,
+				8A284F2723ED449E0095052E /* PopularViewController.xib in Resources */,
 				F1C6352C1EF141F300D0A1A0 /* LaunchScreen.storyboard in Resources */,
+				8A284F2223ED44690095052E /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +568,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A284F2623ED449E0095052E /* PopularViewController.swift in Sources */,
+				8A284F2B23ED44C10095052E /* ChannelViewController.swift in Sources */,
+				8A284F2123ED44690095052E /* HomeViewController.swift in Sources */,
 				EC5337C11EF7939C00ACE038 /* TableCell.swift in Sources */,
 				ECF23AC31E9B9264008C23C1 /* StringExt.swift in Sources */,
 				F537DDD623979E8A00638CB4 /* NSErrorExt.swift in Sources */,
@@ -523,6 +586,7 @@
 				EC332A481EA0A8CB0011DF1E /* Api.swift in Sources */,
 				ECD1C29B1EA725B1000EC989 /* InputViewExt.swift in Sources */,
 				F537DDD22397969900638CB4 /* NSDataExt.swift in Sources */,
+				8A284F3023ED44E20095052E /* LibraryViewController.swift in Sources */,
 				ECF23AB41E9B869B008C23C1 /* ApiManager.swift in Sources */,
 				ECEC0C5A1ED44D4100F6760A /* UIViewControllerExt.swift in Sources */,
 				ECEC0C581ED44C5D00F6760A /* String.swift in Sources */,
