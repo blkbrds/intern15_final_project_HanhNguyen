@@ -12,10 +12,11 @@ final class HomeViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    var viewModel = HomeViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-
     }
 
     func setupUI() {
@@ -26,13 +27,14 @@ final class HomeViewController: UIViewController {
 }
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.videos.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.homeCell.rawValue, for: indexPath) as? HomeCell else {
             return UITableViewCell()
         }
+        cell.viewModel = viewModel.viewModelForCell(at: indexPath)
         return cell
     }
 }
