@@ -16,6 +16,7 @@ target 'MyApp' do
 
     # Utils
     pod 'SwiftLint' # A tool to enforce Swift style and conventions.
+    pod 'Kingfisher' #download image
 
 target 'MyAppTests' do
     inherit! :complete
