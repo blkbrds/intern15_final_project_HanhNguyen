@@ -16,6 +16,7 @@
 		8A284F2C23ED44C10095052E /* ChannelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A284F2A23ED44C10095052E /* ChannelViewController.xib */; };
 		8A284F3023ED44E20095052E /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A284F2E23ED44E10095052E /* LibraryViewController.swift */; };
 		8A284F3123ED44E20095052E /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A284F2F23ED44E10095052E /* LibraryViewController.xib */; };
+		8A6F1B1D23EEEAEA0004181F /* API.Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F1B1C23EEEAEA0004181F /* API.Home.swift */; };
 		8A7BD77D23ED596500F67146 /* Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7BD77C23ED596500F67146 /* Enumeration.swift */; };
 		8A7BD78123ED59B300F67146 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7BD77F23ED59B300F67146 /* HomeCell.swift */; };
 		8A7BD78223ED59B300F67146 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7BD78023ED59B300F67146 /* HomeCell.xib */; };
@@ -100,6 +101,7 @@
 		8A284F2A23ED44C10095052E /* ChannelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelViewController.xib; sourceTree = "<group>"; };
 		8A284F2E23ED44E10095052E /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		8A284F2F23ED44E10095052E /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
+		8A6F1B1C23EEEAEA0004181F /* API.Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Home.swift; sourceTree = "<group>"; };
 		8A7BD77C23ED596500F67146 /* Enumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumeration.swift; sourceTree = "<group>"; };
 		8A7BD77F23ED59B300F67146 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		8A7BD78023ED59B300F67146 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				ECF23AB01E9B869B008C23C1 /* Core */,
+				8A6F1B1C23EEEAEA0004181F /* API.Home.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				ECF23ABB1E9B89B2008C23C1 /* ResponseSerializer.swift in Sources */,
 				ECF23ABE1E9B8A6A008C23C1 /* Error.swift in Sources */,
 				8A7BD78123ED59B300F67146 /* HomeCell.swift in Sources */,
+				8A6F1B1D23EEEAEA0004181F /* API.Home.swift in Sources */,
 				EC5337B51EF7845700ACE038 /* Color.swift in Sources */,
 				8A7BD78423ED6F9400F67146 /* HomeCellViewModel.swift in Sources */,
 				F537DDD423979E2700638CB4 /* DictionaryExt.swift in Sources */,

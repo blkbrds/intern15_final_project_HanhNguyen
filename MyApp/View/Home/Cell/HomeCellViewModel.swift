@@ -12,7 +12,6 @@ class HomeCellViewModel {
     var title: String
     var channelName: String
     var imageChannelURL: String
-    var view: String
     var createdAt: Date
 
     init(video: Video) {
@@ -20,7 +19,6 @@ class HomeCellViewModel {
         title = video.title
         channelName = video.channel.name
         imageChannelURL = video.channel.imageURL
-        view = video.view
         createdAt = video.createdTime
     }
 }

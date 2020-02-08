@@ -9,7 +9,7 @@
 import Foundation
 final class HomeViewModel {
 
-    var videos: [Video] = DummyData.fetchVideo()
+    var videos: [Video] = []
 
     func viewModelForCell(at indexPath: IndexPath) -> HomeCellViewModel {
         return HomeCellViewModel(video: videos[indexPath.row])
