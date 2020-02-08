@@ -1,11 +1,13 @@
-
-workspace 'MyApp.xcworkspace'
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
 
 target 'MyApp' do
-    project 'MyApp'
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
 
-    # Architect
-    pod 'MVVM-Swift' # MVVM Architect for iOS Application.
+  # Pods for MyApp
+  # Architect
+   pod 'MVVM-Swift' # MVVM Architect for iOS Application.
 
     # Data
     pod 'ObjectMapper' # Simple JSON Object mapping written in Swift. Please fix this version to 2.2.6 now.
@@ -17,19 +19,12 @@ target 'MyApp' do
     # Utils
     pod 'SwiftLint' # A tool to enforce Swift style and conventions.
     pod 'Kingfisher' #download image
+    pod 'GoogleAPIClientForREST/YouTube', '~> 1.2.1'
+    pod 'Google/SignIn', '~> 3.0.3'
 
-target 'MyAppTests' do
-    inherit! :complete
-end
+  target 'MyAppTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
 
-post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-            if config.name == 'Release'
-                config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Owholemodule'
-            end
-            config.build_settings['SWIFT_VERSION'] = '5.0'
-        end
-        end
-    end
 end
