@@ -33,6 +33,6 @@ final class HomeCell: UITableViewCell {
         videoImageView.setImage(url: viewModel.thumbnailURL)
         channelImageView.setImage(url: viewModel.imageChannelURL)
         titleLabel.text = viewModel.title
-        descriptionLabel.text = "\(viewModel.channelName) . \(viewModel.createdAt)"
+        descriptionLabel.text = "\(viewModel.channelName) . \(viewModel.createdAt.string(withFormat: App.String.dateFormatYYYYMMDDHHmmss))"
     }
 }

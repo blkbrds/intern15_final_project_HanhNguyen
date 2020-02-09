@@ -20,7 +20,7 @@ final class Video: Mappable {
 
     func mapping(map: Map) {
         id <- map["id"]
-        imageURL <- map["snippet.thumbnails.standard.url"]
+        imageURL <- map["snippet.thumbnails.high.url"]
         title <- map["snippet.title"]
         createdTime <- map["snippet.publishedAt"]
         channel.id <- map["snippet.channelId"]

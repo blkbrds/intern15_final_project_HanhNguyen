@@ -22,14 +22,14 @@
                             <constraint firstAttribute="width" secondItem="cBB-yo-DWX" secondAttribute="height" multiplier="375/211" id="WOa-kz-hzy"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hádjkajkdgashđhjkáhdkjhdkạsdkhdashdhdkashdkjhdkjahsdhdhsdhkdhhdajshdjkhdskjdhkhjkdhasjkdhsajkdhakjdhkdjhs" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dv-2f-E46">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="hádjkajkdgashđhjkáhdkjhdkạsdkhdashdhdkashdkjhdkjahsdhdhsdhkdhhdajshdjkhdskjdhkhjkdhasjkdhsajkdhakjdhkdjhs" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dv-2f-E46">
                         <rect key="frame" x="57.5" y="190" width="257.5" height="48"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" insetsLayoutMarginsFromSafeArea="NO" text="ádkhaskdakhdkahdkjhdjkhdhhsjkhhdkashjduahduhuddhdhkdạdbhajbdhbabbasdjb" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKw-SY-rr6">
-                        <rect key="frame" x="57.5" y="243" width="257.5" height="36"/>
+                        <rect key="frame" x="57.5" y="238" width="257.5" height="41"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                     <constraint firstItem="0TZ-3S-bxX" firstAttribute="top" secondItem="cBB-yo-DWX" secondAttribute="bottom" constant="10" id="P9x-8q-Sw5"/>
                     <constraint firstItem="rKw-SY-rr6" firstAttribute="leading" secondItem="0TZ-3S-bxX" secondAttribute="trailing" constant="5" id="RvY-kv-A9o"/>
                     <constraint firstAttribute="trailing" secondItem="cBB-yo-DWX" secondAttribute="trailing" id="SMF-IA-IPk"/>
-                    <constraint firstItem="rKw-SY-rr6" firstAttribute="top" secondItem="8dv-2f-E46" secondAttribute="bottom" constant="5" id="Tqw-Mb-Tqf"/>
+                    <constraint firstItem="rKw-SY-rr6" firstAttribute="top" secondItem="8dv-2f-E46" secondAttribute="bottom" id="Tqw-Mb-Tqf"/>
                     <constraint firstItem="cBB-yo-DWX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="eY4-SX-96s"/>
                     <constraint firstItem="cBB-yo-DWX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="iBW-wA-Keh"/>
                     <constraint firstItem="0TZ-3S-bxX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="mVh-F4-CcQ"/>
@@ -65,7 +65,7 @@
                 <outlet property="titleLabel" destination="8dv-2f-E46" id="Sez-fr-BNE"/>
                 <outlet property="videoImageView" destination="cBB-yo-DWX" id="hwg-fj-NPt"/>
             </connections>
-            <point key="canvasLocation" x="326" y="104"/>
+            <point key="canvasLocation" x="174" y="195"/>
         </tableViewCell>
     </objects>
 </document>

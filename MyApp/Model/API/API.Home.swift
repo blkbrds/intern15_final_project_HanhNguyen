@@ -14,21 +14,21 @@ extension Api.Home {
     
     struct Params {
         var part: String
-        var mine: Bool
+        var publishedAfter: String
         var key: String
         
         func toJSON() -> [String: Any] {
             return [
                 "part": part,
-                "mine": mine,
+                "publishedAfter": publishedAfter,
                 "key": key
             ]
         }
     }
 
-//    @discardableResult
+    @discardableResult
     static func getPlaylist(params: Params, completion: @escaping Completion<[Video]>) -> Request? {
-        let path = Api.Path.Home.path
+        let path = Api.Path.Home.path 
         return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
             DispatchQueue.main.async {
                 switch result {

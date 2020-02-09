@@ -19,7 +19,7 @@ final class Api {
 extension Api.Path {
     struct Home {
         static var path: String {
-            return baseURL / "playlists"
+            return baseURL / "search" 
         }
     }
 }
