@@ -25,11 +25,11 @@ final class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
     }
-    
+
     func loadData() {
         fetchData()
     }
-    
+
     func fetchData() {
         viewModel.loadVideos { [weak self] (result) in
             guard let this = self else { return }
@@ -41,13 +41,13 @@ final class HomeViewController: UIViewController {
             }
         }
     }
-    
+
     func updateUI() {
         tableView.reloadData()
     }
 }
 extension HomeViewController: UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.videos.count
     }
@@ -58,6 +58,22 @@ extension HomeViewController: UITableViewDataSource {
         }
         cell.viewModel = viewModel.viewModelForCell(at: indexPath)
         return cell
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY >= contentHeight - scrollView.frame.size.height {
+            fetchData()
+        }
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY >= contentHeight - scrollView.frame.size.height {
+            fetchData()
+        }
     }
 }
 
