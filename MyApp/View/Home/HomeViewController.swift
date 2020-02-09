@@ -13,6 +13,7 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var viewModel = HomeViewModel()
+    private let tableRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +22,23 @@ final class HomeViewController: UIViewController {
     }
 
     func setupUI() {
+        tableRefreshControl.tintColor = .black
+        let tableViewAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        tableRefreshControl.attributedTitle = NSAttributedString(string: App.String.refresh, attributes: tableViewAttributes)
+        tableRefreshControl.addTarget(self, action: #selector(tableViewDidScrollToTop), for: .valueChanged)
+        tableView.addSubview(tableRefreshControl)
+
         tableView.register(name: CellIdentifier.homeCell.rawValue)
         tableView.dataSource = self
         tableView.delegate = self
     }
 
     func loadData() {
+        fetchData()
+        tableRefreshControl.endRefreshing()
+    }
+
+    @objc func tableViewDidScrollToTop() {
         fetchData()
     }
 
@@ -46,6 +58,7 @@ final class HomeViewController: UIViewController {
         tableView.reloadData()
     }
 }
+
 extension HomeViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,6 +89,7 @@ extension HomeViewController: UITableViewDataSource {
         }
     }
 }
+
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
