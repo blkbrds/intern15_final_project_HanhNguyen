@@ -34,16 +34,15 @@ final class HomeViewController: UIViewController {
     }
 
     func loadData() {
-        fetchData()
-        tableRefreshControl.endRefreshing()
+        fetchData(isLoadMore: false)
     }
 
     @objc func tableViewDidScrollToTop() {
-        fetchData()
+        fetchData(isLoadMore: false)
     }
 
-    func fetchData() {
-        viewModel.loadVideos { [weak self] (result) in
+    func fetchData(isLoadMore: Bool) {
+        viewModel.loadVideos(isLoadMore: isLoadMore) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success:
@@ -51,11 +50,13 @@ final class HomeViewController: UIViewController {
             case .failure(let error):
                 this.alert(error: error)
             }
+            this.viewModel.isLoading = false
         }
     }
 
     func updateUI() {
         tableView.reloadData()
+        tableRefreshControl.endRefreshing()
     }
 }
 
@@ -77,7 +78,7 @@ extension HomeViewController: UITableViewDataSource {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         if offsetY >= contentHeight - scrollView.frame.size.height {
-            fetchData()
+            fetchData(isLoadMore: true)
         }
     }
 
@@ -85,11 +86,10 @@ extension HomeViewController: UITableViewDataSource {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         if offsetY >= contentHeight - scrollView.frame.size.height {
-            fetchData()
+            fetchData(isLoadMore: true)
         }
     }
 }
-
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

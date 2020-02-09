@@ -10,6 +10,7 @@ import UIKit
 
 extension UIViewController {
     func alert(error: Error) {
+        guard error.code != 1_000 else { return }
         alert(title: "ERROR", msg: error.localizedDescription, buttons: ["OK"], handler: nil)
     }
 
