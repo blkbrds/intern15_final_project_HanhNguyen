@@ -21,7 +21,8 @@ final class HomeViewController: ViewController {
         loadData()
     }
 
-    func setupUI() {
+    override func setupUI() {
+        super.setupUI()
         tableRefreshControl.tintColor = .black
         let tableViewAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         tableRefreshControl.attributedTitle = NSAttributedString(string: App.String.refresh, attributes: tableViewAttributes)
