@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class PopularViewController: UIViewController {
+final class PopularViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

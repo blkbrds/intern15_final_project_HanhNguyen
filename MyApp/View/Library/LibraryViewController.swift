@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class LibraryViewController: UIViewController {
+final class LibraryViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
