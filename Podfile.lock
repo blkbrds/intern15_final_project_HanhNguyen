@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.9.1)
   - AlamofireNetworkActivityIndicator (2.4.0):
     - Alamofire (~> 4.8)
+  - Kingfisher (4.10.1)
   - MVVM-Swift (1.1.0)
   - ObjectMapper (3.5.1)
   - SwiftLint (0.38.0)
@@ -9,6 +10,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireNetworkActivityIndicator
+  - Kingfisher
   - MVVM-Swift
   - ObjectMapper
   - SwiftLint
@@ -17,6 +19,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireNetworkActivityIndicator
+    - Kingfisher
     - MVVM-Swift
     - ObjectMapper
     - SwiftLint
@@ -24,10 +27,11 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireNetworkActivityIndicator: 9acc3de3ca6645bf0efed462396b0df13dd3e7b8
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   MVVM-Swift: 54749cc12bb30af41632f30a2c576a18bf9e4bc8
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
 
-PODFILE CHECKSUM: d6bd5ea819d00097c6f6d137ea9fc92b5ac30def
+PODFILE CHECKSUM: dd49596b3c7ec434a98e1235b30a4e9b8b37883e
 
 COCOAPODS: 1.8.4
