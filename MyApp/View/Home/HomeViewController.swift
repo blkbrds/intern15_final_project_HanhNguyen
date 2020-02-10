@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: ViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -95,4 +95,5 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
 }
