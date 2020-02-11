@@ -19,7 +19,7 @@ final class HomeViewModel {
 
     func loadVideos(isLoadMore: Bool, completion: @escaping ApiComletion) {
         guard !isLoading else {
-            completion(.failure(Api.Error.cancelRequest))
+            completion(.failure(Api.Error.invalidRequest))
             return
         }
         isLoading = true
