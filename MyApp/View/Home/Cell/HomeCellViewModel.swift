@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class HomeCellViewModel {
+final class HomeCellViewModel {
     var thumbnailURL: String
     var title: String
     var channelName: String
