@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GoogleSignIn
 import AlamofireNetworkActivityIndicator
 
 let networkIndicator = NetworkActivityIndicatorManager.shared
@@ -25,29 +24,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        GIDSignIn.sharedInstance().clientID = "203923311157-fgb9sq4ieeepu6np3uf3ghlrtv95n6np.apps.googleusercontent.com"
         configNetwork()
         window = UIWindow(frame: UIScreen.main.bounds)
         createTabbar()
         window?.makeKeyAndVisible()
         return true
-    }
-
-    func application(_ application: UIApplication,
-        open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url,
-            sourceApplication: sourceApplication,
-            annotation: annotation)
-    }
-
-    @available(iOS 9.0, *)
-    func application(_ app: UIApplication, open url: URL,
-                     options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
-        let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
-        let annotation = options[UIApplication.OpenURLOptionsKey.annotation]
-        return GIDSignIn.sharedInstance().handle(url,
-            sourceApplication: sourceApplication,
-            annotation: annotation)
     }
 
     private func createTabbar() {
