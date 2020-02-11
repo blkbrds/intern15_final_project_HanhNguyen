@@ -33,29 +33,29 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func createTabbar() {
 
-           let homeVC = HomeViewController()
-           let homeNavi = UINavigationController(rootViewController: homeVC)
-           homeNavi.tabBarItem = UITabBarItem(title: "Trang chủ", image: #imageLiteral(resourceName: "ic-home"), tag: 0)
+        let homeVC = HomeViewController()
+        let homeNavi = UINavigationController(rootViewController: homeVC)
+        homeNavi.tabBarItem = UITabBarItem(title: "Trang chủ", image: #imageLiteral(resourceName: "ic-home"), tag: 0)
 
-           let popularVC = PopularViewController()
-           let popularNavi = UINavigationController(rootViewController: popularVC)
-           popularNavi.tabBarItem = UITabBarItem(title: "Thịnh hành", image: #imageLiteral(resourceName: "ic-popular"), tag: 1)
+        let popularVC = PopularViewController()
+        let popularNavi = UINavigationController(rootViewController: popularVC)
+        popularNavi.tabBarItem = UITabBarItem(title: "Thịnh hành", image: #imageLiteral(resourceName: "ic-popular"), tag: 1)
 
-           let channelVC = ChannelViewController()
-           let channelNavi = UINavigationController(rootViewController: channelVC)
-           channelNavi.tabBarItem = UITabBarItem(title: "Kênh đăng ký", image: #imageLiteral(resourceName: "ic-channel"), tag: 2)
+        let channelVC = ChannelViewController()
+        let channelNavi = UINavigationController(rootViewController: channelVC)
+        channelNavi.tabBarItem = UITabBarItem(title: "Kênh đăng ký", image: #imageLiteral(resourceName: "ic-channel"), tag: 2)
 
-           let libraryVC = LibraryViewController()
-           let libraryNavi = UINavigationController(rootViewController: libraryVC)
-           libraryNavi.tabBarItem = UITabBarItem(title: "Thư viện", image: #imageLiteral(resourceName: "ic-library"), tag: 3)
+        let libraryVC = LibraryViewController()
+        let libraryNavi = UINavigationController(rootViewController: libraryVC)
+        libraryNavi.tabBarItem = UITabBarItem(title: "Thư viện", image: #imageLiteral(resourceName: "ic-library"), tag: 3)
 
-           let tabbarController = UITabBarController()
-           tabbarController.viewControllers = [homeNavi, popularNavi, channelNavi, libraryNavi]
-           tabbarController.tabBar.tintColor = #colorLiteral(red: 0.9960784314, green: 0, blue: 0, alpha: 1)
-           tabbarController.tabBar.barTintColor = .white
+        let tabbarController = UITabBarController()
+        tabbarController.viewControllers = [homeNavi, popularNavi, channelNavi, libraryNavi]
+        tabbarController.tabBar.tintColor = #colorLiteral(red: 0.9960784314, green: 0, blue: 0, alpha: 1)
+        tabbarController.tabBar.barTintColor = .white
 
         window?.rootViewController = tabbarController
-       }
+    }
 }
 
 extension AppDelegate {

@@ -7,19 +7,23 @@
 //
 
 import Foundation
+import ObjectMapper
 
-final class Video {
-    var imageURL: String
-    var title: String
-    var channel: Channel
-    var view: String
-    var createdTime: Date
+final class Video: Mappable {
+    var id: String = ""
+    var imageURL: String = ""
+    var title: String = ""
+    var channel: Channel = Channel()
+    var createdTime: Date = Date()
 
-    init(imageURL: String, title: String, channel: Channel, view: String, createdTime: Date) {
-        self.imageURL = imageURL
-        self.title = title
-        self.channel = channel
-        self.view = view
-        self.createdTime = createdTime
+    init?(map: Map) { }
+
+    func mapping(map: Map) {
+        id <- map["id"]
+        imageURL <- map["snippet.thumbnails.high.url"]
+        title <- map["snippet.title"]
+        createdTime <- map["snippet.publishedAt"]
+        channel.id <- map["snippet.channelId"]
+        channel.name <- map["snippet.channelTitle"]
     }
 }

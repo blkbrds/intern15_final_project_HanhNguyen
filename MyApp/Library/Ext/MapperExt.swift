@@ -11,7 +11,7 @@ import Alamofire
 import ObjectMapper
 
 extension Mapper {
-    func map(result: Result<Any>, type: DataType, completion: Completion) {
+    func map(result: Result<Any>, type: DataType, completion: Completion<Any>) {
         switch result {
         case .success(let json):
             switch type {

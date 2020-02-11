@@ -17,6 +17,7 @@ final class HomeViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        loadData()
     }
 
     override func setupUI() {
@@ -24,8 +25,29 @@ final class HomeViewController: ViewController {
         tableView.dataSource = self
         tableView.delegate = self
     }
+    
+    func loadData() {
+        fetchData()
+    }
+    
+    func fetchData() {
+        viewModel.loadVideos { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.updateUI()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+    
+    func updateUI() {
+        tableView.reloadData()
+    }
 }
 extension HomeViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.videos.count
     }

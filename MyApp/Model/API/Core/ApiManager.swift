@@ -12,7 +12,13 @@ import Alamofire
 typealias JSObject = [String: Any]
 typealias JSArray = [JSObject]
 
-typealias Completion = (Result<Any>) -> Void
+typealias Completion<T> = (Result<T>) -> Void
+typealias ApiComletion = (APIResult) -> Void
+
+enum APIResult {
+    case success
+    case failure(Error)
+}
 
 let api = ApiManager()
 

@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import MVVM
 
-class ViewController: UIViewController, MVVM.View {
+class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,4 +57,5 @@ class ViewController: UIViewController, MVVM.View {
     }
 
     func setupData() { }
+
 }
