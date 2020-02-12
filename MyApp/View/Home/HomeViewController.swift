@@ -19,6 +19,7 @@ final class HomeViewController: ViewController {
     }
 
     override func setupUI() {
+        super.setupUI()
         tableView.register(name: CellIdentifier.homeCell.rawValue)
         tableView.dataSource = self
         tableView.delegate = self

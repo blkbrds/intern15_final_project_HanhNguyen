@@ -19,7 +19,7 @@ final class VideoChannelCell: UITableViewCell {
             setupUI()
         }
     }
-    
+
     private func setupUI() {
         guard let viewModel = viewModel else {
             return

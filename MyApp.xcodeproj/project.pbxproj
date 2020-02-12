@@ -48,6 +48,7 @@
 		8AC1EE1C23F25944009E95FD /* VideoChannelCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC1EE1B23F25944009E95FD /* VideoChannelCellViewModel.swift */; };
 		8AC3E9FA23F3911D008CE18C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3E9F923F3911D008CE18C /* Comment.swift */; };
 		BEC9596B95AE9DF3CE6DA172 /* Pods_MyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE12F04FB7F219FB9E6D3D6 /* Pods_MyApp.framework */; };
+		8AC1EDEF23F0F380009E95FD /* PopularViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC1EDEE23F0F380009E95FD /* PopularViewModel.swift */; };
 		EC0105521E8F8AE000CE013D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC0105401E8F8ADF00CE013D /* Assets.xcassets */; };
 		EC0105541E8F8AE000CE013D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0105441E8F8ADF00CE013D /* AppDelegate.swift */; };
 		EC2C488D1EAF011C00B22F4B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2C488C1EAF011C00B22F4B /* Utils.swift */; };
@@ -153,6 +154,9 @@
 		8AC1EE1B23F25944009E95FD /* VideoChannelCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoChannelCellViewModel.swift; sourceTree = "<group>"; };
 		8AC3E9F923F3911D008CE18C /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		DB69669865989B28D1BB192F /* Pods-MyAppTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAppTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-MyAppTests/Pods-MyAppTests.staging.xcconfig"; sourceTree = "<group>"; };
+		8AC1EDEE23F0F380009E95FD /* PopularViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewModel.swift; sourceTree = "<group>"; };
+		B32930BC64DF18BB73EECD15 /* libPods-MyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF62E22018F616391D17EE68 /* libPods-MyApp-MyAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyApp-MyAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC0105401E8F8ADF00CE013D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC0105421E8F8ADF00CE013D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC0105441E8F8ADF00CE013D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 			children = (
 				8A284F2423ED449E0095052E /* PopularViewController.swift */,
 				8A284F2523ED449E0095052E /* PopularViewController.xib */,
+				8AC1EDEE23F0F380009E95FD /* PopularViewModel.swift */,
 			);
 			path = Popular;
 			sourceTree = "<group>";
@@ -810,6 +815,7 @@
 			files = (
 				8AC1EE1923F257A1009E95FD /* CommentCellViewModel.swift in Sources */,
 				8AC1EE1223F23DBC009E95FD /* VideoDetailCellViewModel.swift in Sources */,
+				8AC1EDEF23F0F380009E95FD /* PopularViewModel.swift in Sources */,
 				8A7BD78F23EE4D7700F67146 /* UIImageViewExt.swift in Sources */,
 				8AC1EE0F23F15503009E95FD /* VideoChannelCell.swift in Sources */,
 				8A284F2623ED449E0095052E /* PopularViewController.swift in Sources */,

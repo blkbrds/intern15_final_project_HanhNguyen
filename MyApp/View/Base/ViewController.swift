@@ -7,26 +7,13 @@
 //
 
 import UIKit
-import GoogleAPIClientForREST
-import GoogleSignIn
 
 class ViewController: UIViewController {
-    private let scopes = [kGTLRAuthScopeYouTubeReadonly]
-    private let service = GTLRYouTubeService()
-    let signInButton = GIDSignInButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupData()
-        // Configure Google Sign-in.
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().scopes = scopes
-        GIDSignIn.sharedInstance().signInSilently()
-
-        // Add the sign-in button.
-        view.addSubview(signInButton)
     }
 
     func setupUI() {
@@ -71,17 +58,4 @@ class ViewController: UIViewController {
 
     func setupData() { }
 
-}
-
-extension ViewController: GIDSignInDelegate, GIDSignInUIDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
-              withError error: Error!) {
-        print("eafewf")
-        if error != nil {
-            self.service.authorizer = nil
-        } else {
-            self.service.authorizer = user.authentication.fetcherAuthorizer()
-//            UserDefaults.standard.set(user.authentication.accessToken, forKey: "youtubeAccessToken")
-        }
-    }
 }
