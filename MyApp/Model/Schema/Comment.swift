@@ -7,4 +7,19 @@
 //
 
 import Foundation
-final class Comment { }
+import ObjectMapper
+final class Comment: Mappable {
+    var publishedAt: Date = Date()
+    var authorDisplayName: String = ""
+    var authorProfileImageUrl: String = ""
+    var textDisplay: String = ""
+
+    init(map: Map) { }
+
+    func mapping(map: Map) {
+        publishedAt <- map["snippet.topLevelComment.snippet.publishedAt"]
+        authorDisplayName <- map["snippet.topLevelComment.snippet.authorDisplayName"]
+        authorProfileImageUrl <- map["snippet.topLevelComment.snippet.authorProfileImageUrl"]
+        textDisplay <- map["snippet.topLevelComment.snippet.textDisplay"]
+    }
+}

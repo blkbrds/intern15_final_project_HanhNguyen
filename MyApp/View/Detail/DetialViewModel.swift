@@ -10,14 +10,31 @@ import Foundation
 import UIKit
 final class DetailViewModel {
 
-    var video: Video?
+    var video: Video = Video()
+    
+    init(id: String = "") {
+        video.id = id
+    }
 
     func numberOfSections() -> Int {
         return SectionType.allCases.count
     }
 
+    func loadApiComment(completion: @escaping ApiComletion) {
+        let params = Api.Detail.CommentParms(part: "snippet", videoId: video.id, key: App.String.apiKey)
+        Api.Detail.getComments(params: params) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success(let comment):
+                this.video.comment = comment
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     func numberOfItems(section: Int) -> Int {
-        guard let video = video else { return 0 }
         guard let sectionType = SectionType(rawValue: section) else { return 0 }
         switch sectionType {
         case .videoDetail, .videoChannel:
@@ -32,29 +49,29 @@ final class DetailViewModel {
     func heightForRowAt(at indexPath: IndexPath) -> CGFloat {
         guard let sectionType = SectionType(rawValue: indexPath.section) else { return .zero }
         switch sectionType {
-        case .videoDetail, .comment, .videoChannel, .relatedVideos:
+        case .videoDetail, .videoChannel, .relatedVideos, .comment:
             return UITableView.automaticDimension
         }
     }
-    
+
     func viewModelForDetailCell(at indexPath: IndexPath) -> VideoDetailCellViewModel {
         return VideoDetailCellViewModel(tag: "", title: "", viewCount: 1212122, likeCount: 12112, disLikeConut: 122)
     }
-    
+
     func viewModelForChannelCell(at indexPath: IndexPath) -> VideoChannelCellViewModel {
         return VideoChannelCellViewModel(avatar: "", channelName: "", view: "")
     }
-    
+
     func viewModelForRelatedCell(at indexPath: IndexPath) -> RelatedCellViewModel {
         return RelatedCellViewModel(imgaeURL: "", title: "", channelName: "", view: "")
     }
-    
+
     func viewModelForAddComment(at indexPath: IndexPath) -> AddCommentCellViewModel {
         return AddCommentCellViewModel(avatar: "", comment: "")
     }
-    
+
     func viewModelForCommentCell(at indexPath: IndexPath) -> CommentCellViewModel {
-        return CommentCellViewModel(name: "", avatar: "", comment: "")
+        return CommentCellViewModel(comment: video.comment[indexPath.row])
     }
 }
 extension DetailViewModel {
@@ -63,11 +80,6 @@ extension DetailViewModel {
         case videoChannel
         case relatedVideos
         case comment
-    }
-    
-    enum CommentSectionCellType: Int {
-        case comments
-        case addcomment
     }
 
     struct Config {

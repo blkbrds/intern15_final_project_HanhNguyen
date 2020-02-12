@@ -29,4 +29,8 @@ final class HomeViewModel {
             }
         }
     }
+
+    func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
+        return DetailViewModel(id: videos[indexPath.row].id)
+    }
 }

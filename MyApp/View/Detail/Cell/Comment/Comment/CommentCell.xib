@@ -53,9 +53,9 @@
             <connections>
                 <outlet property="avatarImageView" destination="nqJ-PB-asH" id="EGh-ac-Q2a"/>
                 <outlet property="commentLabel" destination="rWX-Wm-KrT" id="Det-4U-UMt"/>
-                <outlet property="nameLabel" destination="wS6-gL-Ggf" id="aqs-20-Ina"/>
+                <outlet property="descriptionLabel" destination="wS6-gL-Ggf" id="aqs-20-Ina"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="105.13392857142857"/>
+            <point key="canvasLocation" x="109" y="107"/>
         </tableViewCell>
     </objects>
 </document>

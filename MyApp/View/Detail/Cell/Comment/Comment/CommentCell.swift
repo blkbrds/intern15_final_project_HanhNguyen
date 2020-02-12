@@ -10,7 +10,7 @@ import UIKit
 
 final class CommentCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     
     var viewModel: CommentCellViewModel? {
@@ -22,7 +22,7 @@ final class CommentCell: UITableViewCell {
     private func setupUI() {
         guard let viewModel = viewModel else { return }
         avatarImageView.image = UIImage(named: viewModel.avatar)
-        nameLabel.text = viewModel.name
+        descriptionLabel.text = viewModel.name
         commentLabel.text = viewModel.comment
     }
 }

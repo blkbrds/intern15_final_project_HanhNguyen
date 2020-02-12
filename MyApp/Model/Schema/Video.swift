@@ -18,10 +18,12 @@ final class Video: Mappable {
     var comment: [Comment] = []
     var createdTime: Date = Date()
 
+    init() { }
+
     init?(map: Map) { }
 
     func mapping(map: Map) {
-        id <- map["id"]
+        id <- map["id.videoId"]
         imageURL <- map["snippet.thumbnails.high.url"]
         title <- map["snippet.title"]
         createdTime <- map["snippet.publishedAt"]
