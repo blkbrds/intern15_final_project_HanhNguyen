@@ -29,8 +29,4 @@ final class HomeViewModel {
             }
         }
     }
-
-    func getVideo(at indexPath: IndexPath) -> DetailViewModel {
-//        return DetailViewModel()
-    }
 }
