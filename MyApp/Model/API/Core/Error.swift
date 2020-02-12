@@ -31,6 +31,7 @@ extension Api {
         static let emptyData = NSError(domain: Api.Path.baseURL.host, code: 997, message: "Server returns no data")
         static let noResponse = NSError(status: .noResponse)
         static let invalidURL = NSError(domain: Api.Path.baseURL.host, code: 998, message: "Cannot detect URL")
+        static let invalidRequest = NSError(domain: nil, code: 1_000, message: "Cancel request")
     }
 }
 

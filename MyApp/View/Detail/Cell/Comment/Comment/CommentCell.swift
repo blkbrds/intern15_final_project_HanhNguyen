@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 final class CommentCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -19,10 +19,16 @@ final class CommentCell: UITableViewCell {
         }
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
+        avatarImageView.layer.masksToBounds = true
+    }
+
     private func setupUI() {
         guard let viewModel = viewModel else { return }
-        avatarImageView.image = UIImage(named: viewModel.avatar)
-        descriptionLabel.text = viewModel.name
+        avatarImageView.setImage(url: viewModel.avatar)
+        descriptionLabel.text = "\(viewModel.name) • \(viewModel.publishedAt.string(withFormat: App.String.dateFormatYYYYMMDDHHmmss))"
         commentLabel.text = viewModel.comment
     }
 }

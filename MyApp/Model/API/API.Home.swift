@@ -16,30 +16,42 @@ extension Api.Home {
         var part: String
         var publishedAfter: String
         var key: String
+        var pageToken: String
 
         func toJSON() -> [String: Any] {
             return [
                 "part": part,
                 "publishedAfter": publishedAfter,
-                "key": key
+                "key": key,
+                "pageToken": pageToken
             ]
         }
     }
 
+    struct Result: Mappable {
+        var nextPageToken: String = ""
+        var videos: [Video] = []
+
+        init?(map: Map) { }
+        mutating func mapping(map: Map) {
+            nextPageToken <- map["nextPageToken"]
+            videos <- map["items"]
+        }
+    }
+
     @discardableResult
-    static func getPlaylist(params: Params, completion: @escaping Completion<[Video]>) -> Request? {
-        let path = Api.Path.Home.path
+    static func getPlaylist(params: Params, completion: @escaping Completion<Result>) -> Request? {
+        let path = Api.Path.Home.path 
         return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
                     completion(.failure(error))
                 case .success(let json):
-                    guard let json = json as? JSObject, let items = json["items"] as? JSArray else {
+                    guard let json = json as? JSObject, let result = Mapper<Result>().map(JSON: json) else {
                         completion(.failure(Api.Error.json))
                         return }
-                    let videos = Mapper<Video>().mapArray(JSONArray: items)
-                    completion(.success(videos))
+                    completion(.success(result))
                 }
             }
         }

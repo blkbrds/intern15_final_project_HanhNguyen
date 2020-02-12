@@ -21,7 +21,7 @@ final class AddCommentCell: UITableViewCell {
 
     private func setupUI() {
         guard let viewModel = viewModel else { return }
-        avatarImageView.image = UIImage(named: viewModel.avatar)
+        avatarImageView.setImage(url: viewModel.avatar, defaultImage: #imageLiteral(resourceName: "avatar"))
         commentTextField.text = viewModel.comment
     }
 }
