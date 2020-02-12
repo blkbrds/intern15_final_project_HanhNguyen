@@ -65,7 +65,7 @@
                 <outlet property="commentLabel" destination="rWX-Wm-KrT" id="Det-4U-UMt"/>
                 <outlet property="descriptionLabel" destination="wS6-gL-Ggf" id="aqs-20-Ina"/>
             </connections>
-            <point key="canvasLocation" x="108.69565217391305" y="106.47321428571428"/>
+            <point key="canvasLocation" x="-97" y="107"/>
         </tableViewCell>
     </objects>
 </document>

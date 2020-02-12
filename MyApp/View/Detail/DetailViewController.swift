@@ -26,6 +26,18 @@ final class DetailViewController: UIViewController {
     }
 
     func fetchData() {
+        viewModel.loadApiVideoDetail { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.fetchDataComment()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+
+    func fetchDataComment() {
         viewModel.loadApiComment { [weak self] (result) in
             guard let this = self else { return }
             switch result {
@@ -78,7 +90,7 @@ extension DetailViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.videoDetailCell.rawValue, for: indexPath) as? VideoDetailCell else {
                 return UITableViewCell()
             }
-            cell.viewModel = viewModel.viewModelForDetailCell(at: indexPath)
+            cell.viewModel = viewModel.viewModelForDetailCell()
             return cell
         case .videoChannel:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.videoChannelCell.rawValue, for: indexPath) as? VideoChannelCell else {
