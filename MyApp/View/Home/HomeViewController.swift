@@ -17,8 +17,6 @@ final class HomeViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        loadData()
     }
 
     override func setupUI() {
@@ -34,7 +32,8 @@ final class HomeViewController: ViewController {
         tableView.delegate = self
     }
 
-    func loadData() {
+    override func setupData() {
+        super.setupData()
         fetchData(isLoadMore: false)
     }
 
@@ -74,7 +73,7 @@ extension HomeViewController: UITableViewDataSource {
         cell.viewModel = viewModel.viewModelForCell(at: indexPath)
         return cell
     }
-
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -90,11 +89,15 @@ extension HomeViewController: UITableViewDataSource {
             fetchData(isLoadMore: true)
         }
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
 }

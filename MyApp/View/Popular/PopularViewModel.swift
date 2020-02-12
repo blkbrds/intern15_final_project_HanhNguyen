@@ -8,7 +8,7 @@
 
 import Foundation
 final class PopularViewModel {
-var videos: [Video] = []
+    var videos: [Video] = []
     
     func viewModelForCell(at indexPath: IndexPath) -> HomeCellViewModel {
         return HomeCellViewModel(video: videos[indexPath.row])
