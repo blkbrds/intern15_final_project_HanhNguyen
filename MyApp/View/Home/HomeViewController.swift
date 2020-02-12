@@ -13,6 +13,7 @@ final class HomeViewController: ViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var viewModel = HomeViewModel()
+    private let tableRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,17 +21,28 @@ final class HomeViewController: ViewController {
 
     override func setupUI() {
         super.setupUI()
+        tableRefreshControl.tintColor = .black
+        let tableViewAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        tableRefreshControl.attributedTitle = NSAttributedString(string: App.String.refresh, attributes: tableViewAttributes)
+        tableRefreshControl.addTarget(self, action: #selector(tableViewDidScrollToTop), for: .valueChanged)
+        tableView.addSubview(tableRefreshControl)
+
         tableView.register(name: CellIdentifier.homeCell.rawValue)
         tableView.dataSource = self
         tableView.delegate = self
     }
 
     override func setupData() {
-        fetchData()
+        super.setupData()
+        fetchData(isLoadMore: false)
     }
 
-    func fetchData() {
-        viewModel.loadVideos { [weak self] (result) in
+    @objc func tableViewDidScrollToTop() {
+        fetchData(isLoadMore: false)
+    }
+
+    func fetchData(isLoadMore: Bool) {
+        viewModel.loadVideos(isLoadMore: isLoadMore) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success:
@@ -38,13 +50,16 @@ final class HomeViewController: ViewController {
             case .failure(let error):
                 this.alert(error: error)
             }
+            this.viewModel.isLoading = false
         }
     }
 
     func updateUI() {
         tableView.reloadData()
+        tableRefreshControl.endRefreshing()
     }
 }
+
 extension HomeViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,6 +72,22 @@ extension HomeViewController: UITableViewDataSource {
         }
         cell.viewModel = viewModel.viewModelForCell(at: indexPath)
         return cell
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY >= contentHeight - scrollView.frame.size.height {
+            fetchData(isLoadMore: true)
+        }
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY >= contentHeight - scrollView.frame.size.height {
+            fetchData(isLoadMore: true)
+        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
