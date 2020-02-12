@@ -11,7 +11,7 @@ import Alamofire
 import ObjectMapper
 
 extension Api.Detail {
-    struct CommentParms {
+    struct CommentParams {
         var part: String
         var videoId: String
         var key: String
@@ -25,12 +25,12 @@ extension Api.Detail {
         }
     }
     
-    struct VideoDetailParms {
+    struct VideoDetailParams {
         var part: String
         var id: String
         var key: String
 
-        func toJSONVideo() -> [String: Any] {
+        func toJSON() -> [String: Any] {
             return [
                 "part": part,
                 "id": id,
@@ -38,9 +38,27 @@ extension Api.Detail {
             ]
         }
     }
+    
+    struct RelatedVideoParams {
+        var part: String
+        var relatedToVideoId: String
+        var type: String
+        var key: String
+        var maxResults: Int
+
+        func toJSON() -> [String: Any] {
+            return [
+                "part": part,
+                "relatedToVideoId": relatedToVideoId,
+                "type": type,
+                "key": key,
+                "maxResults": maxResults
+            ]
+        }
+    }
 
     @discardableResult
-    static func getComments(params: CommentParms, completion: @escaping Completion<[Comment]>) -> Request? {
+    static func getComments(params: CommentParams, completion: @escaping Completion<[Comment]>) -> Request? {
         let path = Api.Path.Detail.comment
         return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
             DispatchQueue.main.async {
@@ -57,10 +75,10 @@ extension Api.Detail {
             }
         }
     }
-
-    static func getVideoDetail(params: VideoDetailParms, completion: @escaping Completion<Video>) -> Request? {
+    @discardableResult
+    static func getVideoDetail(params: VideoDetailParams, completion: @escaping Completion<Video>) -> Request? {
         let path = Api.Path.Detail.videos
-        return api.request(method: .get, urlString: path, parameters: params.toJSONVideo()) { (result) in
+        return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
@@ -70,6 +88,25 @@ extension Api.Detail {
                         completion(.failure(Api.Error.json))
                         return }
                     completion(.success(video))
+                }
+            }
+        }
+    }
+
+    @discardableResult
+    static func getRelatedVideos(params: RelatedVideoParams, completion: @escaping Completion<[Video]>) -> Request? {
+        let path = Api.Path.Detail.relatedVideos
+        return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let json):
+                    guard let json = json as? JSObject, let items = json["items"] as? JSArray else {
+                        completion(.failure(Api.Error.json))
+                        return }
+                    let videos = Mapper<Video>().mapArray(JSONArray: items)
+                    completion(.success(videos))
                 }
             }
         }

@@ -30,7 +30,20 @@ final class DetailViewController: UIViewController {
             guard let this = self else { return }
             switch result {
             case .success:
+                this.fetchDataRelated()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+    
+    func fetchDataRelated() {
+        viewModel.loadApiRelatedVideo { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
                 this.fetchDataComment()
+                this.updateUI()
             case .failure(let error):
                 this.alert(error: error)
             }

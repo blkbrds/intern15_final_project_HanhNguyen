@@ -31,6 +31,9 @@ extension Api.Path {
         static var comment: String {
             return baseURL / "commentThreads"
         }
+        static var relatedVideos: String {
+            return baseURL / "search"
+        }
     }
 }
 

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 final class RelatedVideoCell: UITableViewCell {
     
     @IBOutlet weak var videoImageView: UIImageView!
@@ -23,9 +22,9 @@ final class RelatedVideoCell: UITableViewCell {
 
     private func setupUI() {
         guard let viewModel = viewModel else { return }
-        videoImageView.image = UIImage(named: viewModel.imgaeURL)
+        videoImageView.setImage(url: viewModel.imgaeURL, defaultImage: #imageLiteral(resourceName: "avatar"))
         titleLabel.text = viewModel.title
         channelNameLabel.text = viewModel.channelName
-        viewLabel.text = viewModel.title
+        viewLabel.text = viewModel.view
     }
 }

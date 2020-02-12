@@ -21,7 +21,7 @@ final class DetailViewModel {
     }
 
     func loadApiComment(completion: @escaping ApiComletion) {
-        let params = Api.Detail.CommentParms(part: "snippet", videoId: video.id, key: App.String.apiKey)
+        let params = Api.Detail.CommentParams(part: "snippet", videoId: video.id, key: App.String.apiKey)
         Api.Detail.getComments(params: params) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
@@ -36,12 +36,26 @@ final class DetailViewModel {
 
     func loadApiVideoDetail(completion: @escaping ApiComletion) {
         let part: [String] = ["snippet", "statistics"]
-        let parms = Api.Detail.VideoDetailParms(part: part.joined(separator: ","), id: video.id, key: App.String.apiKey)
+        let parms = Api.Detail.VideoDetailParams(part: part.joined(separator: ","), id: video.id, key: App.String.apiKey)
         Api.Detail.getVideoDetail(params: parms) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success(let video):
                 this.video = video
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func loadApiRelatedVideo(completion: @escaping ApiComletion) {
+        let parms = Api.Detail.RelatedVideoParams(part: "snippet", relatedToVideoId: video.id, type: "video", key: App.String.apiKey, maxResults: 16)
+        Api.Detail.getRelatedVideos(params: parms) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success(let videos):
+                this.video.related = videos
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))
@@ -78,7 +92,7 @@ final class DetailViewModel {
     }
 
     func viewModelForRelatedCell(at indexPath: IndexPath) -> RelatedCellViewModel {
-        return RelatedCellViewModel(imgaeURL: "", title: "", channelName: "", view: "")
+        return RelatedCellViewModel(video: video.related[indexPath.row])
     }
 
     func viewModelForAddComment(at indexPath: IndexPath) -> AddCommentCellViewModel {
