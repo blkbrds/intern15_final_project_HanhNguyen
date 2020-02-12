@@ -14,6 +14,8 @@ final class Video: Mappable {
     var imageURL: String = ""
     var title: String = ""
     var channel: Channel = Channel()
+    var related: [Video] = []
+    var comment: [Comment] = []
     var createdTime: Date = Date()
 
     init?(map: Map) { }
