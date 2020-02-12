@@ -8,17 +8,24 @@
 
 import UIKit
 
-class RelatedVideoCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+final class RelatedVideoCell: UITableViewCell {
     
+    @IBOutlet weak var videoImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var channelNameLabel: UILabel!
+    @IBOutlet weak var viewLabel: UILabel!
+    
+    var viewModel: RelatedCellViewModel? {
+        didSet {
+            setupUI()
+        }
+    }
+
+    private func setupUI() {
+        guard let viewModel = viewModel else { return }
+        videoImageView.image = UIImage(named: viewModel.imgaeURL)
+        titleLabel.text = viewModel.title
+        channelNameLabel.text = viewModel.channelName
+        viewLabel.text = viewModel.title
+    }
 }

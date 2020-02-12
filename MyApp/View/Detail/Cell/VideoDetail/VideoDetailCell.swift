@@ -8,17 +8,29 @@
 
 import UIKit
 
-class VideoDetailCell: UITableViewCell {
+final class VideoDetailCell: UITableViewCell {
+    
+    @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var viewCountLabel: UILabel!
+    @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var disLikeConutLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    var viewModel: VideoDetailCellViewModel? {
+        didSet {
+            setupUI()
+        }
     }
     
+    private func setupUI() {
+        guard let viewModel = viewModel else {
+            return
+        }
+        tagLabel.text = viewModel.tag
+        titleLabel.text = viewModel.title
+        viewCountLabel.text = "\(viewModel.likeConut)"
+        likeCountLabel.text = "\(viewModel.likeConut)"
+        disLikeConutLabel.text = "\(viewModel.disLikeConut)"
+        
+    }
 }

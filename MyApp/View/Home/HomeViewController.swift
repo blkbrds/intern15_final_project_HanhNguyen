@@ -16,17 +16,15 @@ final class HomeViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        loadData()
     }
 
-    func setupUI() {
+    override func setupUI() {
         tableView.register(name: CellIdentifier.homeCell.rawValue)
         tableView.dataSource = self
         tableView.delegate = self
     }
 
-    func loadData() {
+    override func setupData() {
         fetchData()
     }
 
