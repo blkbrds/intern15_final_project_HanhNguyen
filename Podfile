@@ -21,6 +21,7 @@ target 'MyApp' do
     pod 'Kingfisher' #download image
     pod 'GoogleAPIClientForREST/YouTube', '~> 1.2.1'
     pod 'Google/SignIn', '~> 3.0.3'
+    pod 'YoutubePlayer-in-WKWebView'
 
   target 'MyAppTests' do
     inherit! :search_paths
