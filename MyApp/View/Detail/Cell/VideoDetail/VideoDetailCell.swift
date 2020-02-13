@@ -28,7 +28,7 @@ final class VideoDetailCell: UITableViewCell {
         }
         tagLabel.text = viewModel.tag
         titleLabel.text = viewModel.title
-        viewCountLabel.text = "\(viewModel.likeConut) lượt xem"
+        viewCountLabel.text = "\(viewModel.viewCount) lượt xem"
         likeCountLabel.text = "\(viewModel.likeConut)"
         disLikeConutLabel.text = "\(viewModel.disLikeConut)"
 
