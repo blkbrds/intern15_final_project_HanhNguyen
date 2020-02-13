@@ -12,14 +12,14 @@ final class VideoDetailCellViewModel {
     var tag: String = ""
     var title: String
     var viewCount: Int
-    var likeConut: Int
-    var disLikeConut: Int
+    var likeCount: Int
+    var disLikeCount: Int
 
     init(video: Video) {
         self.title = video.title
         self.viewCount = Int(video.viewCount) ?? 0
-        self.likeConut = Int(video.likeCount) ?? 0
-        self.disLikeConut = Int(video.dislikeCount) ?? 0
+        self.likeCount = Int(video.likeCount) ?? 0
+        self.disLikeCount = Int(video.dislikeCount) ?? 0
         getTagFromDescription(description: video.description)
     }
     

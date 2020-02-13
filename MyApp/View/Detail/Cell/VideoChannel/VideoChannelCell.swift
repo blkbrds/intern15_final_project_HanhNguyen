@@ -32,6 +32,6 @@ final class VideoChannelCell: UITableViewCell {
         }
         avatarImgaeView.setImage(url: viewModel.avatar, defaultImage: #imageLiteral(resourceName: "avatar"))
         titleLabel.text = viewModel.title
-        subscriberCountLabel.text = "\(viewModel.subscriberCount) lượt xem"
+        subscriberCountLabel.text = "\(viewModel.subscriberCount.getFormatText()) lượt đăng ký"
     }
 }

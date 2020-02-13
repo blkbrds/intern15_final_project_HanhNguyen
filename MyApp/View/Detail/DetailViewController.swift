@@ -12,7 +12,7 @@ final class DetailViewController: UIViewController {
 
     @IBOutlet weak var videoView: WKYTPlayerView!
     @IBOutlet weak var tableView: UITableView!
-    
+
     var viewModel = DetailViewModel()
 
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ final class DetailViewController: UIViewController {
             }
         }
     }
-    
+
     func fetchDataChannel() {
         viewModel.loadApiVideoChannel { [weak self] (result) in
             guard let this = self else { return }
@@ -50,7 +50,7 @@ final class DetailViewController: UIViewController {
             }
         }
     }
-    
+
     func fetchDataRelated() {
         viewModel.loadApiRelatedVideo { [weak self] (result) in
             guard let this = self else { return }
@@ -110,14 +110,6 @@ extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfItems(section: section)
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.titleForHeaderInSection(section: section)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return viewModel.heightForHeaderInSection(section: section)
-    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let type = DetailViewModel.SectionType(rawValue: indexPath.section) else {
@@ -158,10 +150,48 @@ extension DetailViewController: UITableViewDataSource {
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailViewController()
+        vc.viewModel = viewModel.viewModelForDetail(at: indexPath)
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension DetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return viewModel.heightForRowAt(at: indexPath)
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let sectionType = DetailViewModel.SectionType(rawValue: section) else { return nil }
+        switch sectionType {
+        case .videoChannel, .videoDetail:
+            return nil
+        case .relatedVideos:
+            let view: UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 18))
+            let textLabel = UILabel(frame: CGRect(x: 15, y: view.frame.midY + 1, width: 200, height: 18))
+            view.addSubview(textLabel)
+            textLabel.text = "Tiếp Theo"
+            textLabel.textColor = #colorLiteral(red: 0.3764705882, green: 0.3764705882, blue: 0.3764705882, alpha: 1)
+            textLabel.font = .systemFont(ofSize: 18)
+            return view
+        case .comment:
+            let view: UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 18))
+            let commentCountLabel = UILabel(frame: CGRect(x: 15, y: view.frame.midY + 1, width: 200, height: 18))
+            view.addSubview(commentCountLabel)
+            commentCountLabel.text = "Nhận xét (\(viewModel.video.commentCount))"
+            commentCountLabel.textColor = #colorLiteral(red: 0.3764705882, green: 0.3764705882, blue: 0.3764705882, alpha: 1)
+            commentCountLabel.font = .systemFont(ofSize: 18)
+            return view
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return viewModel.heightForHeaderInSection(section: section)
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNonzeroMagnitude
     }
 }

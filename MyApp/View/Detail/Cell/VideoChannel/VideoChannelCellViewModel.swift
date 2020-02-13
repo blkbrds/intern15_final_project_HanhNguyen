@@ -10,11 +10,11 @@ import Foundation
 final class VideoChannelCellViewModel {
     var avatar: String
     var title: String
-    var subscriberCount: String
+    var subscriberCount: Int
     
     init(video: Video) {
         self.avatar = video.channel.imageURL
         self.title = video.channel.title
-        self.subscriberCount = video.channel.subscriberCount
+        self.subscriberCount = Int(video.channel.subscriberCount) ?? 0
     }
 }

@@ -49,6 +49,7 @@
 		8AC1EE1C23F25944009E95FD /* VideoChannelCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC1EE1B23F25944009E95FD /* VideoChannelCellViewModel.swift */; };
 		8AC3E9FA23F3911D008CE18C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3E9F923F3911D008CE18C /* Comment.swift */; };
 		8AC3E9FC23F3BB60008CE18C /* API.Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3E9FB23F3BB60008CE18C /* API.Detail.swift */; };
+		8AC3EA0323F5353E008CE18C /* IntExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3EA0223F5353E008CE18C /* IntExt.swift */; };
 		BEC9596B95AE9DF3CE6DA172 /* Pods_MyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE12F04FB7F219FB9E6D3D6 /* Pods_MyApp.framework */; };
 		EC0105521E8F8AE000CE013D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC0105401E8F8ADF00CE013D /* Assets.xcassets */; };
 		EC0105541E8F8AE000CE013D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0105441E8F8ADF00CE013D /* AppDelegate.swift */; };
@@ -156,6 +157,7 @@
 		8AC1EE1B23F25944009E95FD /* VideoChannelCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoChannelCellViewModel.swift; sourceTree = "<group>"; };
 		8AC3E9F923F3911D008CE18C /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		8AC3E9FB23F3BB60008CE18C /* API.Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Detail.swift; sourceTree = "<group>"; };
+		8AC3EA0223F5353E008CE18C /* IntExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExt.swift; sourceTree = "<group>"; };
 		DB69669865989B28D1BB192F /* Pods-MyAppTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAppTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-MyAppTests/Pods-MyAppTests.staging.xcconfig"; sourceTree = "<group>"; };
 		EC0105401E8F8ADF00CE013D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC0105421E8F8ADF00CE013D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 				F537DDD723979EB200638CB4 /* URLExt.swift */,
 				8A7BD78E23EE4D7700F67146 /* UIImageViewExt.swift */,
 				8A6F1B1E23EF05340004181F /* DateExt.swift */,
+				8AC3EA0223F5353E008CE18C /* IntExt.swift */,
 			);
 			path = Ext;
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 				ECF23AB41E9B869B008C23C1 /* ApiManager.swift in Sources */,
 				ECEC0C5A1ED44D4100F6760A /* UIViewControllerExt.swift in Sources */,
 				8AC1EDF623F117FD009E95FD /* DetialViewModel.swift in Sources */,
+				8AC3EA0323F5353E008CE18C /* IntExt.swift in Sources */,
 				8AC3E9FA23F3911D008CE18C /* Comment.swift in Sources */,
 				ECEC0C581ED44C5D00F6760A /* String.swift in Sources */,
 				EC5337BE1EF78FEA00ACE038 /* Font.swift in Sources */,

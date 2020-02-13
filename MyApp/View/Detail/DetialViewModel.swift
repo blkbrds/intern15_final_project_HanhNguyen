@@ -90,22 +90,14 @@ final class DetailViewModel {
         }
     }
     
-    func titleForHeaderInSection(section: Int) -> String {
-        guard let sectionType = SectionType(rawValue: section) else { return " " }
-        switch sectionType {
-        case .videoDetail:
-            return ""
-        case .videoChannel:
-            return ""
-        case .relatedVideos:
-            return "Tiếp theo"
-        case .comment:
-            return "Nhận xét(\(video.commentCount))"
-        }
-    }
-    
     func heightForHeaderInSection(section: Int) -> CGFloat {
-        return Config.heightSection
+        guard let sectionType = SectionType(rawValue: section) else { return .zero }
+        switch sectionType {
+        case .videoDetail, .videoChannel:
+            return .leastNonzeroMagnitude
+        case .comment, .relatedVideos:
+            return Config.heightSection
+        }
     }
 
     func heightForRowAt(at indexPath: IndexPath) -> CGFloat {
@@ -135,6 +127,10 @@ final class DetailViewModel {
     func viewModelForCommentCell(at indexPath: IndexPath) -> CommentCellViewModel {
         return CommentCellViewModel(comment: video.comment[indexPath.row])
     }
+    
+    func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
+        return DetailViewModel(id: video.related[indexPath.row].id)
+    }
 }
 extension DetailViewModel {
     enum SectionType: Int, CaseIterable {
@@ -146,6 +142,6 @@ extension DetailViewModel {
 
     struct Config {
         static let numberOfItems: Int = 1
-        static let heightSection: CGFloat = 20
+        static let heightSection: CGFloat = 40
     }
 }
