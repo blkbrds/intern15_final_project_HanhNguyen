@@ -152,6 +152,7 @@ extension DetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard (tableView.cellForRow(at: indexPath) as? RelatedVideoCell) != nil else { return }
         let vc = DetailViewController()
         vc.viewModel = viewModel.viewModelForDetail(at: indexPath)
         navigationController?.pushViewController(vc, animated: true)
