@@ -21,6 +21,7 @@ final class Video: Mappable {
     var likeCount: String = ""
     var dislikeCount: String = ""
     var description: String = ""
+    var commentCount: String = ""
 
     init() { }
 
@@ -42,5 +43,6 @@ final class Video: Mappable {
         likeCount <- map["statistics.likeCount"]
         dislikeCount <- map["statistics.dislikeCount"]
         description <- map["snippet.description"]
+        commentCount <- map["statistics.commentCount"]
     }
 }

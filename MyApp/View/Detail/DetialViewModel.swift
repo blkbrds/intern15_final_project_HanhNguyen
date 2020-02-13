@@ -89,6 +89,24 @@ final class DetailViewModel {
             return video.comment.count
         }
     }
+    
+    func titleForHeaderInSection(section: Int) -> String {
+        guard let sectionType = SectionType(rawValue: section) else { return " " }
+        switch sectionType {
+        case .videoDetail:
+            return ""
+        case .videoChannel:
+            return ""
+        case .relatedVideos:
+            return "Tiếp theo"
+        case .comment:
+            return "Nhận xét(\(video.commentCount))"
+        }
+    }
+    
+    func heightForHeaderInSection(section: Int) -> CGFloat {
+        return Config.heightSection
+    }
 
     func heightForRowAt(at indexPath: IndexPath) -> CGFloat {
         guard let sectionType = SectionType(rawValue: indexPath.section) else { return .zero }
@@ -128,5 +146,6 @@ extension DetailViewModel {
 
     struct Config {
         static let numberOfItems: Int = 1
+        static let heightSection: CGFloat = 20
     }
 }

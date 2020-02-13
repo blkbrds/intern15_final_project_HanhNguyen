@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 final class VideoDetailCellViewModel {
-    var tag: String
+    var tag: String = ""
     var title: String
     var viewCount: Int
     var likeConut: Int
@@ -17,9 +17,20 @@ final class VideoDetailCellViewModel {
 
     init(video: Video) {
         self.title = video.title
-        self.tag = video.description
         self.viewCount = Int(video.viewCount) ?? 0
         self.likeConut = Int(video.likeCount) ?? 0
         self.disLikeConut = Int(video.dislikeCount) ?? 0
+        getTagFromDescription(description: video.description)
+    }
+    
+    func getTagFromDescription(description: String) {
+        let descriptions = description.split(separator: " ")
+        var tags: [String] = []
+        for item in descriptions {
+            if item.contains("#") {
+                tags.append(String(item))
+            }
+        }
+        tag = tags.joined(separator: " ")
     }
 }
