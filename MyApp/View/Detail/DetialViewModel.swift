@@ -62,6 +62,21 @@ final class DetailViewModel {
             }
         }
     }
+    
+    func loadApiVideoChannel(completion: @escaping ApiComletion) {
+        let part: [String] = ["snippet", "statistics"]
+        let parms = Api.Detail.VideoChannelParams(part: part.joined(separator: ","), key: App.String.apiKey, id: video.channel.id)
+        Api.Detail.getVideoChannel(params: parms) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success(let channel):
+                this.video.channel = channel
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 
     func numberOfItems(section: Int) -> Int {
         guard let sectionType = SectionType(rawValue: section) else { return 0 }
@@ -87,8 +102,8 @@ final class DetailViewModel {
         return VideoDetailCellViewModel(video: video)
     }
 
-    func viewModelForChannelCell(at indexPath: IndexPath) -> VideoChannelCellViewModel {
-        return VideoChannelCellViewModel(avatar: "", channelName: "", view: "")
+    func viewModelForChannelCell() -> VideoChannelCellViewModel {
+        return VideoChannelCellViewModel(video: video)
     }
 
     func viewModelForRelatedCell(at indexPath: IndexPath) -> RelatedCellViewModel {

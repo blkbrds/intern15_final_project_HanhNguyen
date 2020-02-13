@@ -11,21 +11,27 @@ import UIKit
 final class VideoChannelCell: UITableViewCell {
     
     @IBOutlet weak var avatarImgaeView: UIImageView!
-    @IBOutlet weak var channelNameLabel: UILabel!
-    @IBOutlet weak var viewLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subscriberCountLabel: UILabel!
     
     var viewModel: VideoChannelCellViewModel? {
         didSet {
             setupUI()
         }
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        avatarImgaeView.layer.cornerRadius = avatarImgaeView.frame.width / 2
+        avatarImgaeView.layer.masksToBounds = true
+    }
 
     private func setupUI() {
         guard let viewModel = viewModel else {
             return
         }
-        avatarImgaeView.image = UIImage(named: viewModel.avatar)
-        channelNameLabel.text = viewModel.channelName
-        viewLabel.text = viewModel.view
+        avatarImgaeView.setImage(url: viewModel.avatar, defaultImage: #imageLiteral(resourceName: "avatar"))
+        titleLabel.text = viewModel.title
+        subscriberCountLabel.text = "\(viewModel.subscriberCount) lượt xem"
     }
 }

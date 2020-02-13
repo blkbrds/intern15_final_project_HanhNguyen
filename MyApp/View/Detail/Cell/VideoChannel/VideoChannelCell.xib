@@ -25,14 +25,14 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sao nhập ngũ - QPVN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vA9-Of-2q8">
-                        <rect key="frame" x="55" y="7" width="191" height="16"/>
+                        <rect key="frame" x="65" y="7" width="181" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="558 N người đăng ký" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RU-YN-k81">
-                        <rect key="frame" x="55" y="23" width="191" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <rect key="frame" x="65" y="26" width="181" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -46,28 +46,39 @@
                             <color key="titleColor" red="0.80000000000000004" green="0.18431372549019609" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         </state>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nCB-d2-Rhp">
+                        <rect key="frame" x="0.0" y="48.5" width="320" height="0.5"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="0.69091109149999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="179-8b-1mH"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="nCB-d2-Rhp" secondAttribute="trailing" id="5df-uh-ODI"/>
                     <constraint firstItem="q5T-5C-rRc" firstAttribute="leading" secondItem="3RU-YN-k81" secondAttribute="trailing" id="7hL-bj-6RS"/>
                     <constraint firstAttribute="trailing" secondItem="q5T-5C-rRc" secondAttribute="trailing" constant="5" id="9Re-Zg-JQm"/>
                     <constraint firstItem="vA9-Of-2q8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="GUx-En-Sjb"/>
-                    <constraint firstItem="vA9-Of-2q8" firstAttribute="leading" secondItem="Gqv-rZ-sTe" secondAttribute="trailing" constant="10" id="T6A-Jr-85c"/>
+                    <constraint firstItem="vA9-Of-2q8" firstAttribute="leading" secondItem="Gqv-rZ-sTe" secondAttribute="trailing" constant="20" id="T6A-Jr-85c"/>
                     <constraint firstItem="q5T-5C-rRc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="b4s-6i-ZIe"/>
                     <constraint firstItem="Gqv-rZ-sTe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="eb2-gc-1p8"/>
+                    <constraint firstItem="nCB-d2-Rhp" firstAttribute="top" secondItem="3RU-YN-k81" secondAttribute="bottom" constant="10.5" id="fTL-rm-91I"/>
                     <constraint firstAttribute="bottom" secondItem="q5T-5C-rRc" secondAttribute="bottom" constant="7" id="gwu-yA-adu"/>
-                    <constraint firstItem="3RU-YN-k81" firstAttribute="leading" secondItem="Gqv-rZ-sTe" secondAttribute="trailing" constant="10" id="ovn-y8-RNQ"/>
+                    <constraint firstAttribute="bottom" secondItem="nCB-d2-Rhp" secondAttribute="bottom" id="hcM-G1-bgw"/>
+                    <constraint firstItem="nCB-d2-Rhp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ngY-qe-MEF"/>
+                    <constraint firstItem="3RU-YN-k81" firstAttribute="leading" secondItem="Gqv-rZ-sTe" secondAttribute="trailing" constant="20" id="ovn-y8-RNQ"/>
                     <constraint firstItem="q5T-5C-rRc" firstAttribute="leading" secondItem="vA9-Of-2q8" secondAttribute="trailing" id="pKI-kB-2T6"/>
                     <constraint firstItem="Gqv-rZ-sTe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="vko-qL-ZEJ"/>
-                    <constraint firstItem="3RU-YN-k81" firstAttribute="top" secondItem="vA9-Of-2q8" secondAttribute="bottom" id="wME-IL-udP"/>
+                    <constraint firstItem="3RU-YN-k81" firstAttribute="top" secondItem="vA9-Of-2q8" secondAttribute="bottom" constant="3" id="wME-IL-udP"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="avatarImgaeView" destination="Gqv-rZ-sTe" id="Bzd-aw-lj3"/>
-                <outlet property="channelNameLabel" destination="vA9-Of-2q8" id="dZJ-tc-p7m"/>
-                <outlet property="viewLabel" destination="3RU-YN-k81" id="fgr-nn-3wV"/>
+                <outlet property="subscriberCountLabel" destination="3RU-YN-k81" id="fgr-nn-3wV"/>
+                <outlet property="titleLabel" destination="vA9-Of-2q8" id="dZJ-tc-p7m"/>
             </connections>
-            <point key="canvasLocation" x="219" y="106"/>
+            <point key="canvasLocation" x="411.59420289855075" y="60.602678571428569"/>
         </tableViewCell>
     </objects>
 </document>

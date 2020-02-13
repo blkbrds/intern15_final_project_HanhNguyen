@@ -10,12 +10,18 @@ import Foundation
 import ObjectMapper
 final class Channel: Mappable {
     var id: String = ""
-    var imageURL: String = "https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=545&q=80"
-    var name: String = ""
+    var imageURL: String = ""
+    var title: String = ""
+    var subscriberCount: String = ""
 
     init() { }
 
     init?(map: Map) { }
 
-    func mapping(map: Map) { }
+    func mapping(map: Map) {
+        id <- map["id"]
+        title <- map["snippet.title"]
+        imageURL <- map["snippet.thumbnails.high.url"]
+        subscriberCount <- map["statistics.subscriberCount"]
+    }
 }

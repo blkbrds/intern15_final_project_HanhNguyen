@@ -31,6 +31,20 @@ final class DetailViewController: UIViewController {
             switch result {
             case .success:
                 this.fetchDataRelated()
+                this.fetchDataComment()
+                this.fetchDataChannel()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+    
+    func fetchDataChannel() {
+        viewModel.loadApiVideoChannel { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.updateUI()
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -42,7 +56,6 @@ final class DetailViewController: UIViewController {
             guard let this = self else { return }
             switch result {
             case .success:
-                this.fetchDataComment()
                 this.updateUI()
             case .failure(let error):
                 this.alert(error: error)
@@ -109,7 +122,7 @@ extension DetailViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.videoChannelCell.rawValue, for: indexPath) as? VideoChannelCell else {
                 return UITableViewCell()
             }
-            cell.viewModel = viewModel.viewModelForChannelCell(at: indexPath)
+            cell.viewModel = viewModel.viewModelForChannelCell()
             return cell
         case .relatedVideos:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.relatedVideoCell.rawValue, for: indexPath) as? RelatedVideoCell else {

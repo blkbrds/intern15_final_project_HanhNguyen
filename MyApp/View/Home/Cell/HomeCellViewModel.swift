@@ -17,7 +17,7 @@ final class HomeCellViewModel {
     init(video: Video) {
         thumbnailURL = video.imageURL
         title = video.title
-        channelName = video.channel.name
+        channelName = video.channel.title
         imageChannelURL = video.channel.imageURL
         createdAt = video.createdTime
     }

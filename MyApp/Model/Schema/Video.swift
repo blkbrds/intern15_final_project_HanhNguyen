@@ -37,7 +37,7 @@ final class Video: Mappable {
         title <- map["snippet.title"]
         createdTime <- map["snippet.publishedAt"]
         channel.id <- map["snippet.channelId"]
-        channel.name <- map["snippet.channelTitle"]
+        channel.title <- map["snippet.channelTitle"]
         viewCount <- map["statistics.viewCount"]
         likeCount <- map["statistics.likeCount"]
         dislikeCount <- map["statistics.dislikeCount"]
