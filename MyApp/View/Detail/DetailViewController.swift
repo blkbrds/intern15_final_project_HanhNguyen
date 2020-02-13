@@ -7,12 +7,12 @@
 //
 
 import UIKit
-
+import YoutubePlayer_in_WKWebView
 final class DetailViewController: UIViewController {
 
+    @IBOutlet weak var videoView: WKYTPlayerView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var videoView: UIView!
-
+    
     var viewModel = DetailViewModel()
 
     override func viewDidLoad() {
@@ -77,6 +77,10 @@ final class DetailViewController: UIViewController {
 
     func updateUI() {
         tableView.reloadData()
+        videoView.load(withVideoId: viewModel.video.id, playerVars: ["playsinline": 1])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.videoView.playVideo()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
