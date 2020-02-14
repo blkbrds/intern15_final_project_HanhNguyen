@@ -17,15 +17,30 @@ final class Video: Mappable {
     var related: [Video] = []
     var comment: [Comment] = []
     var createdTime: Date = Date()
+    var viewCount: String = ""
+    var likeCount: String = ""
+    var dislikeCount: String = ""
+    var description: String = ""
+
+    init() { }
 
     init?(map: Map) { }
 
     func mapping(map: Map) {
-        id <- map["id"]
+        var tempId: String = ""
+        tempId <- map["id.videoId"]
+        if tempId.isEmpty {
+            tempId <- map["id"]
+        }
+        id = tempId
         imageURL <- map["snippet.thumbnails.high.url"]
         title <- map["snippet.title"]
         createdTime <- map["snippet.publishedAt"]
         channel.id <- map["snippet.channelId"]
         channel.name <- map["snippet.channelTitle"]
+        viewCount <- map["statistics.viewCount"]
+        likeCount <- map["statistics.likeCount"]
+        dislikeCount <- map["statistics.dislikeCount"]
+        description <- map["snippet.description"]
     }
 }

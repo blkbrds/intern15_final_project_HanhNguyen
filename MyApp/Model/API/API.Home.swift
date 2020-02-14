@@ -11,13 +11,13 @@ import Alamofire
 import ObjectMapper
 
 extension Api.Home {
-    
+
     struct Params {
         var part: String
         var publishedAfter: String
         var key: String
         var pageToken: String
-        
+
         func toJSON() -> [String: Any] {
             return [
                 "part": part,

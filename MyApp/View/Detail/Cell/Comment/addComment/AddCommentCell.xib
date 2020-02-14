@@ -10,33 +10,44 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="61" id="KGk-i7-Jjw" customClass="AddCommentCell" customModule="MyApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="67" id="KGk-i7-Jjw" customClass="AddCommentCell" customModule="MyApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ktt-1a-xAM">
-                        <rect key="frame" x="15" y="5" width="50" height="50"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ktt-1a-xAM">
+                        <rect key="frame" x="15" y="9" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="Ucd-DU-aHz"/>
-                            <constraint firstAttribute="width" secondItem="Ktt-1a-xAM" secondAttribute="height" multiplier="1:1" id="uKq-Xm-plC"/>
+                            <constraint firstAttribute="height" constant="50" id="5Df-4C-E60"/>
+                            <constraint firstAttribute="width" constant="50" id="8mz-CX-uLZ"/>
                         </constraints>
                     </imageView>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Bình luận công khai..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Ll-Sd-XSx">
-                        <rect key="frame" x="80" y="5" width="235" height="51"/>
+                        <rect key="frame" x="80" y="15" width="225" height="37.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKg-gH-HP2">
+                        <rect key="frame" x="0.0" y="66.5" width="320" height="0.5"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="0.69091109149999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="87k-tE-h3a"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="1Ll-Sd-XSx" secondAttribute="trailing" constant="5" id="LQW-IL-Myb"/>
-                    <constraint firstItem="Ktt-1a-xAM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="WCk-Z3-aYK"/>
-                    <constraint firstAttribute="bottom" secondItem="1Ll-Sd-XSx" secondAttribute="bottom" constant="5" id="Xbp-37-Cex"/>
-                    <constraint firstItem="1Ll-Sd-XSx" firstAttribute="leading" secondItem="Ktt-1a-xAM" secondAttribute="trailing" constant="15" id="dhz-m4-zve"/>
-                    <constraint firstItem="1Ll-Sd-XSx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="fDH-gj-11g"/>
-                    <constraint firstItem="Ktt-1a-xAM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="lpw-aM-zi8"/>
+                    <constraint firstItem="Ktt-1a-xAM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="2wJ-WA-Bvh"/>
+                    <constraint firstItem="bKg-gH-HP2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8Wg-zd-vdM"/>
+                    <constraint firstAttribute="trailing" secondItem="bKg-gH-HP2" secondAttribute="trailing" id="JHx-vA-G3a"/>
+                    <constraint firstAttribute="trailing" secondItem="1Ll-Sd-XSx" secondAttribute="trailing" constant="15" id="dPp-Ua-hC9"/>
+                    <constraint firstItem="1Ll-Sd-XSx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="fSC-8H-qIs"/>
+                    <constraint firstItem="bKg-gH-HP2" firstAttribute="top" secondItem="Ktt-1a-xAM" secondAttribute="bottom" constant="7.5" id="i1J-16-KZH"/>
+                    <constraint firstItem="1Ll-Sd-XSx" firstAttribute="leading" secondItem="Ktt-1a-xAM" secondAttribute="trailing" constant="15" id="jqd-8h-qZ2"/>
+                    <constraint firstAttribute="bottom" secondItem="bKg-gH-HP2" secondAttribute="bottom" id="lBk-Q1-T06"/>
+                    <constraint firstItem="bKg-gH-HP2" firstAttribute="top" secondItem="1Ll-Sd-XSx" secondAttribute="bottom" constant="14" id="lPG-Zo-H4X"/>
+                    <constraint firstItem="Ktt-1a-xAM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="n3S-1k-knr"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -44,7 +55,7 @@
                 <outlet property="avatarImageView" destination="Ktt-1a-xAM" id="7ZS-fX-Al8"/>
                 <outlet property="commentTextField" destination="1Ll-Sd-XSx" id="txK-jX-VOE"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="93.415178571428569"/>
+            <point key="canvasLocation" x="137.68115942028987" y="95.424107142857139"/>
         </tableViewCell>
     </objects>
 </document>

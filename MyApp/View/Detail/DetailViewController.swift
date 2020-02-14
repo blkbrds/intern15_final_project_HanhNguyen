@@ -17,8 +17,55 @@ final class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        setupData()
+    }
+
+    func setupData() {
+        fetchData()
+    }
+
+    func fetchData() {
+        viewModel.loadApiVideoDetail { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.fetchDataRelated()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
     }
     
+    func fetchDataRelated() {
+        viewModel.loadApiRelatedVideo { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.fetchDataComment()
+                this.updateUI()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+
+    func fetchDataComment() {
+        viewModel.loadApiComment { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.updateUI()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+
+    func updateUI() {
+        tableView.reloadData()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -56,7 +103,7 @@ extension DetailViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.videoDetailCell.rawValue, for: indexPath) as? VideoDetailCell else {
                 return UITableViewCell()
             }
-            cell.viewModel = viewModel.viewModelForDetailCell(at: indexPath)
+            cell.viewModel = viewModel.viewModelForDetailCell()
             return cell
         case .videoChannel:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.videoChannelCell.rawValue, for: indexPath) as? VideoChannelCell else {
@@ -69,24 +116,22 @@ extension DetailViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.viewModel = viewModel.viewModelForRelatedCell(at: indexPath)
+            return cell
         case .comment:
-            guard let type = DetailViewModel.CommentSectionCellType(rawValue: indexPath.row) else {
-                return UITableViewCell()
-            }
-            switch type {
-            case .addcomment:
+            if indexPath.row == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.addCommentCell.rawValue, for: indexPath) as? AddCommentCell else {
                     return UITableViewCell()
                 }
                 cell.viewModel = viewModel.viewModelForAddComment(at: indexPath)
-            case .comments:
+                return cell
+            } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.commentCell.rawValue, for: indexPath) as? CommentCell else {
                     return UITableViewCell()
                 }
                 cell.viewModel = viewModel.viewModelForCommentCell(at: indexPath)
+                return cell
             }
         }
-        return UITableViewCell()
     }
 }
 

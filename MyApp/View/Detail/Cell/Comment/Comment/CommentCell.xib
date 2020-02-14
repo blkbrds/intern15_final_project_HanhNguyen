@@ -36,26 +36,36 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3aL-q4-LFx">
+                        <rect key="frame" x="0.0" y="95.5" width="320" height="0.5"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.69091109154929575" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="7a0-9C-m42"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="rWX-Wm-KrT" secondAttribute="trailing" constant="10" id="5Rj-S7-Jzd"/>
+                    <constraint firstItem="3aL-q4-LFx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="CRS-LI-A2D"/>
                     <constraint firstItem="wS6-gL-Ggf" firstAttribute="leading" secondItem="nqJ-PB-asH" secondAttribute="trailing" constant="10" id="EOc-3c-ugz"/>
                     <constraint firstItem="nqJ-PB-asH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="EiO-d6-8oi"/>
                     <constraint firstItem="rWX-Wm-KrT" firstAttribute="top" secondItem="wS6-gL-Ggf" secondAttribute="bottom" constant="5" id="IMO-FM-yGR"/>
+                    <constraint firstItem="3aL-q4-LFx" firstAttribute="top" secondItem="rWX-Wm-KrT" secondAttribute="bottom" constant="17.5" id="KUT-if-4Ri"/>
                     <constraint firstItem="wS6-gL-Ggf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="NVA-KZ-L4C"/>
                     <constraint firstItem="rWX-Wm-KrT" firstAttribute="leading" secondItem="nqJ-PB-asH" secondAttribute="trailing" constant="10" id="Vme-Eg-WIP"/>
                     <constraint firstAttribute="trailing" secondItem="wS6-gL-Ggf" secondAttribute="trailing" constant="10" id="ipv-hZ-ZqL"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="rWX-Wm-KrT" secondAttribute="bottom" constant="5" id="mje-aP-24G"/>
                     <constraint firstItem="nqJ-PB-asH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="oDH-3p-uc9"/>
+                    <constraint firstAttribute="trailing" secondItem="3aL-q4-LFx" secondAttribute="trailing" id="q7o-zc-3VL"/>
+                    <constraint firstAttribute="bottom" secondItem="3aL-q4-LFx" secondAttribute="bottom" id="s2o-gS-6Fo"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="avatarImageView" destination="nqJ-PB-asH" id="EGh-ac-Q2a"/>
                 <outlet property="commentLabel" destination="rWX-Wm-KrT" id="Det-4U-UMt"/>
-                <outlet property="nameLabel" destination="wS6-gL-Ggf" id="aqs-20-Ina"/>
+                <outlet property="descriptionLabel" destination="wS6-gL-Ggf" id="aqs-20-Ina"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="105.13392857142857"/>
+            <point key="canvasLocation" x="-97" y="107"/>
         </tableViewCell>
     </objects>
 </document>

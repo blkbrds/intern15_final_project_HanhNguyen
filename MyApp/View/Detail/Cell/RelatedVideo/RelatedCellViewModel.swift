@@ -14,10 +14,10 @@ final class RelatedCellViewModel {
     var channelName: String
     var view: String
     
-    init(imgaeURL: String, title: String, channelName: String, view: String) {
-        self.imgaeURL = imgaeURL
-        self.title = title
-        self.channelName = channelName
-        self.view = view
+    init(video: Video) {
+        self.imgaeURL = video.imageURL
+        self.title = video.title
+        self.channelName = video.channel.name
+        self.view = video.viewCount
     }
 }

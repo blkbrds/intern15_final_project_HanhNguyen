@@ -23,7 +23,7 @@
                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="je1-L6-mcY">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="je1-L6-mcY">
                         <rect key="frame" x="15" y="37" width="404" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <nil key="textColor"/>
@@ -36,7 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wX2-M6-bCh">
-                        <rect key="frame" x="15" y="95.5" width="394" height="41.5"/>
+                        <rect key="frame" x="15" y="95.5" width="394" height="50.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="SQ5-tk-udT">
                                 <rect key="frame" x="0.0" y="0.0" width="75.5" height="41.5"/>
@@ -212,6 +212,7 @@
                     <constraint firstItem="je1-L6-mcY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="c7N-Sw-L1z"/>
                     <constraint firstItem="VmH-nB-veB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="gVg-u2-Ocg"/>
                     <constraint firstItem="TBK-yc-vmm" firstAttribute="top" secondItem="je1-L6-mcY" secondAttribute="bottom" constant="5" id="iYO-k3-Ceb"/>
+                    <constraint firstAttribute="bottom" secondItem="wX2-M6-bCh" secondAttribute="bottom" constant="15" id="tkT-EF-sLi"/>
                     <constraint firstItem="VmH-nB-veB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="vQd-Gn-goN"/>
                 </constraints>
             </tableViewCellContentView>
