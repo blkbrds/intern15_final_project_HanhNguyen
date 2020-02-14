@@ -11,7 +11,9 @@ import UIKit
 final class DetailViewModel {
 
     var video: Video = Video()
-    
+    var isLoading: Bool = false
+    var maxResults: Int = 0
+
     init(id: String = "") {
         video.id = id
     }
@@ -20,13 +22,31 @@ final class DetailViewModel {
         return SectionType.allCases.count
     }
 
-    func loadApiComment(completion: @escaping ApiComletion) {
-        let params = Api.Detail.CommentParams(part: "snippet", videoId: video.id, key: App.String.apiKey)
+    func loadApiComment(isLoadMore: Bool, completion: @escaping ApiComletion) {
+        guard !isLoading  else {
+            completion(.failure(Api.Error.invalidRequest))
+            return
+        }
+        self.isLoading = true
+        if isLoadMore == true {
+            maxResults += 5
+        } else {
+            maxResults = 5
+        }
+        let params = Api.Detail.CommentParams(part: "snippet", videoId: video.id, key: App.String.apiKey, maxResults: maxResults)
         Api.Detail.getComments(params: params) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
-            case .success(let comment):
-                this.video.comment = comment
+            case .success(let comments):
+                if isLoadMore {
+                    for item in comments {
+                        if this.video.comment.contains(where: { return $0.id != item.id }) {
+                            this.video.comment.append(item)
+                        }
+                    }
+                } else {
+                    this.video.comment = comments
+                }
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))
@@ -48,7 +68,7 @@ final class DetailViewModel {
             }
         }
     }
-    
+
     func loadApiRelatedVideo(completion: @escaping ApiComletion) {
         let parms = Api.Detail.RelatedVideoParams(part: "snippet", relatedToVideoId: video.id, type: "video", key: App.String.apiKey, maxResults: 16)
         Api.Detail.getRelatedVideos(params: parms) { [weak self] (result) in
@@ -62,7 +82,7 @@ final class DetailViewModel {
             }
         }
     }
-    
+
     func loadApiVideoChannel(completion: @escaping ApiComletion) {
         let part: [String] = ["snippet", "statistics"]
         let parms = Api.Detail.VideoChannelParams(part: part.joined(separator: ","), key: App.String.apiKey, id: video.channel.id)
@@ -89,7 +109,7 @@ final class DetailViewModel {
             return video.comment.count
         }
     }
-    
+
     func heightForHeaderInSection(section: Int) -> CGFloat {
         guard let sectionType = SectionType(rawValue: section) else { return .zero }
         switch sectionType {
@@ -127,7 +147,7 @@ final class DetailViewModel {
     func viewModelForCommentCell(at indexPath: IndexPath) -> CommentCellViewModel {
         return CommentCellViewModel(comment: video.comment[indexPath.row])
     }
-    
+
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
         return DetailViewModel(id: video.related[indexPath.row].id)
     }

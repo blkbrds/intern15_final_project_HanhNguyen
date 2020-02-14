@@ -9,6 +9,7 @@
 import Foundation
 import ObjectMapper
 final class Comment: Mappable {
+    var id: String = ""
     var publishedAt: Date = Date()
     var authorDisplayName: String = ""
     var authorProfileImageUrl: String = ""
@@ -17,6 +18,7 @@ final class Comment: Mappable {
     init(map: Map) { }
 
     func mapping(map: Map) {
+        id <- map["id"]
         publishedAt <- map["snippet.topLevelComment.snippet.publishedAt"]
         authorDisplayName <- map["snippet.topLevelComment.snippet.authorDisplayName"]
         authorProfileImageUrl <- map["snippet.topLevelComment.snippet.authorProfileImageUrl"]

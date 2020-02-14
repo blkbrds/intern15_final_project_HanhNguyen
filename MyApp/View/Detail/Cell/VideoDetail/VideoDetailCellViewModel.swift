@@ -20,17 +20,18 @@ final class VideoDetailCellViewModel {
         self.viewCount = Int(video.viewCount) ?? 0
         self.likeCount = Int(video.likeCount) ?? 0
         self.disLikeCount = Int(video.dislikeCount) ?? 0
-        getTagFromDescription(description: video.description)
+        getTagFromDescription(tags: video.tags)
     }
-    
-    func getTagFromDescription(description: String) {
-        let descriptions = description.split(separator: " ")
-        var tags: [String] = []
-        for item in descriptions {
-            if item.contains("#") {
-                tags.append(String(item))
-            }
+
+    func getTagFromDescription(tags: [String]) {
+        if tags.isEmpty {
+            tag = ""
+        } else if tags.count == 1 {
+            tag = "#\(tags[0].split(separator: " ").joined())"
+        } else if tags.count == 2 {
+            tag = "#\(tags[0].split(separator: " ").joined()) " + "#\(tags[1].split(separator: " ").joined())"
+        } else {
+            tag = "#\(tags[0].split(separator: " ").joined()) " + "#\(tags[1].split(separator: " ").joined()) " + "#\(tags[2].split(separator: " ").joined())"
         }
-        tag = tags.joined(separator: " ")
     }
 }

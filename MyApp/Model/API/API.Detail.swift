@@ -15,12 +15,14 @@ extension Api.Detail {
         var part: String
         var videoId: String
         var key: String
+        var maxResults: Int
 
         func toJSON() -> [String: Any] {
             return [
                 "part": part,
                 "videoId": videoId,
-                "key": key
+                "key": key,
+                "maxResults": maxResults
             ]
         }
     }
@@ -82,7 +84,8 @@ extension Api.Detail {
                 case .success(let json):
                     guard let json = json as? JSObject, let items = json["items"] as? JSArray else {
                         completion(.failure(Api.Error.json))
-                        return }
+                        return
+                    }
                     let comments = Mapper<Comment>().mapArray(JSONArray: items)
                     completion(.success(comments))
                 }
