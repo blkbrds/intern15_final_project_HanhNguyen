@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="161" id="KGk-i7-Jjw" customClass="VideoDetailCell" customModule="MyApp" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="161" id="KGk-i7-Jjw" customClass="VideoDetailCell" customModule="MyApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="424" height="161"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -36,7 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wX2-M6-bCh">
-                        <rect key="frame" x="15" y="95.5" width="394" height="50.5"/>
+                        <rect key="frame" x="15" y="95.5" width="394" height="60"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="SQ5-tk-udT">
                                 <rect key="frame" x="0.0" y="0.0" width="75.5" height="41.5"/>
@@ -200,20 +200,30 @@
                             </stackView>
                         </subviews>
                     </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcr-Dz-wKf">
+                        <rect key="frame" x="0.0" y="160.5" width="424" height="0.5"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="0.69091109149999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="srY-5i-nmT"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="wX2-M6-bCh" secondAttribute="trailing" constant="15" id="75z-Sw-XiH"/>
                     <constraint firstAttribute="trailing" secondItem="je1-L6-mcY" secondAttribute="trailing" constant="5" id="At6-d3-Z6Q"/>
                     <constraint firstItem="wX2-M6-bCh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="DwS-X1-EhW"/>
                     <constraint firstItem="wX2-M6-bCh" firstAttribute="top" secondItem="TBK-yc-vmm" secondAttribute="bottom" constant="15" id="FOx-5y-wxv"/>
+                    <constraint firstItem="vcr-Dz-wKf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JCH-eT-Q3M"/>
                     <constraint firstItem="je1-L6-mcY" firstAttribute="top" secondItem="VmH-nB-veB" secondAttribute="bottom" constant="5" id="MLW-EP-QUd"/>
                     <constraint firstItem="TBK-yc-vmm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Mba-1v-XBi"/>
+                    <constraint firstAttribute="trailing" secondItem="vcr-Dz-wKf" secondAttribute="trailing" id="YW1-k0-Fd7"/>
                     <constraint firstAttribute="trailing" secondItem="VmH-nB-veB" secondAttribute="trailing" constant="5" id="Zfx-aO-xb8"/>
                     <constraint firstItem="je1-L6-mcY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="c7N-Sw-L1z"/>
                     <constraint firstItem="VmH-nB-veB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="gVg-u2-Ocg"/>
                     <constraint firstItem="TBK-yc-vmm" firstAttribute="top" secondItem="je1-L6-mcY" secondAttribute="bottom" constant="5" id="iYO-k3-Ceb"/>
-                    <constraint firstAttribute="bottom" secondItem="wX2-M6-bCh" secondAttribute="bottom" constant="15" id="tkT-EF-sLi"/>
+                    <constraint firstAttribute="bottom" secondItem="vcr-Dz-wKf" secondAttribute="bottom" id="qdj-0N-bbz"/>
                     <constraint firstItem="VmH-nB-veB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="vQd-Gn-goN"/>
+                    <constraint firstItem="vcr-Dz-wKf" firstAttribute="top" secondItem="wX2-M6-bCh" secondAttribute="bottom" constant="5" id="yIr-lm-nNU"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -224,7 +234,7 @@
                 <outlet property="titleLabel" destination="je1-L6-mcY" id="T6g-sC-Vo6"/>
                 <outlet property="viewCountLabel" destination="TBK-yc-vmm" id="msX-Em-9XO"/>
             </connections>
-            <point key="canvasLocation" x="245" y="16"/>
+            <point key="canvasLocation" x="244.92753623188409" y="15.736607142857142"/>
         </tableViewCell>
     </objects>
     <resources>

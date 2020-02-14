@@ -34,6 +34,10 @@ extension Api.Path {
         static var relatedVideos: String {
             return baseURL / "search"
         }
+        
+        static var videoChannel: String {
+            return baseURL / "channels"
+        }
     }
 }
 

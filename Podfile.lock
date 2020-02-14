@@ -43,6 +43,7 @@ PODS:
   - MVVM-Swift (1.1.0)
   - ObjectMapper (3.5.1)
   - SwiftLint (0.38.2)
+  - YoutubePlayer-in-WKWebView (0.3.4)
 
 DEPENDENCIES:
   - Alamofire
@@ -53,6 +54,7 @@ DEPENDENCIES:
   - MVVM-Swift
   - ObjectMapper
   - SwiftLint
+  - YoutubePlayer-in-WKWebView
 
 SPEC REPOS:
   trunk:
@@ -70,6 +72,7 @@ SPEC REPOS:
     - MVVM-Swift
     - ObjectMapper
     - SwiftLint
+    - YoutubePlayer-in-WKWebView
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -86,7 +89,8 @@ SPEC CHECKSUMS:
   MVVM-Swift: 54749cc12bb30af41632f30a2c576a18bf9e4bc8
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
+  YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 8463e6dea618b48a24ac43d856b53e5d3bb92de6
+PODFILE CHECKSUM: 9ac4de686b749affc3fdcdccd462adb24d29c98a
 
 COCOAPODS: 1.8.4

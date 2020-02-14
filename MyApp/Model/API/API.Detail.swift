@@ -56,6 +56,20 @@ extension Api.Detail {
             ]
         }
     }
+    
+    struct VideoChannelParams {
+        var part: String
+        var key: String
+        var id: String
+        
+        func toJSON() -> [String: Any] {
+            return [
+                "part": part,
+                "id": id,
+                "key": key
+            ]
+        }
+    }
 
     @discardableResult
     static func getComments(params: CommentParams, completion: @escaping Completion<[Comment]>) -> Request? {
@@ -107,6 +121,24 @@ extension Api.Detail {
                         return }
                     let videos = Mapper<Video>().mapArray(JSONArray: items)
                     completion(.success(videos))
+                }
+            }
+        }
+    }
+    
+    @discardableResult
+    static func getVideoChannel(params: VideoChannelParams, completion: @escaping Completion<Channel>) -> Request? {
+        let path = Api.Path.Detail.videoChannel
+        return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let json):
+                    guard let json = json as? JSObject, let items = json["items"] as? JSArray, let channel = Mapper<Channel>().mapArray(JSONArray: items).first else {
+                        completion(.failure(Api.Error.json))
+                        return }
+                    completion(.success(channel))
                 }
             }
         }

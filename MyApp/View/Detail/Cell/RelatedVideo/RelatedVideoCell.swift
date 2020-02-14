@@ -12,7 +12,6 @@ final class RelatedVideoCell: UITableViewCell {
     @IBOutlet weak var videoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var channelNameLabel: UILabel!
-    @IBOutlet weak var viewLabel: UILabel!
     
     var viewModel: RelatedCellViewModel? {
         didSet {
@@ -25,6 +24,5 @@ final class RelatedVideoCell: UITableViewCell {
         videoImageView.setImage(url: viewModel.imgaeURL, defaultImage: #imageLiteral(resourceName: "avatar"))
         titleLabel.text = viewModel.title
         channelNameLabel.text = viewModel.channelName
-        viewLabel.text = viewModel.view
     }
 }

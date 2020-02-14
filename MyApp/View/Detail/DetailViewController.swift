@@ -7,11 +7,11 @@
 //
 
 import UIKit
-
+import YoutubePlayer_in_WKWebView
 final class DetailViewController: UIViewController {
 
+    @IBOutlet weak var videoView: WKYTPlayerView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var videoView: UIView!
 
     var viewModel = DetailViewModel()
 
@@ -31,18 +31,31 @@ final class DetailViewController: UIViewController {
             switch result {
             case .success:
                 this.fetchDataRelated()
+                this.fetchDataComment()
+                this.fetchDataChannel()
             case .failure(let error):
                 this.alert(error: error)
             }
         }
     }
-    
+
+    func fetchDataChannel() {
+        viewModel.loadApiVideoChannel { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.updateUI()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+
     func fetchDataRelated() {
         viewModel.loadApiRelatedVideo { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success:
-                this.fetchDataComment()
                 this.updateUI()
             case .failure(let error):
                 this.alert(error: error)
@@ -64,6 +77,10 @@ final class DetailViewController: UIViewController {
 
     func updateUI() {
         tableView.reloadData()
+        videoView.load(withVideoId: viewModel.video.id, playerVars: ["playsinline": 1])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.videoView.playVideo()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -109,7 +126,7 @@ extension DetailViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.videoChannelCell.rawValue, for: indexPath) as? VideoChannelCell else {
                 return UITableViewCell()
             }
-            cell.viewModel = viewModel.viewModelForChannelCell(at: indexPath)
+            cell.viewModel = viewModel.viewModelForChannelCell()
             return cell
         case .relatedVideos:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.relatedVideoCell.rawValue, for: indexPath) as? RelatedVideoCell else {
@@ -133,10 +150,49 @@ extension DetailViewController: UITableViewDataSource {
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard (tableView.cellForRow(at: indexPath) as? RelatedVideoCell) != nil else { return }
+        let vc = DetailViewController()
+        vc.viewModel = viewModel.viewModelForDetail(at: indexPath)
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension DetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return viewModel.heightForRowAt(at: indexPath)
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let sectionType = DetailViewModel.SectionType(rawValue: section) else { return nil }
+        switch sectionType {
+        case .videoChannel, .videoDetail:
+            return nil
+        case .relatedVideos:
+            let view: UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 18))
+            let textLabel = UILabel(frame: CGRect(x: 15, y: view.frame.midY + 1, width: 200, height: 18))
+            view.addSubview(textLabel)
+            textLabel.text = "Tiếp Theo"
+            textLabel.textColor = #colorLiteral(red: 0.3764705882, green: 0.3764705882, blue: 0.3764705882, alpha: 1)
+            textLabel.font = .systemFont(ofSize: 18)
+            return view
+        case .comment:
+            let view: UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 18))
+            let commentCountLabel = UILabel(frame: CGRect(x: 15, y: view.frame.midY + 1, width: 200, height: 18))
+            view.addSubview(commentCountLabel)
+            commentCountLabel.text = "Nhận xét (\(viewModel.video.commentCount))"
+            commentCountLabel.textColor = #colorLiteral(red: 0.3764705882, green: 0.3764705882, blue: 0.3764705882, alpha: 1)
+            commentCountLabel.font = .systemFont(ofSize: 18)
+            return view
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return viewModel.heightForHeaderInSection(section: section)
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNonzeroMagnitude
     }
 }

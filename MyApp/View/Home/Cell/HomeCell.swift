@@ -31,7 +31,7 @@ final class HomeCell: UITableViewCell {
     private func updateUI() {
         guard let viewModel = viewModel else { return }
         videoImageView.setImage(url: viewModel.thumbnailURL)
-        channelImageView.setImage(url: viewModel.imageChannelURL)
+        channelImageView.setImage(url: viewModel.imageChannelURL, defaultImage: #imageLiteral(resourceName: "avatar"))
         titleLabel.text = viewModel.title
         descriptionLabel.text = "\(viewModel.channelName) • \(viewModel.createdAt.string(withFormat: App.String.dateFormatYYYYMMDDHHmmss))"
     }
