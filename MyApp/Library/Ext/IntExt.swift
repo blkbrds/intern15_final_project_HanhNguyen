@@ -10,10 +10,10 @@ import Foundation
 extension Int {
     func getFormatText() -> String {
         var viewCount: Double = 0.0
-        if self < 1000 {
+        if self < 1_000 {
             return "\(self)"
-        } else if self >= 1000 && self < 1_000_000 {
-            viewCount = Double(self) / 1000
+        } else if self >= 1_000 && self < 1_000_000 {
+            viewCount = Double(self) / 1_000
             return "\(Int(viewCount)) N"
         } else if self < 1_000_000_000 {
             viewCount = Double(self) / 1_000_000

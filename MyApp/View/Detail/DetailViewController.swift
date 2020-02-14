@@ -31,7 +31,7 @@ final class DetailViewController: UIViewController {
             switch result {
             case .success:
                 this.fetchDataRelated()
-                this.fetchDataComment()
+                this.fetchDataComment(isLoadMore: false)
                 this.fetchDataChannel()
             case .failure(let error):
                 this.alert(error: error)
@@ -63,15 +63,20 @@ final class DetailViewController: UIViewController {
         }
     }
 
-    func fetchDataComment() {
-        viewModel.loadApiComment { [weak self] (result) in
+    func fetchDataComment(isLoadMore: Bool) {
+        viewModel.loadApiComment(isLoadMore: isLoadMore) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success:
-                this.updateUI()
+                if isLoadMore == true {
+                    this.tableView.reloadSections(IndexSet(integer: 3), with: .none)
+                } else {
+                    this.setupUI()
+                }
             case .failure(let error):
                 this.alert(error: error)
             }
+             this.viewModel.isLoading = false
         }
     }
 
@@ -150,7 +155,7 @@ extension DetailViewController: UITableViewDataSource {
             }
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard (tableView.cellForRow(at: indexPath) as? RelatedVideoCell) != nil else { return }
         let vc = DetailViewController()
@@ -194,5 +199,21 @@ extension DetailViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return .leastNonzeroMagnitude
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY >= contentHeight - scrollView.frame.size.height {
+            fetchDataComment(isLoadMore: true)
+        }
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY >= contentHeight - scrollView.frame.size.height {
+            fetchDataComment(isLoadMore: true)
+        }
     }
 }

@@ -22,6 +22,7 @@ final class Video: Mappable {
     var dislikeCount: String = ""
     var description: String = ""
     var commentCount: String = ""
+    var tags: [String] = []
 
     init() { }
 
@@ -34,6 +35,7 @@ final class Video: Mappable {
             tempId <- map["id"]
         }
         id = tempId
+        tags <- map["snippet.tags"]
         imageURL <- map["snippet.thumbnails.high.url"]
         title <- map["snippet.title"]
         createdTime <- map["snippet.publishedAt"]
