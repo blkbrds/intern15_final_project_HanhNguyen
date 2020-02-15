@@ -10,8 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopularViewController" customModule="MyApp" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="Gsl-bo-BN9" id="7Xh-wD-pLS"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="contentView" destination="Bjp-xk-xpN" id="O4P-6g-MdV"/>
+                <outlet property="segmentControl" destination="Dv7-y4-pRf" id="TdH-Oz-vht"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,20 +19,32 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gsl-bo-BN9">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dv7-y4-pRf">
+                    <rect key="frame" x="0.0" y="64" width="414" height="32"/>
+                    <segments>
+                        <segment title="Âm Nhạc"/>
+                        <segment title="Trò Chơi"/>
+                        <segment title="Tin Tức"/>
+                        <segment title="Phim Ảnh"/>
+                    </segments>
+                </segmentedControl>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bjp-xk-xpN">
+                    <rect key="frame" x="0.0" y="110" width="414" height="752"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                </tableView>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Gsl-bo-BN9" secondAttribute="trailing" id="5xx-Wo-LSe"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Gsl-bo-BN9" secondAttribute="bottom" id="Br9-ur-NpD"/>
-                <constraint firstItem="Gsl-bo-BN9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="FZ5-K4-hvh"/>
-                <constraint firstItem="Gsl-bo-BN9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wAo-fb-JyF"/>
+                <constraint firstItem="Bjp-xk-xpN" firstAttribute="top" secondItem="Dv7-y4-pRf" secondAttribute="bottom" constant="15" id="5Ap-HC-eM7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Dv7-y4-pRf" secondAttribute="trailing" id="8QR-H6-9mU"/>
+                <constraint firstItem="Dv7-y4-pRf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Bx1-H6-VzY"/>
+                <constraint firstItem="Dv7-y4-pRf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="U9a-UO-xN6"/>
+                <constraint firstItem="Bjp-xk-xpN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aXS-Xg-Zwf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Bjp-xk-xpN" secondAttribute="trailing" id="txk-4p-Dk4"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Bjp-xk-xpN" secondAttribute="bottom" id="wiX-G6-4yP"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="88"/>
+            <point key="canvasLocation" x="-52.173913043478265" y="-117.1875"/>
         </view>
     </objects>
 </document>

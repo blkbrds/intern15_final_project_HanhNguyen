@@ -1,21 +1,14 @@
 //
-//  PopularViewModel.swift
+//  ChildPopularViewModel.swift
 //  MyApp
 //
-//  Created by ANH NGUYỄN on 2/10/20.
+//  Created by ANH NGUYỄN on 2/15/20.
 //  Copyright © 2020 Asian Tech Co., Ltd. All rights reserved.
 //
 
 import Foundation
-enum VideoCategory {
-    case music
-    case game
-    case news
-    case movie
-}
 
-final class PopularViewModel {
-    
+final class ChildPopularViewModel {
     var videos: [Video] = []
     
     func viewModelForCell(at indexPath: IndexPath) -> HomeCellViewModel {
