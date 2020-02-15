@@ -34,4 +34,8 @@ final class ChildPopularViewModel {
     func viewModelForCell(at indexPath: IndexPath) -> HomeCellViewModel {
         return HomeCellViewModel(video: videos[indexPath.row])
     }
+    
+    func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
+        return DetailViewModel(id: videos[indexPath.row].id)
+    }
 }
