@@ -53,6 +53,7 @@
 		8AC6F06B23F7F922000D0851 /* ChildPopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC6F06923F7F922000D0851 /* ChildPopularViewController.swift */; };
 		8AC6F06C23F7F922000D0851 /* ChildPopularViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC6F06A23F7F922000D0851 /* ChildPopularViewController.xib */; };
 		8AC6F06E23F7FDDB000D0851 /* ChildPopularViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC6F06D23F7FDDB000D0851 /* ChildPopularViewModel.swift */; };
+		8AC6F07023F8155F000D0851 /* API.Popular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC6F06F23F8155F000D0851 /* API.Popular.swift */; };
 		BEC9596B95AE9DF3CE6DA172 /* Pods_MyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE12F04FB7F219FB9E6D3D6 /* Pods_MyApp.framework */; };
 		EC0105521E8F8AE000CE013D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC0105401E8F8ADF00CE013D /* Assets.xcassets */; };
 		EC0105541E8F8AE000CE013D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0105441E8F8ADF00CE013D /* AppDelegate.swift */; };
@@ -164,6 +165,7 @@
 		8AC6F06923F7F922000D0851 /* ChildPopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildPopularViewController.swift; sourceTree = "<group>"; };
 		8AC6F06A23F7F922000D0851 /* ChildPopularViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildPopularViewController.xib; sourceTree = "<group>"; };
 		8AC6F06D23F7FDDB000D0851 /* ChildPopularViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildPopularViewModel.swift; sourceTree = "<group>"; };
+		8AC6F06F23F8155F000D0851 /* API.Popular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Popular.swift; sourceTree = "<group>"; };
 		DB69669865989B28D1BB192F /* Pods-MyAppTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAppTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-MyAppTests/Pods-MyAppTests.staging.xcconfig"; sourceTree = "<group>"; };
 		EC0105401E8F8ADF00CE013D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC0105421E8F8ADF00CE013D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 				ECF23AB01E9B869B008C23C1 /* Core */,
 				8A6F1B1C23EEEAEA0004181F /* API.Home.swift */,
 				8AC3E9FB23F3BB60008CE18C /* API.Detail.swift */,
+				8AC6F06F23F8155F000D0851 /* API.Popular.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 				ECC5B2CD1EF906CA001A97BC /* ViewController.swift in Sources */,
 				EC5337C31EF793B100ACE038 /* CollectionCell.swift in Sources */,
 				8AC1EE1C23F25944009E95FD /* VideoChannelCellViewModel.swift in Sources */,
+				8AC6F07023F8155F000D0851 /* API.Popular.swift in Sources */,
 				ECF23ABA1E9B89B2008C23C1 /* RequestSerializer.swift in Sources */,
 				ECC5B2CB1EF90495001A97BC /* Button.swift in Sources */,
 				EC0105541E8F8AE000CE013D /* AppDelegate.swift in Sources */,

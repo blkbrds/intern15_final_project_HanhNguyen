@@ -73,7 +73,7 @@ extension HomeViewController: UITableViewDataSource {
         cell.viewModel = viewModel.viewModelForCell(at: indexPath)
         return cell
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height

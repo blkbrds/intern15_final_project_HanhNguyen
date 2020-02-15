@@ -11,24 +11,48 @@ import UIKit
 final class ChildPopularViewController: ViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
-    var viewModel = ChildPopularViewModel()
-    
+
+    var viewModel = ChildPopularViewModel() {
+        didSet {
+            fetchData()
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func setupUI() {
         tableView.register(name: CellIdentifier.homeCell.rawValue)
         tableView.dataSource = self
         tableView.delegate = self
     }
+
+    override func setupData() {
+        fetchData()
+    }
+
+    func updateUI() {
+        tableView.reloadData()
+    }
+
+    func fetchData() {
+        viewModel.loadApiPopular { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.updateUI()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
 }
 extension ChildPopularViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.videos.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.homeCell.rawValue, for: indexPath) as? HomeCell else {
             return UITableViewCell()
