@@ -26,6 +26,9 @@ final class ChildPopularViewModel {
             completion(.failure(Api.Error.invalidRequest))
             return
         }
+        if !isLoadMore {
+            nextPageToken = ""
+        }
         isLoading = true
         let params = Api.Popular.Params(part: "snippet", chart: "mostPopular", regionCode: "VN", key: App.String.apiKey, videoCategoryId: videoCategory.id, pageToken: nextPageToken)
         Api.Popular.getPopularVideos(params: params) { [weak self] (result) in
