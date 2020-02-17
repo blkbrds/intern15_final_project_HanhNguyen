@@ -45,6 +45,19 @@ extension Api.Popular {
             resultsPerPage <- map["pageInfo.resultsPerPage"]
         }
     }
+    struct ImageChannelParmas {
+        var part: String
+        var id: String
+        var key: String
+
+        func toJSON() -> [String: Any] {
+            return [
+                "part": part,
+                "key": key,
+                "id": id
+            ]
+        }
+    }
 
     @discardableResult
     static func getPopularVideos(params: Params, completion: @escaping Completion<Result>) -> Request? {
@@ -59,6 +72,24 @@ extension Api.Popular {
                         completion(.failure(Api.Error.json))
                         return }
                     completion(.success(results))
+                }
+            }
+        }
+    }
+
+    @discardableResult
+    static func getImageChannel(params: ImageChannelParmas, completion: @escaping Completion<Channel>) -> Request? {
+        let path = Api.Path.Popular.imageChannel
+        return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let json):
+                    guard let json = json as? JSObject, let items = json["items"] as? JSArray, let channel = Mapper<Channel>().mapArray(JSONArray: items).first else {
+                        completion(.failure(Api.Error.json))
+                        return }
+                    completion(.success(channel))
                 }
             }
         }

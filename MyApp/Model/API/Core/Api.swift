@@ -45,6 +45,10 @@ extension Api.Path {
         static var path: String {
             return baseURL / "videos"
         }
+        
+        static var imageChannel: String {
+            return baseURL / "channels"
+        }
     }
 }
 

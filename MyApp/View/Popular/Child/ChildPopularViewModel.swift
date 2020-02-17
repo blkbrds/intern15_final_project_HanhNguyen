@@ -48,11 +48,29 @@ final class ChildPopularViewModel {
         }
     }
 
+    func loadImageChannel(at indexPath: IndexPath, completion: @escaping ApiComletion) {
+        let params = Api.Popular.ImageChannelParmas(part: "snippet", id: videos[indexPath.row].channel.id, key: App.String.apiKey)
+        Api.Popular.getImageChannel(params: params) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success(let channel):
+                this.videos[indexPath.row].channel.imageURL = channel.imageURL
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     func viewModelForCell(at indexPath: IndexPath) -> HomeCellViewModel {
         return HomeCellViewModel(video: videos[indexPath.row])
     }
 
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
         return DetailViewModel(id: videos[indexPath.row].id)
+    }
+
+    func numberOfRowsInSection(section: Int) -> Int {
+        return videos.count
     }
 }
