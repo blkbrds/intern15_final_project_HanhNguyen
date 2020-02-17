@@ -34,13 +34,15 @@ extension Api.Popular {
     struct Result: Mappable {
         var nextPageToken: String = ""
         var videos: [Video] = []
-        var totalResults: String = ""
+        var totalResults: Int = 0
+        var resultsPerPage: Int = 0
 
         init?(map: Map) { }
         mutating func mapping(map: Map) {
             nextPageToken <- map["nextPageToken"]
             videos <- map["items"]
             totalResults <- map["pageInfo.totalResults"]
+            resultsPerPage <- map["pageInfo.resultsPerPage"]
         }
     }
 
