@@ -52,4 +52,8 @@ final class ChildPopularViewModel {
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
         return DetailViewModel(id: videos[indexPath.row].id)
     }
+    
+    func numberOfRowsInSection(section: Int) -> Int {
+        return videos.count
+    }
 }
