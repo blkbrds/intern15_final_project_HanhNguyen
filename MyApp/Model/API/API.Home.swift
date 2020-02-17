@@ -38,6 +38,20 @@ extension Api.Home {
             videos <- map["items"]
         }
     }
+    
+    struct DurationParams {
+        var part: String
+        var key: String
+        var id: String
+        
+        func toJSON() -> [String: Any] {
+            return [
+                "part": part,
+                "key": key,
+                "id": id
+            ]
+        }
+    }
 
     @discardableResult
     static func getPlaylist(params: Params, completion: @escaping Completion<Result>) -> Request? {
@@ -52,6 +66,30 @@ extension Api.Home {
                         completion(.failure(Api.Error.json))
                         return }
                     completion(.success(result))
+                }
+            }
+        }
+    }
+    
+    @discardableResult
+    static func getVideoDuration(params: DurationParams, completion: @escaping Completion<String>) -> Request? {
+        let path = Api.Path.Home.videoDuration
+        return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let json):
+                    guard let json = json as? JSObject,
+                        let items = json["items"] as? JSArray,
+                        let item = items.first,
+                        let contentDetails = item["contentDetails"] as? JSObject,
+                        let duration = contentDetails["duration"] as? String
+                    else {
+                        completion(.failure(Api.Error.json))
+                        return
+                    }
+                    completion(.success(duration))
                 }
             }
         }

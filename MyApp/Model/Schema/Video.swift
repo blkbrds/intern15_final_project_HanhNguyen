@@ -23,7 +23,8 @@ final class Video: Mappable {
     var description: String = ""
     var commentCount: String = ""
     var tags: [String] = []
-
+    var duration: String = ""
+    
     init() { }
 
     init?(map: Map) { }

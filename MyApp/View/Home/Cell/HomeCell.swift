@@ -12,6 +12,8 @@ import Kingfisher
 final class HomeCell: UITableViewCell {
 
     @IBOutlet weak var videoImageView: UIImageView!
+    @IBOutlet weak var durationView: UIView!
+    @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var channelImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -26,6 +28,7 @@ final class HomeCell: UITableViewCell {
         super.layoutSubviews()
         channelImageView.layer.cornerRadius = channelImageView.frame.width / 2
         channelImageView.layer.masksToBounds = true
+        durationView.layer.cornerRadius = 3
     }
 
     private func updateUI() {
@@ -34,5 +37,6 @@ final class HomeCell: UITableViewCell {
         channelImageView.setImage(url: viewModel.imageChannelURL, defaultImage: #imageLiteral(resourceName: "avatar"))
         titleLabel.text = viewModel.title
         descriptionLabel.text = "\(viewModel.channelName) • \(viewModel.createdAt.string(withFormat: App.String.dateFormatYYYYMMDDHHmmss))"
+        durationLabel.text = viewModel.duration
     }
 }

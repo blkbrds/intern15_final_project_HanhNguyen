@@ -45,5 +45,18 @@ final class HomeViewModel {
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
         return DetailViewModel(id: videos[indexPath.row].id)
     }
-}
 
+    func loadVideoDuration(at indexPath: IndexPath, completion: @escaping ApiComletion) {
+        let params = Api.Home.DurationParams(part: "contentDetails", key: App.String.apiKey, id: videos[indexPath.row].id)
+        Api.Home.getVideoDuration(params: params) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success(let duration):
+                this.videos[indexPath.row].duration = duration
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}

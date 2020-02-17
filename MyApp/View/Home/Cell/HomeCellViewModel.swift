@@ -13,6 +13,7 @@ final class HomeCellViewModel {
     var channelName: String
     var imageChannelURL: String
     var createdAt: Date
+    var duration: String
 
     init(video: Video) {
         thumbnailURL = video.imageURL
@@ -20,5 +21,6 @@ final class HomeCellViewModel {
         channelName = video.channel.title
         imageChannelURL = video.channel.imageURL
         createdAt = video.createdTime
+        duration = video.duration
     }
 }
