@@ -46,3 +46,4 @@ final class HomeViewModel {
         return DetailViewModel(id: videos[indexPath.row].id)
     }
 }
+
