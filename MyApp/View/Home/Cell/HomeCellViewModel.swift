@@ -10,14 +10,14 @@ import Foundation
 final class HomeCellViewModel {
     var thumbnailURL: String
     var title: String
-    var channelName: String
+    var channelTitle: String
     var imageChannelURL: String?
     var createdAt: Date
 
     init(video: Video) {
         thumbnailURL = video.imageURL
         title = video.title
-        channelName = video.channel.title
+        channelTitle = video.channel.title
         imageChannelURL = video.channel.imageURL
         createdAt = video.createdTime
     }

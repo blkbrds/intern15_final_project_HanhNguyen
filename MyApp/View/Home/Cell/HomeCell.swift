@@ -19,7 +19,7 @@ final class HomeCell: UITableViewCell {
     @IBOutlet weak var channelImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-
+    
     enum Action {
         case getImageCollection(indexPath: IndexPath?)
     }
@@ -47,6 +47,6 @@ final class HomeCell: UITableViewCell {
             delegate?.getImage(cell: self, needPerform: Action.getImageCollection(indexPath: indexPath))
         }
         titleLabel.text = viewModel.title
-        descriptionLabel.text = "\(viewModel.channelName) • \(viewModel.createdAt.string(withFormat: App.String.dateFormatYYYYMMDDHHmmss))"
+        descriptionLabel.text = "\(viewModel.channelTitle) • \(viewModel.createdAt.string(withFormat: App.String.dateFormatYYYYMMDDHHmmss))"
     }
 }

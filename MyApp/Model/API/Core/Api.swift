@@ -23,6 +23,10 @@ extension Api.Path {
         static var path: String {
             return baseURL / "search"
         }
+        
+        static var imageChannel: String {
+            return baseURL / "channels"
+        }
     }
 
     struct Detail {
