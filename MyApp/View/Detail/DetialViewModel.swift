@@ -40,12 +40,12 @@ final class DetailViewModel {
             case .success(let comments):
                 if isLoadMore {
                     for item in comments {
-                        if this.video.comment.contains(where: { return $0.id != item.id }) {
-                            this.video.comment.append(item)
+                        if this.video.comments.contains(where: { return $0.id != item.id }) {
+                            this.video.comments.append(item)
                         }
                     }
                 } else {
-                    this.video.comment = comments
+                    this.video.comments = comments
                 }
                 completion(.success)
             case .failure(let error):
@@ -75,7 +75,7 @@ final class DetailViewModel {
             guard let this = self else { return }
             switch result {
             case .success(let videos):
-                this.video.related = videos
+                this.video.relatedVideos = videos
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))
@@ -104,9 +104,9 @@ final class DetailViewModel {
         case .videoDetail, .videoChannel:
             return Config.numberOfItems
         case .relatedVideos:
-            return video.related.count
+            return video.relatedVideos.count
         case .comment:
-            return video.comment.count
+            return video.comments.count
         }
     }
 
@@ -137,7 +137,7 @@ final class DetailViewModel {
     }
 
     func viewModelForRelatedCell(at indexPath: IndexPath) -> RelatedCellViewModel {
-        return RelatedCellViewModel(video: video.related[indexPath.row])
+        return RelatedCellViewModel(video: video.relatedVideos[indexPath.row])
     }
 
     func viewModelForAddComment(at indexPath: IndexPath) -> AddCommentCellViewModel {
@@ -145,11 +145,11 @@ final class DetailViewModel {
     }
 
     func viewModelForCommentCell(at indexPath: IndexPath) -> CommentCellViewModel {
-        return CommentCellViewModel(comment: video.comment[indexPath.row])
+        return CommentCellViewModel(comment: video.comments[indexPath.row])
     }
 
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
-        return DetailViewModel(id: video.related[indexPath.row].id)
+        return DetailViewModel(id: video.relatedVideos[indexPath.row].id)
     }
 }
 extension DetailViewModel {
