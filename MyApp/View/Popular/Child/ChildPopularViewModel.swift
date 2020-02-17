@@ -38,6 +38,7 @@ final class ChildPopularViewModel {
             switch result {
             case .success(let channel):
                 this.videos[indexPath.row].channel.imageURL = channel.imageURL
+                completion(.success)
             case .failure(let error):
                 completion(.failure(error))
             }
