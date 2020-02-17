@@ -8,7 +8,7 @@
 
 import UIKit
 final class RelatedVideoCell: UITableViewCell {
-    
+
     @IBOutlet weak var videoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var channelNameLabel: UILabel!

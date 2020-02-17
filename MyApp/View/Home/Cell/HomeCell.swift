@@ -8,9 +8,11 @@
 
 import UIKit
 import Kingfisher
+
 protocol HomeTableViewCellDelagete: class {
     func getImage(cell: HomeCell, needPerform action: HomeCell.Action)
 }
+
 final class HomeCell: UITableViewCell {
 
     @IBOutlet weak var videoImageView: UIImageView!

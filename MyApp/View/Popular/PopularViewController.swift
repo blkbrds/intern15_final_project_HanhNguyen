@@ -10,7 +10,9 @@ import UIKit
 
 final class PopularViewController: ViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    @IBOutlet weak var contentView: UIView!
+    let child = ChildPopularViewController()
 
     var viewModel = PopularViewModel()
 
@@ -20,25 +22,15 @@ final class PopularViewController: ViewController {
 
     override func setupUI() {
         super.setupUI()
-        tableView.register(name: CellIdentifier.homeCell.rawValue)
-        tableView.delegate = self
-        tableView.dataSource = self
+        addChild(child)
+        contentView.addSubview(child.view)
+        child.didMove(toParent: self)
     }
-}
-extension PopularViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.videos.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.homeCell.rawValue, for: indexPath) as? HomeCell else { return UITableViewCell() }
-        cell.viewModel = viewModel.viewModelForCell(at: indexPath)
-        return cell
-    }
-}
-
-extension PopularViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+    
+    @IBAction func sementControlValueChaned(_ sender: UISegmentedControl) {
+        guard let videoCategory = VideoCategory(rawValue: sender.selectedSegmentIndex) else {
+            return
+        }
+        child.viewModel = ChildPopularViewModel(videoCategory: videoCategory)
     }
 }

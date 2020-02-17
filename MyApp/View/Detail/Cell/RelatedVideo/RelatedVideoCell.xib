@@ -31,7 +31,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="bửbjjkkkjnkjnjnkjnllklljlljljljl" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sk9-SU-jmF">
-                        <rect key="frame" x="179" y="89" width="150" height="20"/>
+                        <rect key="frame" x="179" y="89" width="150" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.37647058820000001" green="0.37647058820000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -41,7 +41,6 @@
                     <constraint firstAttribute="trailing" secondItem="Icm-KN-420" secondAttribute="trailing" constant="15" id="5J5-AN-fUh"/>
                     <constraint firstItem="Icm-KN-420" firstAttribute="leading" secondItem="ZiL-bf-PV9" secondAttribute="trailing" constant="15" id="6Ao-Ow-1cB"/>
                     <constraint firstItem="ZiL-bf-PV9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="aSl-yi-gNT"/>
-                    <constraint firstAttribute="bottom" secondItem="sk9-SU-jmF" secondAttribute="bottom" constant="14" id="c6Q-Se-WRl"/>
                     <constraint firstItem="Icm-KN-420" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="cee-Ct-qX8"/>
                     <constraint firstItem="sk9-SU-jmF" firstAttribute="leading" secondItem="ZiL-bf-PV9" secondAttribute="trailing" constant="15" id="ck1-i3-hic"/>
                     <constraint firstItem="sk9-SU-jmF" firstAttribute="top" secondItem="Icm-KN-420" secondAttribute="bottom" constant="2" id="iNH-VO-Giz"/>

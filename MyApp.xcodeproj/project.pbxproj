@@ -50,6 +50,10 @@
 		8AC3E9FA23F3911D008CE18C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3E9F923F3911D008CE18C /* Comment.swift */; };
 		8AC3E9FC23F3BB60008CE18C /* API.Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3E9FB23F3BB60008CE18C /* API.Detail.swift */; };
 		8AC3EA0323F5353E008CE18C /* IntExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3EA0223F5353E008CE18C /* IntExt.swift */; };
+		8AC6F06B23F7F922000D0851 /* ChildPopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC6F06923F7F922000D0851 /* ChildPopularViewController.swift */; };
+		8AC6F06C23F7F922000D0851 /* ChildPopularViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC6F06A23F7F922000D0851 /* ChildPopularViewController.xib */; };
+		8AC6F06E23F7FDDB000D0851 /* ChildPopularViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC6F06D23F7FDDB000D0851 /* ChildPopularViewModel.swift */; };
+		8AC6F07023F8155F000D0851 /* API.Popular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC6F06F23F8155F000D0851 /* API.Popular.swift */; };
 		BEC9596B95AE9DF3CE6DA172 /* Pods_MyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE12F04FB7F219FB9E6D3D6 /* Pods_MyApp.framework */; };
 		EC0105521E8F8AE000CE013D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC0105401E8F8ADF00CE013D /* Assets.xcassets */; };
 		EC0105541E8F8AE000CE013D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0105441E8F8ADF00CE013D /* AppDelegate.swift */; };
@@ -158,6 +162,10 @@
 		8AC3E9F923F3911D008CE18C /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		8AC3E9FB23F3BB60008CE18C /* API.Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Detail.swift; sourceTree = "<group>"; };
 		8AC3EA0223F5353E008CE18C /* IntExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExt.swift; sourceTree = "<group>"; };
+		8AC6F06923F7F922000D0851 /* ChildPopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildPopularViewController.swift; sourceTree = "<group>"; };
+		8AC6F06A23F7F922000D0851 /* ChildPopularViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildPopularViewController.xib; sourceTree = "<group>"; };
+		8AC6F06D23F7FDDB000D0851 /* ChildPopularViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildPopularViewModel.swift; sourceTree = "<group>"; };
+		8AC6F06F23F8155F000D0851 /* API.Popular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Popular.swift; sourceTree = "<group>"; };
 		DB69669865989B28D1BB192F /* Pods-MyAppTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAppTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-MyAppTests/Pods-MyAppTests.staging.xcconfig"; sourceTree = "<group>"; };
 		EC0105401E8F8ADF00CE013D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC0105421E8F8ADF00CE013D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -247,6 +255,7 @@
 		8A284F2323ED44920095052E /* Popular */ = {
 			isa = PBXGroup;
 			children = (
+				8AC6F06823F7F8EE000D0851 /* Child */,
 				8A284F2423ED449E0095052E /* PopularViewController.swift */,
 				8A284F2523ED449E0095052E /* PopularViewController.xib */,
 				8AC1EDEE23F0F380009E95FD /* PopularViewModel.swift */,
@@ -370,6 +379,16 @@
 				8AC1EE0923F13E13009E95FD /* CommentCell.xib */,
 			);
 			path = Comment;
+			sourceTree = "<group>";
+		};
+		8AC6F06823F7F8EE000D0851 /* Child */ = {
+			isa = PBXGroup;
+			children = (
+				8AC6F06923F7F922000D0851 /* ChildPopularViewController.swift */,
+				8AC6F06A23F7F922000D0851 /* ChildPopularViewController.xib */,
+				8AC6F06D23F7FDDB000D0851 /* ChildPopularViewModel.swift */,
+			);
+			path = Child;
 			sourceTree = "<group>";
 		};
 		E7A23BB3FDC7E19F0663DF69 /* Frameworks */ = {
@@ -541,6 +560,7 @@
 				ECF23AB01E9B869B008C23C1 /* Core */,
 				8A6F1B1C23EEEAEA0004181F /* API.Home.swift */,
 				8AC3E9FB23F3BB60008CE18C /* API.Detail.swift */,
+				8AC6F06F23F8155F000D0851 /* API.Popular.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -605,7 +625,6 @@
 				ECCCCB151E7A40D00073D923 /* Frameworks */,
 				ECCCCB161E7A40D00073D923 /* Resources */,
 				EC01052F1E8F895300CE013D /* Embed Frameworks */,
-				285F63F5111CD321599D351E /* [CP] Copy Pods Resources */,
 				475EECBF17C35A7C3773CDCF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -687,6 +706,7 @@
 				8AC1EE0123F13D9C009E95FD /* RelatedVideoCell.xib in Resources */,
 				EC5337BA1EF78E4D00ACE038 /* Localizable.strings in Resources */,
 				8A7BD79823EE8DDE00F67146 /* GoogleService-Info.plist in Resources */,
+				8AC6F06C23F7F922000D0851 /* ChildPopularViewController.xib in Resources */,
 				8A284F2C23ED44C10095052E /* ChannelViewController.xib in Resources */,
 				8A284F3123ED44E20095052E /* LibraryViewController.xib in Resources */,
 				8A284F2723ED449E0095052E /* PopularViewController.xib in Resources */,
@@ -710,24 +730,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		285F63F5111CD321599D351E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyApp/Pods-MyApp-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyApp/Pods-MyApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		475EECBF17C35A7C3773CDCF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -737,9 +739,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-MyApp/Pods-MyApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MVVM-Swift/MVVM.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
@@ -749,9 +748,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MVVM.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
@@ -842,6 +838,7 @@
 				ECC5B2CD1EF906CA001A97BC /* ViewController.swift in Sources */,
 				EC5337C31EF793B100ACE038 /* CollectionCell.swift in Sources */,
 				8AC1EE1C23F25944009E95FD /* VideoChannelCellViewModel.swift in Sources */,
+				8AC6F07023F8155F000D0851 /* API.Popular.swift in Sources */,
 				ECF23ABA1E9B89B2008C23C1 /* RequestSerializer.swift in Sources */,
 				ECC5B2CB1EF90495001A97BC /* Button.swift in Sources */,
 				EC0105541E8F8AE000CE013D /* AppDelegate.swift in Sources */,
@@ -858,6 +855,7 @@
 				8AC1EDF623F117FD009E95FD /* DetialViewModel.swift in Sources */,
 				8AC3EA0323F5353E008CE18C /* IntExt.swift in Sources */,
 				8AC3E9FA23F3911D008CE18C /* Comment.swift in Sources */,
+				8AC6F06E23F7FDDB000D0851 /* ChildPopularViewModel.swift in Sources */,
 				ECEC0C581ED44C5D00F6760A /* String.swift in Sources */,
 				EC5337BE1EF78FEA00ACE038 /* Font.swift in Sources */,
 				8AC1EE0A23F13E13009E95FD /* CommentCell.swift in Sources */,
@@ -867,6 +865,7 @@
 				8A7BD78123ED59B300F67146 /* HomeCell.swift in Sources */,
 				8AC1EE0023F13D9C009E95FD /* RelatedVideoCell.swift in Sources */,
 				8A6F1B1D23EEEAEA0004181F /* API.Home.swift in Sources */,
+				8AC6F06B23F7F922000D0851 /* ChildPopularViewController.swift in Sources */,
 				EC5337B51EF7845700ACE038 /* Color.swift in Sources */,
 				8A7BD78423ED6F9400F67146 /* HomeCellViewModel.swift in Sources */,
 				F537DDD423979E2700638CB4 /* DictionaryExt.swift in Sources */,
