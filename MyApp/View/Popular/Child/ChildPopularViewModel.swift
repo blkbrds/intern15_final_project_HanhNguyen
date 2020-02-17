@@ -33,7 +33,6 @@ final class ChildPopularViewModel {
             switch result {
             case .success(let result):
                 let totalPage = result.totalResults / result.resultsPerPage
-                this.totalPages = totalPage
                 if isLoadMore {
                     this.videos.append(contentsOf: result.videos)
                 } else {
