@@ -15,6 +15,7 @@ final class ChildPopularViewModel {
     var nextPageToken: String = ""
     var isLoading: Bool = false
     var page: Int = 0
+    var totalPages = 0
 
     init(videoCategory: VideoCategory = .music) {
         self.videoCategory = videoCategory
@@ -31,16 +32,15 @@ final class ChildPopularViewModel {
             guard let this = self else { return }
             switch result {
             case .success(let result):
-                let totalPages = result.totalResults / result.resultsPerPage
+                let totalPage = result.totalResults / result.resultsPerPage
+                this.totalPages = totalPage
                 if isLoadMore {
-                    if this.page < totalPages {
-                        this.page += 1
-                        this.videos.append(contentsOf: result.videos)
-                    }
+                    this.videos.append(contentsOf: result.videos)
                 } else {
                     this.videos = result.videos
                 }
                 this.nextPageToken = result.nextPageToken
+                this.totalPages = totalPage
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))
