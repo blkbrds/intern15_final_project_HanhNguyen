@@ -12,7 +12,7 @@ final class ChildPopularViewModel {
 
     var videoCategory: VideoCategory
     var videos: [Video] = []
-    
+
     init(videoCategory: VideoCategory = .music) {
         self.videoCategory = videoCategory
     }
@@ -30,7 +30,7 @@ final class ChildPopularViewModel {
             }
         }
     }
-    
+
     func loadImageChannel(at indexPath: IndexPath, completion: @escaping ApiComletion) {
         let params = Api.Popular.ImageChannelParmas(part: "snippet", id: videos[indexPath.row].channel.id, key: App.String.apiKey)
         Api.Popular.getImageChannel(params: params) { [weak self] (result) in
@@ -48,7 +48,7 @@ final class ChildPopularViewModel {
     func viewModelForCell(at indexPath: IndexPath) -> HomeCellViewModel {
         return HomeCellViewModel(video: videos[indexPath.row])
     }
-    
+
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
         return DetailViewModel(id: videos[indexPath.row].id)
     }
