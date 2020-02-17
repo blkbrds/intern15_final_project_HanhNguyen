@@ -14,4 +14,8 @@ final class ChildPopularViewModel {
     func viewModelForCell(at indexPath: IndexPath) -> HomeCellViewModel {
         return HomeCellViewModel(video: videos[indexPath.row])
     }
+    
+    func numberOfRowsInSection(section: Int) -> Int {
+        return videos.count
+    }
 }
