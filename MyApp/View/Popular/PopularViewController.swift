@@ -9,11 +9,11 @@
 import UIKit
 
 final class PopularViewController: ViewController {
-    
+
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var contentView: UIView!
     let child = ChildPopularViewController()
-    
+
     var viewModel = PopularViewModel()
 
     override func viewDidLoad() {
@@ -23,7 +23,14 @@ final class PopularViewController: ViewController {
     override func setupUI() {
         super.setupUI()
         addChild(child)
-        view.addSubview(child.view)
+        contentView.addSubview(child.view)
         child.didMove(toParent: self)
+    }
+    
+    @IBAction func sementControlValueChaned(_ sender: UISegmentedControl) {
+        guard let videoCategory = VideoCategory(rawValue: sender.selectedSegmentIndex) else {
+            return
+        }
+        child.viewModel = ChildPopularViewModel(videoCategory: videoCategory)
     }
 }

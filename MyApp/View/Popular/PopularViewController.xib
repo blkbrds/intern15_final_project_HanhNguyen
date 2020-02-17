@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="contentView" destination="Bjp-xk-xpN" id="O4P-6g-MdV"/>
                 <outlet property="segmentControl" destination="Dv7-y4-pRf" id="TdH-Oz-vht"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="H8c-Ts-eKz"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,8 +26,11 @@
                         <segment title="Âm Nhạc"/>
                         <segment title="Trò Chơi"/>
                         <segment title="Tin Tức"/>
-                        <segment title="Phim Ảnh"/>
+                        <segment title="Giải Trí"/>
                     </segments>
+                    <connections>
+                        <action selector="sementControlValueChaned:" destination="-1" eventType="valueChanged" id="Yxd-pN-kOS"/>
+                    </connections>
                 </segmentedControl>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bjp-xk-xpN">
                     <rect key="frame" x="0.0" y="110" width="414" height="752"/>

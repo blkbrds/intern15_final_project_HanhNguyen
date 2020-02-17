@@ -13,7 +13,7 @@ final class VideoChannelCellViewModel {
     var subscriberCount: Int
     
     init(video: Video) {
-        self.avatar = video.channel.imageURL
+        self.avatar = video.channel.imageURL ?? ""
         self.title = video.channel.title
         self.subscriberCount = Int(video.channel.subscriberCount) ?? 0
     }

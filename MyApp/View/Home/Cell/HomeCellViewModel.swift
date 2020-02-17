@@ -11,7 +11,7 @@ final class HomeCellViewModel {
     var thumbnailURL: String
     var title: String
     var channelName: String
-    var imageChannelURL: String
+    var imageChannelURL: String?
     var createdAt: Date
 
     init(video: Video) {

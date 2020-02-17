@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 final class Channel: Mappable {
     var id: String = ""
-    var imageURL: String = ""
+    var imageURL: String?
     var title: String = ""
     var subscriberCount: String = ""
 
