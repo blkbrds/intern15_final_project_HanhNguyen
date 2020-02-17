@@ -8,14 +8,21 @@
 
 import UIKit
 import Kingfisher
-
+protocol HomeTableViewCellDelagete: class {
+    func getImage(cell: HomeCell, needPerform action: HomeCell.Action)
+}
 final class HomeCell: UITableViewCell {
 
     @IBOutlet weak var videoImageView: UIImageView!
     @IBOutlet weak var channelImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-
+    
+    enum Action {
+        case getImageCollection(indexPath: IndexPath?)
+    }
+    var indexPath: IndexPath?
+    var delegate: HomeTableViewCellDelagete?
     var viewModel: HomeCellViewModel? {
         didSet {
             updateUI()
@@ -31,8 +38,13 @@ final class HomeCell: UITableViewCell {
     private func updateUI() {
         guard let viewModel = viewModel else { return }
         videoImageView.setImage(url: viewModel.thumbnailURL)
-        channelImageView.setImage(url: viewModel.imageChannelURL, defaultImage: #imageLiteral(resourceName: "avatar"))
+        if let imageURL = viewModel.imageChannelURL {
+            channelImageView.setImage(url: imageURL, defaultImage: #imageLiteral(resourceName: "avatar"))
+        } else {
+            channelImageView.image = #imageLiteral(resourceName: "avatar")
+            delegate?.getImage(cell: self, needPerform: Action.getImageCollection(indexPath: indexPath))
+        }
         titleLabel.text = viewModel.title
-        descriptionLabel.text = "\(viewModel.channelName) • \(viewModel.createdAt.string(withFormat: App.String.dateFormatYYYYMMDDHHmmss))"
+        descriptionLabel.text = "\(viewModel.channelTitle) • \(viewModel.createdAt.string(withFormat: App.String.dateFormatYYYYMMDDHHmmss))"
     }
 }

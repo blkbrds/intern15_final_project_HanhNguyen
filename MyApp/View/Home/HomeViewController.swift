@@ -54,6 +54,18 @@ final class HomeViewController: ViewController {
         }
     }
 
+    func fetchImageChannel(at indexPath: IndexPath) {
+        viewModel.getImgaeChannel(at: indexPath) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.setupUI()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+
     func updateUI() {
         tableView.reloadData()
         tableRefreshControl.endRefreshing()
@@ -70,10 +82,12 @@ extension HomeViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.homeCell.rawValue, for: indexPath) as? HomeCell else {
             return UITableViewCell()
         }
+        cell.indexPath = indexPath
+        cell.delegate = self
         cell.viewModel = viewModel.viewModelForCell(at: indexPath)
         return cell
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -100,5 +114,25 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+extension HomeViewController: HomeTableViewCellDelagete {
+    func getImage(cell: HomeCell, needPerform action: HomeCell.Action) {
+        switch action {
+        case .getImageCollection(let indexPath):
+            if let indexPath = indexPath {
+                viewModel.getImgaeChannel(at: indexPath) { [weak self] (result) in
+                    guard let this = self else { return }
+                    switch result {
+                    case .success:
+                        if this.tableView.indexPathsForVisibleRows?.contains(indexPath) == true {
+                            this.tableView.reloadRows(at: [indexPath], with: .none)
+                        }
+                    case .failure: break
+                    }
+                }
+            }
+        }
     }
 }

@@ -45,4 +45,18 @@ final class HomeViewModel {
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
         return DetailViewModel(id: videos[indexPath.row].id)
     }
+
+    func getImgaeChannel(at indexPath: IndexPath, completion: @escaping ApiComletion) {
+        let params = Api.Home.ChannelParams(part: "snippet", id: videos[indexPath.row].channel.id, key: App.String.apiKey)
+        Api.Home.getImgaeChannel(params: params) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success(let imageChannel):
+                this.videos[indexPath.row].channel.imageURL = imageChannel.imageURL
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

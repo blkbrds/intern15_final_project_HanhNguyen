@@ -28,6 +28,20 @@ extension Api.Home {
         }
     }
 
+    struct ChannelParams {
+        var part: String
+        var id: String
+        var key: String
+
+        func toJSON() -> [String: Any] {
+            return [
+                "part": part,
+                "id": id,
+                "key": key
+            ]
+        }
+    }
+
     struct Result: Mappable {
         var nextPageToken: String = ""
         var videos: [Video] = []
@@ -41,7 +55,7 @@ extension Api.Home {
 
     @discardableResult
     static func getPlaylist(params: Params, completion: @escaping Completion<Result>) -> Request? {
-        let path = Api.Path.Home.path 
+        let path = Api.Path.Home.path
         return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
             DispatchQueue.main.async {
                 switch result {
@@ -52,6 +66,24 @@ extension Api.Home {
                         completion(.failure(Api.Error.json))
                         return }
                     completion(.success(result))
+                }
+            }
+        }
+    }
+    
+    @discardableResult
+    static func getImgaeChannel(params: ChannelParams, completion: @escaping Completion<Channel>) -> Request? {
+        let path = Api.Path.Home.imageChannel
+        return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let json):
+                    guard let json = json as? JSObject, let items = json["items"] as? JSArray, let channel = Mapper<Channel>().mapArray(JSONArray: items).first else {
+                        completion(.failure(Api.Error.json))
+                        return }
+                    completion(.success(channel))
                 }
             }
         }
