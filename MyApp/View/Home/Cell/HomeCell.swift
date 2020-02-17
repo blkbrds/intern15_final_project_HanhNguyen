@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 protocol HomeTableViewCellDelagete: class {
-    func getImage(cell: HomeCell, needPerform action: HomeCell.Action)
+    func cell(_ cell: HomeCell, needPerforms action: HomeCell.Action)
 }
 final class HomeCell: UITableViewCell {
 
@@ -22,6 +22,7 @@ final class HomeCell: UITableViewCell {
     
     enum Action {
         case getImageCollection(indexPath: IndexPath?)
+        case getDuration(indexPath: IndexPath?)
     }
     var indexPath: IndexPath?
     var delegate: HomeTableViewCellDelagete?
@@ -45,10 +46,15 @@ final class HomeCell: UITableViewCell {
             channelImageView.setImage(url: imageURL, defaultImage: #imageLiteral(resourceName: "avatar"))
         } else {
             channelImageView.image = #imageLiteral(resourceName: "avatar")
-            delegate?.getImage(cell: self, needPerform: Action.getImageCollection(indexPath: indexPath))
+            delegate?.cell(self, needPerforms: .getImageCollection(indexPath: indexPath))
+        }
+        if let duration = viewModel.duration {
+            durationLabel.text = duration
+        } else {
+            durationLabel.text = nil
+            delegate?.cell(self, needPerforms: .getDuration(indexPath: indexPath))
         }
         titleLabel.text = viewModel.title
-        durationLabel.text = viewModel.duration
         descriptionLabel.text = "\(viewModel.channelTitle) • \(viewModel.createdAt.string(withFormat: App.String.dateFormatYYYYMMDDHHmmss))"
     }
 }
