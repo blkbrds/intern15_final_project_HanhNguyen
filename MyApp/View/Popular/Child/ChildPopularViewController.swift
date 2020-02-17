@@ -77,24 +77,20 @@ extension ChildPopularViewController: UITableViewDataSource {
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if viewModel.page < viewModel.totalPages {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY >= contentHeight - scrollView.frame.size.height && viewModel.page < viewModel.totalPages {
             viewModel.page += 1
-            let offsetY = scrollView.contentOffset.y
-            let contentHeight = scrollView.contentSize.height
-            if offsetY >= contentHeight - scrollView.frame.size.height {
-                fetchData(isLoadMore: true)
-            }
+            fetchData(isLoadMore: true)
         }
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if viewModel.page < viewModel.totalPages {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY >= contentHeight - scrollView.frame.size.height, viewModel.page < viewModel.totalPages {
             viewModel.page += 1
-            let offsetY = scrollView.contentOffset.y
-            let contentHeight = scrollView.contentSize.height
-            if offsetY >= contentHeight - scrollView.frame.size.height {
-                fetchData(isLoadMore: true)
-            }
+            fetchData(isLoadMore: true)
         }
     }
 }
