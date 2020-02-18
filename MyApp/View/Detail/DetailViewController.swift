@@ -8,6 +8,8 @@
 
 import UIKit
 import YoutubePlayer_in_WKWebView
+import SVProgressHUD
+
 final class DetailViewController: UIViewController {
 
     @IBOutlet weak var videoView: WKYTPlayerView!
@@ -27,15 +29,19 @@ final class DetailViewController: UIViewController {
     }
 
     func fetchData() {
+        SVProgressHUD.show()
         viewModel.loadApiVideoDetail { [weak self] (result) in
+            SVProgressHUD.dismiss()
             guard let this = self else { return }
             switch result {
             case .success:
+                SVProgressHUD.show()
                 this.fetchDataChannel()
                 this.fetchDataRelated()
                 this.fetchDataComment(isLoadMore: false)
 
                 this.dispatchGroup.notify(queue: .main) {
+                    SVProgressHUD.dismiss()
                     this.updateUI()
                 }
             case .failure(let error):
