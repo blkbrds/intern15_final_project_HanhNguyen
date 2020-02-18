@@ -7,17 +7,30 @@
 //
 
 import Foundation
-enum VideoCategory {
+enum VideoCategory: Int {
     case music
     case game
     case news
-    case movie
+    case entertainment
+
+    var id: Int {
+        switch self {
+        case .music:
+            return 10
+        case .game:
+            return 20
+        case .news:
+            return 2
+        case .entertainment:
+            return 23
+        }
+    }
 }
 
 final class PopularViewModel {
-    
+
     var videos: [Video] = []
-    
+
     func viewModelForCell(at indexPath: IndexPath) -> HomeCellViewModel {
         return HomeCellViewModel(video: videos[indexPath.row])
     }
