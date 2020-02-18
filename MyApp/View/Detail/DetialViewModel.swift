@@ -39,11 +39,8 @@ final class DetailViewModel {
             switch result {
             case .success(let comments):
                 if isLoadMore {
-                    for item in comments {
-                        if this.video.comment.contains(where: { return $0.id != item.id }) {
-                            this.video.comment.append(item)
-                        }
-                    }
+                    let newComments = Set<Comment>(comments).subtracting(Set<Comment>(this.video.comment))
+                    this.video.comment.append(contentsOf: newComments.map { $0 })
                 } else {
                     this.video.comment = comments
                 }
