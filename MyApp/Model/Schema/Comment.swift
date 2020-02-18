@@ -8,6 +8,7 @@
 
 import Foundation
 import ObjectMapper
+
 final class Comment: Mappable {
 
     var id: String = ""

@@ -55,7 +55,7 @@ final class HomeViewController: ViewController {
     }
 
     func fetchImageChannel(at indexPath: IndexPath) {
-        viewModel.getImageChannel(at: indexPath) { [weak self] (result) in
+        viewModel.loadImageChannel(at: indexPath) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success:
@@ -118,11 +118,11 @@ extension HomeViewController: UITableViewDelegate {
 }
 
 extension HomeViewController: HomeTableViewCellDelagete {
-    func getImage(cell: HomeCell, needPerform action: HomeCell.Action) {
+    func cell(_ cell: HomeCell, needPerformsAction action: HomeCell.Action) {
         switch action {
         case .getImageCollection(let indexPath):
             if let indexPath = indexPath {
-                viewModel.getImageChannel(at: indexPath) { [weak self] (result) in
+                viewModel.loadImageChannel(at: indexPath) { [weak self] (result) in
                     guard let this = self else { return }
                     switch result {
                     case .success:
@@ -130,6 +130,19 @@ extension HomeViewController: HomeTableViewCellDelagete {
                             this.tableView.reloadRows(at: [indexPath], with: .none)
                         }
                     case .failure: break
+                    }
+                }
+            }
+        case .getDuration(let indexPath):
+            if let indexPath = indexPath {
+                viewModel.loadVideoDuration(at: indexPath) { [weak self] (result) in
+                    guard let this = self else { return }
+                    switch result {
+                    case .success:
+                        if this.tableView.indexPathsForVisibleRows?.contains(indexPath) == true {
+                                this.tableView.reloadRows(at: [indexPath], with: .none)
+                            }
+                        case .failure: break
                     }
                 }
             }

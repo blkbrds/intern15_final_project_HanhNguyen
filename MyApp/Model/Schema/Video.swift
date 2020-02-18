@@ -14,8 +14,8 @@ final class Video: Mappable {
     var imageURL: String = ""
     var title: String = ""
     var channel: Channel = Channel()
-    var related: [Video] = []
-    var comment: [Comment] = []
+    var relatedVideos: [Video] = []
+    var comments: [Comment] = []
     var createdTime: Date = Date()
     var viewCount: String = ""
     var likeCount: String = ""
@@ -23,7 +23,8 @@ final class Video: Mappable {
     var description: String = ""
     var commentCount: String = ""
     var tags: [String] = []
-
+    var duration: String?
+    
     init() { }
 
     init?(map: Map) { }

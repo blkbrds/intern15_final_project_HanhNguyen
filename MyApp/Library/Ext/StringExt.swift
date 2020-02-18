@@ -45,4 +45,16 @@ extension String {
         }
         return ""
     }
+    
+    func getFormattedDuration() -> String {
+        var duration: String = ""
+        let stringArray = self.components(separatedBy: CharacterSet.decimalDigits.inverted)
+        for item in stringArray {
+            if let number = Int(item) {
+                duration += String(format: "%02d:", number)
+            }
+        }
+        duration.remove(at: duration.index(before: duration.endIndex))
+        return duration
+    }
 }

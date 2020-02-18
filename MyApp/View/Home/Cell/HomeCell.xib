@@ -22,6 +22,24 @@
                             <constraint firstAttribute="width" secondItem="cBB-yo-DWX" secondAttribute="height" multiplier="375/211" id="WOa-kz-hzy"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZ4-DT-tHB">
+                        <rect key="frame" x="269" y="149.5" width="41" height="20.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1f-BQ-bZ7">
+                                <rect key="frame" x="5" y="3" width="31" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="T1f-BQ-bZ7" firstAttribute="top" secondItem="hZ4-DT-tHB" secondAttribute="top" constant="3" id="6Tc-gi-m05"/>
+                            <constraint firstAttribute="trailing" secondItem="T1f-BQ-bZ7" secondAttribute="trailing" constant="5" id="SPK-AF-S91"/>
+                            <constraint firstItem="T1f-BQ-bZ7" firstAttribute="leading" secondItem="hZ4-DT-tHB" secondAttribute="leading" constant="5" id="pGH-JU-z9M"/>
+                            <constraint firstAttribute="bottom" secondItem="T1f-BQ-bZ7" secondAttribute="bottom" constant="3" id="rz0-XD-eSL"/>
+                        </constraints>
+                    </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0TZ-3S-bxX">
                         <rect key="frame" x="15" y="190" width="30" height="30"/>
                         <constraints>
@@ -48,11 +66,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="PaB-4q-wTn" firstAttribute="leading" secondItem="0TZ-3S-bxX" secondAttribute="trailing" constant="15" id="GZk-3Z-7sD"/>
+                    <constraint firstItem="hZ4-DT-tHB" firstAttribute="bottom" secondItem="cBB-yo-DWX" secondAttribute="bottom" constant="-10" id="JUn-RC-Ybw"/>
                     <constraint firstItem="0TZ-3S-bxX" firstAttribute="top" secondItem="cBB-yo-DWX" secondAttribute="bottom" constant="10" id="P9x-8q-Sw5"/>
                     <constraint firstAttribute="trailing" secondItem="cBB-yo-DWX" secondAttribute="trailing" id="SMF-IA-IPk"/>
                     <constraint firstItem="cBB-yo-DWX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="eY4-SX-96s"/>
                     <constraint firstItem="PaB-4q-wTn" firstAttribute="top" secondItem="cBB-yo-DWX" secondAttribute="bottom" constant="10" id="fhq-Ed-jCF"/>
                     <constraint firstItem="cBB-yo-DWX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="iBW-wA-Keh"/>
+                    <constraint firstItem="hZ4-DT-tHB" firstAttribute="trailing" secondItem="cBB-yo-DWX" secondAttribute="trailing" constant="-10" id="iVi-lt-Yvr"/>
                     <constraint firstAttribute="trailing" secondItem="PaB-4q-wTn" secondAttribute="trailing" constant="15" id="ihH-ZE-7KX"/>
                     <constraint firstAttribute="bottom" secondItem="PaB-4q-wTn" secondAttribute="bottom" constant="10" id="mSP-5s-mRN"/>
                     <constraint firstItem="0TZ-3S-bxX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="mVh-F4-CcQ"/>
@@ -64,6 +84,8 @@
             <connections>
                 <outlet property="channelImageView" destination="0TZ-3S-bxX" id="F4b-MC-Xpi"/>
                 <outlet property="descriptionLabel" destination="rKw-SY-rr6" id="yy5-ff-yQl"/>
+                <outlet property="durationLabel" destination="T1f-BQ-bZ7" id="Uj5-ig-Qyn"/>
+                <outlet property="durationView" destination="hZ4-DT-tHB" id="33o-0d-l9U"/>
                 <outlet property="titleLabel" destination="8dv-2f-E46" id="Sez-fr-BNE"/>
                 <outlet property="videoImageView" destination="cBB-yo-DWX" id="hwg-fj-NPt"/>
             </connections>

@@ -46,9 +46,23 @@ final class HomeViewModel {
         return DetailViewModel(id: videos[indexPath.row].id)
     }
 
-    func getImageChannel(at indexPath: IndexPath, completion: @escaping ApiComletion) {
+    func loadVideoDuration(at indexPath: IndexPath, completion: @escaping ApiComletion) {
+        let params = Api.Home.DurationParams(part: "contentDetails", key: App.String.apiKey, id: videos[indexPath.row].id)
+        Api.Home.getVideoDuration(params: params) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success(let duration):
+                this.videos[indexPath.row].duration = duration
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func loadImageChannel(at indexPath: IndexPath, completion: @escaping ApiComletion) {
         let params = Api.Home.ChannelParams(part: "snippet", id: videos[indexPath.row].channel.id, key: App.String.apiKey)
-        Api.Home.getImgaeChannel(params: params) { [weak self] (result) in
+        Api.Home.getImageChannel(params: params) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success(let imageChannel):
@@ -60,4 +74,3 @@ final class HomeViewModel {
         }
     }
 }
-

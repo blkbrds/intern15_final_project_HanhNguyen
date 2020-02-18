@@ -108,7 +108,7 @@ extension ChildPopularViewController: UITableViewDelegate {
 }
 
 extension ChildPopularViewController: HomeTableViewCellDelagete {
-    func getImage(cell: HomeCell, needPerform action: HomeCell.Action) {
+    func cell(_ cell: HomeCell, needPerformsAction action: HomeCell.Action) {
         switch action {
         case .getImageCollection(let indexPath):
             if let indexPath = indexPath {
@@ -123,6 +123,8 @@ extension ChildPopularViewController: HomeTableViewCellDelagete {
                     }
                 }
             }
+        case .getDuration(let indexPath):
+            break
         }
     }
 }
