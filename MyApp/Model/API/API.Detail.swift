@@ -128,7 +128,7 @@ extension Api.Detail {
             }
         }
     }
-    
+
     @discardableResult
     static func getVideoChannel(params: VideoChannelParams, completion: @escaping Completion<Channel>) -> Request? {
         let path = Api.Path.Detail.videoChannel
@@ -142,6 +142,30 @@ extension Api.Detail {
                         completion(.failure(Api.Error.json))
                         return }
                     completion(.success(channel))
+                }
+            }
+        }
+    }
+    
+    @discardableResult
+    static func getVideoDuration(params: VideoDetailParams, completion: @escaping Completion<String>) -> Request? {
+        let path = Api.Path.Detail.videos
+        return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let json):
+                    guard let json = json as? JSObject,
+                        let items = json["items"] as? JSArray,
+                        let item = items.first,
+                        let contentDetails = item["contentDetails"] as? JSObject,
+                        let duration = contentDetails["duration"] as? String
+                        else {
+                            completion(.failure(Api.Error.json))
+                            return
+                    }
+                    completion(.success(duration))
                 }
             }
         }

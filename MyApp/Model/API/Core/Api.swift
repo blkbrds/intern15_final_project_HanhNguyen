@@ -48,12 +48,12 @@ extension Api.Path {
             return baseURL / "channels"
         }
     }
-    
+
     struct Popular {
         static var path: String {
             return baseURL / "videos"
         }
-        
+
         static var imageChannel: String {
             return baseURL / "channels"
         }

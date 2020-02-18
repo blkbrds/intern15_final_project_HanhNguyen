@@ -27,7 +27,7 @@ final class HomeCell: UITableViewCell {
         case getDuration(indexPath: IndexPath?)
     }
     var indexPath: IndexPath?
-    var delegate: HomeTableViewCellDelagete?
+    weak var delegate: HomeTableViewCellDelagete?
     var viewModel: HomeCellViewModel? {
         didSet {
             updateUI()
