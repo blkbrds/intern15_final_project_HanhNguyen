@@ -8,7 +8,7 @@
 
 import Foundation
 import ObjectMapper
-final class Comment: Mappable, Hashable {
+final class Comment: Mappable {
 
     var id: String = ""
     var publishedAt: Date = Date()
@@ -24,13 +24,5 @@ final class Comment: Mappable, Hashable {
         authorDisplayName <- map["snippet.topLevelComment.snippet.authorDisplayName"]
         authorProfileImageUrl <- map["snippet.topLevelComment.snippet.authorProfileImageUrl"]
         textDisplay <- map["snippet.topLevelComment.snippet.textDisplay"]
-    }
-
-    static func == (lhs: Comment, rhs: Comment) -> Bool {
-        return lhs.id == rhs.id
-    }
-
-    func hash(into hasher: inout Hasher) {
-      hasher.combine(id)
     }
 }
