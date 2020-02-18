@@ -49,7 +49,7 @@ final class HomeCell: UITableViewCell {
             delegate?.cell(self, needPerforms: .getImageCollection(indexPath: indexPath))
         }
         if let duration = viewModel.duration {
-            durationLabel.text = duration
+            durationLabel.text = getString(durationString: duration)
         } else {
             durationLabel.text = nil
             delegate?.cell(self, needPerforms: .getDuration(indexPath: indexPath))
@@ -57,4 +57,17 @@ final class HomeCell: UITableViewCell {
         titleLabel.text = viewModel.title
         descriptionLabel.text = "\(viewModel.channelTitle) • \(viewModel.createdAt.string(withFormat: App.String.dateFormatYYYYMMDDHHmmss))"
     }
+}
+
+func getString(durationString: String) -> String {
+    var duration: String = ""
+    let string = durationString
+    let stringArray = string.components(separatedBy: CharacterSet.decimalDigits.inverted)
+    for item in stringArray {
+        if let number = Int(item) {
+            duration += String(format: "%02d:", number)
+        }
+    }
+    duration.remove(at: duration.index(before: duration.endIndex))
+    return duration
 }
