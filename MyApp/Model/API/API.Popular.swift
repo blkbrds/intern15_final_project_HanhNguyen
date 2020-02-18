@@ -45,6 +45,7 @@ extension Api.Popular {
             resultsPerPage <- map["pageInfo.resultsPerPage"]
         }
     }
+    
     struct ImageChannelParams {
         var part: String
         var id: String
@@ -119,3 +120,4 @@ extension Api.Popular {
         }
     }
 }
+

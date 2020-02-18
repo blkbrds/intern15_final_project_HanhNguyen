@@ -12,7 +12,7 @@ final class DetailViewModel {
 
     var video: Video = Video()
     var isLoading: Bool = false
-    var maxResults: Int = 0
+    var pageToken: String = ""
 
     init(id: String = "") {
         video.id = id
@@ -27,25 +27,18 @@ final class DetailViewModel {
             completion(.failure(Api.Error.invalidRequest))
             return
         }
-        self.isLoading = true
-        if isLoadMore == true {
-            maxResults += 5
-        } else {
-            maxResults = 5
-        }
-        let params = Api.Detail.CommentParams(part: "snippet", videoId: video.id, key: App.String.apiKey, maxResults: maxResults)
+        isLoading = true
+        let params = Api.Detail.CommentParams(part: "snippet", videoId: video.id, key: App.String.apiKey, maxResults: 5, pageToken: pageToken)
         Api.Detail.getComments(params: params) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
-            case .success(let comments):
+            case .success(let result):
                 if isLoadMore {
-                    let newComments = Set<Comment>(comments).subtracting(Set<Comment>(this.video.comments))
-                    for item in newComments {
-                        this.video.comments.append(item)
-                    }
+                    this.video.comments.append(contentsOf: result.comments)
                 } else {
-                    this.video.comments = comments
+                    this.video.comments = result.comments
                 }
+                this.pageToken = result.pageToken
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))
