@@ -46,7 +46,7 @@ final class HomeViewModel {
         return DetailViewModel(id: videos[indexPath.row].id)
     }
 
-    func getImgaeChannel(at indexPath: IndexPath, completion: @escaping ApiComletion) {
+    func getImageChannel(at indexPath: IndexPath, completion: @escaping ApiComletion) {
         let params = Api.Home.ChannelParams(part: "snippet", id: videos[indexPath.row].channel.id, key: App.String.apiKey)
         Api.Home.getImgaeChannel(params: params) { [weak self] (result) in
             guard let this = self else { return }

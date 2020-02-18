@@ -55,7 +55,7 @@ final class HomeViewController: ViewController {
     }
 
     func fetchImageChannel(at indexPath: IndexPath) {
-        viewModel.getImgaeChannel(at: indexPath) { [weak self] (result) in
+        viewModel.getImageChannel(at: indexPath) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success:
@@ -122,7 +122,7 @@ extension HomeViewController: HomeTableViewCellDelagete {
         switch action {
         case .getImageCollection(let indexPath):
             if let indexPath = indexPath {
-                viewModel.getImgaeChannel(at: indexPath) { [weak self] (result) in
+                viewModel.getImageChannel(at: indexPath) { [weak self] (result) in
                     guard let this = self else { return }
                     switch result {
                     case .success:

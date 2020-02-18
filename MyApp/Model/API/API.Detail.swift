@@ -130,7 +130,7 @@ extension Api.Detail {
     }
     
     @discardableResult
-    static func getVideoChannel(params: VideoChannelParams, completion: @escaping Completion<Channel>) -> Request? {
+    static func getVideoChannel(params: VideoChannelParams, completion: @escaping Completion<Channel?>) -> Request? {
         let path = Api.Path.Detail.videoChannel
         return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
             DispatchQueue.main.async {
@@ -138,9 +138,10 @@ extension Api.Detail {
                 case .failure(let error):
                     completion(.failure(error))
                 case .success(let json):
-                    guard let json = json as? JSObject, let items = json["items"] as? JSArray, let channel = Mapper<Channel>().mapArray(JSONArray: items).first else {
+                    guard let json = json as? JSObject, let items = json["items"] as? JSArray else {
                         completion(.failure(Api.Error.json))
                         return }
+                    let channel = Mapper<Channel>().mapArray(JSONArray: items).first 
                     completion(.success(channel))
                 }
             }

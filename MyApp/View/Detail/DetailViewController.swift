@@ -14,7 +14,7 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var viewModel = DetailViewModel()
-
+    let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
@@ -31,9 +31,13 @@ final class DetailViewController: UIViewController {
             guard let this = self else { return }
             switch result {
             case .success:
+                this.fetchDataChannel()
                 this.fetchDataRelated()
                 this.fetchDataComment(isLoadMore: false)
-                this.fetchDataChannel()
+
+                this.dispatchGroup.notify(queue: .main) {
+                    this.updateUI()
+                }
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -41,30 +45,35 @@ final class DetailViewController: UIViewController {
     }
 
     func fetchDataChannel() {
+        dispatchGroup.enter()
         viewModel.loadApiVideoChannel { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success:
-                this.updateUI()
+                break
             case .failure(let error):
                 this.alert(error: error)
             }
+            this.dispatchGroup.leave()
         }
     }
 
     func fetchDataRelated() {
+        dispatchGroup.enter()
         viewModel.loadApiRelatedVideo { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success:
-                this.updateUI()
+                break
             case .failure(let error):
                 this.alert(error: error)
             }
+            this.dispatchGroup.leave()
         }
     }
 
     func fetchDataComment(isLoadMore: Bool) {
+        dispatchGroup.enter()
         viewModel.loadApiComment(isLoadMore: isLoadMore) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
@@ -72,12 +81,13 @@ final class DetailViewController: UIViewController {
                 if isLoadMore == true {
                     this.tableView.reloadSections(IndexSet(integer: 3), with: .none)
                 } else {
-                    this.setupUI()
+                    break
                 }
             case .failure(let error):
                 this.alert(error: error)
             }
             this.viewModel.isLoading = false
+            this.dispatchGroup.leave()
         }
     }
 
