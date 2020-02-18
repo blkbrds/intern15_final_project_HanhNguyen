@@ -109,7 +109,7 @@ extension Api.Home {
         }
     }
 
-    static func getImgaeChannel(params: ChannelParams, completion: @escaping Completion<Channel>) -> Request? {
+    static func getImageChannel(params: ChannelParams, completion: @escaping Completion<Channel>) -> Request? {
         let path = Api.Path.Home.imageChannel
         return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
             DispatchQueue.main.async {
