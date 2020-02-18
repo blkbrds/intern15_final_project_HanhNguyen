@@ -23,7 +23,7 @@ final class DetailViewModel {
     }
 
     func loadApiComment(isLoadMore: Bool, completion: @escaping ApiComletion) {
-        guard !isLoading  else {
+        guard !isLoading else {
             completion(.failure(Api.Error.invalidRequest))
             return
         }
@@ -39,10 +39,9 @@ final class DetailViewModel {
             switch result {
             case .success(let comments):
                 if isLoadMore {
-                    for item in comments {
-                        if this.video.comments.contains(where: { return $0.id != item.id }) {
-                            this.video.comments.append(item)
-                        }
+                    let newComments = Set<Comment>(comments).subtracting(Set<Comment>(this.video.comments))
+                    for item in newComments {
+                        this.video.comments.append(item)
                     }
                 } else {
                     this.video.comments = comments
