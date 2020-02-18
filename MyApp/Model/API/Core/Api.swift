@@ -23,7 +23,11 @@ extension Api.Path {
         static var path: String {
             return baseURL / "search"
         }
-        
+
+        static var videoDuration: String {
+            return baseURL / "videos"
+        }
+
         static var imageChannel: String {
             return baseURL / "channels"
         }

@@ -12,7 +12,7 @@ final class DetailViewModel {
 
     var video: Video = Video()
     var isLoading: Bool = false
-    var maxResults: Int = 0
+    var pageToken: String = ""
 
     init(id: String = "") {
         video.id = id
@@ -23,30 +23,22 @@ final class DetailViewModel {
     }
 
     func loadApiComment(isLoadMore: Bool, completion: @escaping ApiComletion) {
-        guard !isLoading  else {
+        guard !isLoading else {
             completion(.failure(Api.Error.invalidRequest))
             return
         }
-        self.isLoading = true
-        if isLoadMore == true {
-            maxResults += 5
-        } else {
-            maxResults = 5
-        }
-        let params = Api.Detail.CommentParams(part: "snippet", videoId: video.id, key: App.String.apiKey, maxResults: maxResults)
+        isLoading = true
+        let params = Api.Detail.CommentParams(part: "snippet", videoId: video.id, key: App.String.apiKey, maxResults: 5, pageToken: pageToken)
         Api.Detail.getComments(params: params) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
-            case .success(let comments):
+            case .success(let result):
                 if isLoadMore {
-                    for item in comments {
-                        if this.video.comment.contains(where: { return $0.id != item.id }) {
-                            this.video.comment.append(item)
-                        }
-                    }
+                    this.video.comments.append(contentsOf: result.comments)
                 } else {
-                    this.video.comment = comments
+                    this.video.comments = result.comments
                 }
+                this.pageToken = result.pageToken
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))
@@ -75,7 +67,7 @@ final class DetailViewModel {
             guard let this = self else { return }
             switch result {
             case .success(let videos):
-                this.video.related = videos
+                this.video.relatedVideos = videos
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))
@@ -104,9 +96,9 @@ final class DetailViewModel {
         case .videoDetail, .videoChannel:
             return Config.numberOfItems
         case .relatedVideos:
-            return video.related.count
+            return video.relatedVideos.count
         case .comment:
-            return video.comment.count
+            return video.comments.count
         }
     }
 
@@ -137,7 +129,7 @@ final class DetailViewModel {
     }
 
     func viewModelForRelatedCell(at indexPath: IndexPath) -> RelatedCellViewModel {
-        return RelatedCellViewModel(video: video.related[indexPath.row])
+        return RelatedCellViewModel(video: video.relatedVideos[indexPath.row])
     }
 
     func viewModelForAddComment(at indexPath: IndexPath) -> AddCommentCellViewModel {
@@ -145,11 +137,11 @@ final class DetailViewModel {
     }
 
     func viewModelForCommentCell(at indexPath: IndexPath) -> CommentCellViewModel {
-        return CommentCellViewModel(comment: video.comment[indexPath.row])
+        return CommentCellViewModel(comment: video.comments[indexPath.row])
     }
 
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
-        return DetailViewModel(id: video.related[indexPath.row].id)
+        return DetailViewModel(id: video.relatedVideos[indexPath.row].id)
     }
 }
 extension DetailViewModel {

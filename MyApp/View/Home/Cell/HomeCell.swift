@@ -10,18 +10,21 @@ import UIKit
 import Kingfisher
 
 protocol HomeTableViewCellDelagete: class {
-    func getImage(cell: HomeCell, needPerform action: HomeCell.Action)
+    func cell(_ cell: HomeCell, needPerformsAction action: HomeCell.Action)
 }
 
 final class HomeCell: UITableViewCell {
 
     @IBOutlet weak var videoImageView: UIImageView!
+    @IBOutlet weak var durationView: UIView!
+    @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var channelImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     enum Action {
         case getImageCollection(indexPath: IndexPath?)
+        case getDuration(indexPath: IndexPath?)
     }
     var indexPath: IndexPath?
     var delegate: HomeTableViewCellDelagete?
@@ -35,6 +38,7 @@ final class HomeCell: UITableViewCell {
         super.layoutSubviews()
         channelImageView.layer.cornerRadius = channelImageView.frame.width / 2
         channelImageView.layer.masksToBounds = true
+        durationView.layer.cornerRadius = 3
     }
 
     private func updateUI() {
@@ -44,7 +48,13 @@ final class HomeCell: UITableViewCell {
             channelImageView.setImage(url: imageURL, defaultImage: #imageLiteral(resourceName: "avatar"))
         } else {
             channelImageView.image = #imageLiteral(resourceName: "avatar")
-            delegate?.getImage(cell: self, needPerform: Action.getImageCollection(indexPath: indexPath))
+            delegate?.cell(self, needPerformsAction: .getImageCollection(indexPath: indexPath))
+        }
+        if let duration = viewModel.duration {
+            durationLabel.text = duration.getFormattedDuration()
+        } else {
+            durationLabel.text = nil
+            delegate?.cell(self, needPerformsAction: .getDuration(indexPath: indexPath))
         }
         titleLabel.text = viewModel.title
         descriptionLabel.text = "\(viewModel.channelTitle) • \(viewModel.createdAt.string(withFormat: App.String.dateFormatYYYYMMDDHHmmss))"

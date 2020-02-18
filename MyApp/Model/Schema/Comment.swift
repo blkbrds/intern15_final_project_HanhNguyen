@@ -8,7 +8,9 @@
 
 import Foundation
 import ObjectMapper
+
 final class Comment: Mappable {
+
     var id: String = ""
     var publishedAt: Date = Date()
     var authorDisplayName: String = ""
