@@ -9,6 +9,7 @@
 import UIKit
 import YoutubePlayer_in_WKWebView
 import SVProgressHUD
+import RealmSwift
 
 final class DetailViewController: UIViewController {
 
@@ -19,6 +20,7 @@ final class DetailViewController: UIViewController {
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
         setupNavigation()
         setupUI()
         setupData()
@@ -39,7 +41,7 @@ final class DetailViewController: UIViewController {
                 this.fetchDataChannel()
                 this.fetchDataRelated()
                 this.fetchDataComment(isLoadMore: false)
-
+                this.fetchDataRealm()
                 this.dispatchGroup.notify(queue: .main) {
                     SVProgressHUD.dismiss()
                     this.updateUI()
@@ -129,7 +131,21 @@ final class DetailViewController: UIViewController {
     }
 
     @objc func handleFavoriteButton() {
-
+        viewModel.handleFavoriteVideo { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.updateUI()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+    
+    func fetchDataRealm() {
+        viewModel.loadFavoriteStatus { [weak self] (isFavorite) in
+            self?.configFavoriteButton(isFavorite: isFavorite)
+        }
     }
 
     @objc func backButtonTouchUpInside() {

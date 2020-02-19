@@ -35,10 +35,9 @@ final class DetailViewModel {
             switch result {
             case .success(let result):
                 if isLoadMore {
-                    this.video.comments.append(objectsIn: result.comments)
+                    this.video.comments.append(contentsOf: result.comments)
                 } else {
-                    this.video.comments.removeAll()
-                    this.video.comments.append(objectsIn: result.comments)
+                    this.video.comments = result.comments
                 }
                 this.pageToken = result.pageToken
                 completion(.success)
@@ -69,7 +68,7 @@ final class DetailViewModel {
             guard let this = self else { return }
             switch result {
             case .success(let videos):
-                this.video.relatedVideos.append(objectsIn: videos)
+                this.video.relatedVideos.append(contentsOf: videos)
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))
@@ -98,27 +97,33 @@ final class DetailViewModel {
         }
     }
 
-    func saveToRealm(completion: @escaping RealmComletion) {
+    func handleFavoriteVideo(completion: @escaping RealmComletion) {
         do {
             let realm = try Realm()
-            let objects = realm.objects(Video.self)
-            if objects.isEmpty {
-                try realm.write {
-                    realm.add(video)
-                }
-            } else {
-                let ids = objects.map { $0.id }
-                if !ids.contains(video.id) {
-                    try realm.write {
-                        realm.add(video)
-                    }
-                }
+            try realm.write {
+                video.isFavorite = !video.isFavorite
+                video.favoriteTime = Date()
+                realm.create(Video.self, value: video, update: .modified)
             }
             completion(.success(nil))
         } catch {
             completion(.failure(error))
         }
     }
+    
+    func loadFavoriteStatus(completion: (Bool) -> (Void)) {
+           do {
+               let realm = try Realm()
+               let object = realm.objects(Video.self).filter("id = %d AND isFavorite == true", video.id)
+               if !object.isEmpty {
+                   completion(true)
+               } else {
+                   completion(false)
+               }
+           } catch {
+               completion(false)
+           }
+       }
 
     func numberOfItems(section: Int) -> Int {
         guard let sectionType = SectionType(rawValue: section) else { return 0 }
