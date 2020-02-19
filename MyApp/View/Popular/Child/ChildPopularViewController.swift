@@ -124,7 +124,18 @@ extension ChildPopularViewController: HomeTableViewCellDelagete {
                 }
             }
         case .getDuration(let indexPath):
-            break
+            if let indexPath = indexPath {
+                viewModel.loadVideoDuration(at: indexPath) { [weak self] (result) in
+                    guard let this = self else { return }
+                    switch result {
+                    case .success:
+                        if this.tableView.indexPathsForVisibleRows?.contains(indexPath) == true {
+                            this.tableView.reloadRows(at: [indexPath], with: .none)
+                        }
+                    case .failure: break
+                    }
+                }
+            }
         }
     }
 }

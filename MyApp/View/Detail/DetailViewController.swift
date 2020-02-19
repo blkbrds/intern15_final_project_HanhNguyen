@@ -172,6 +172,8 @@ extension DetailViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.relatedVideoCell.rawValue, for: indexPath) as? RelatedVideoCell else {
                 return UITableViewCell()
             }
+            cell.delegate = self
+            cell.indexPath = indexPath
             cell.viewModel = viewModel.viewModelForRelatedCell(at: indexPath)
             return cell
         case .comment:
@@ -249,6 +251,26 @@ extension DetailViewController: UITableViewDelegate {
         let contentHeight = scrollView.contentSize.height
         if offsetY >= contentHeight - scrollView.frame.size.height {
             fetchDataComment(isLoadMore: true)
+        }
+    }
+}
+
+extension DetailViewController: RelatedVideoCellDelegate {
+    func cell(_ cell: RelatedVideoCell, needPerforms action: RelatedVideoCell.Action) {
+        switch action {
+        case .getDuration(let indexPath):
+            if let indexPath = indexPath {
+                viewModel.loadVideoDuration(at: indexPath) { [weak self] (result) in
+                    guard let this = self else { return }
+                    switch result {
+                    case .success:
+                        if this.tableView.indexPathsForVisibleRows?.contains(indexPath) == true {
+                            this.tableView.reloadRows(at: [indexPath], with: .none)
+                        }
+                    case .failure: break
+                    }
+                }
+            }
         }
     }
 }
