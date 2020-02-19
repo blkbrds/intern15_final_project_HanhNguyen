@@ -113,18 +113,15 @@ final class DetailViewModel {
     }
 
     func loadFavoriteStatus(completion: (Bool) -> ()) {
-           do {
-               let realm = try Realm()
-               let object = realm.objects(Video.self).filter("id = %d AND isFavorite == true", video.id)
-               if !object.isEmpty {
-                   completion(true)
-               } else {
-                   completion(false)
-               }
-           } catch {
-               completion(false)
-           }
-       }
+        do {
+            let realm = try Realm()
+            let object = realm.objects(Video.self).filter("id = %d AND isFavorite == true", video.id)
+            video.isFavorite = !object.isEmpty
+            completion(!object.isEmpty)
+        } catch {
+            completion(false)
+        }
+    }
 
     func loadVideoDuration(at indexPath: IndexPath, completion: @escaping ApiComletion) {
         let params = Api.Detail.VideoDetailParams(part: "contentDetails", id: video.relatedVideos[indexPath.row].id, key: App.String.apiKey)
@@ -140,7 +137,6 @@ final class DetailViewModel {
         }
     }
 
->>>>>>> master
     func numberOfItems(section: Int) -> Int {
         guard let sectionType = SectionType(rawValue: section) else { return 0 }
         switch sectionType {

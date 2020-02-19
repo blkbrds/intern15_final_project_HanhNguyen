@@ -14,7 +14,7 @@ import RealmSwift
     dynamic var id: String = ""
     dynamic var imageURL: String = ""
     dynamic var title: String = ""
-    var channel: Channel?
+    dynamic var channel: Channel?
     var relatedVideos: [Video] = []
     var comments: [Comment] = []
     dynamic var createdTime: Date = Date()
@@ -26,7 +26,7 @@ import RealmSwift
     dynamic var duration: String?
     dynamic var isFavorite: Bool = false
     dynamic var favoriteTime: Date = Date()
-    
+
     required init() { }
 
     init?(map: Map) { }
