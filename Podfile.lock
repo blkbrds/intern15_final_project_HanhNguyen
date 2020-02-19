@@ -5,15 +5,12 @@ PODS:
   - Kingfisher (4.10.1)
   - MVVM-Swift (1.1.0)
   - ObjectMapper (3.5.1)
-<<<<<<< HEAD
   - Realm (4.3.0):
     - Realm/Headers (= 4.3.0)
   - Realm/Headers (4.3.0)
   - RealmSwift (4.3.0):
     - Realm (= 4.3.0)
-=======
   - SVProgressHUD (2.2.5)
->>>>>>> master
   - SwiftLint (0.38.2)
   - YoutubePlayer-in-WKWebView (0.3.4)
 
@@ -23,11 +20,8 @@ DEPENDENCIES:
   - Kingfisher
   - MVVM-Swift
   - ObjectMapper
-<<<<<<< HEAD
   - RealmSwift
-=======
   - SVProgressHUD
->>>>>>> master
   - SwiftLint
   - YoutubePlayer-in-WKWebView
 
@@ -38,12 +32,9 @@ SPEC REPOS:
     - Kingfisher
     - MVVM-Swift
     - ObjectMapper
-<<<<<<< HEAD
     - Realm
     - RealmSwift
-=======
     - SVProgressHUD
->>>>>>> master
     - SwiftLint
     - YoutubePlayer-in-WKWebView
 
@@ -53,19 +44,12 @@ SPEC CHECKSUMS:
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   MVVM-Swift: 54749cc12bb30af41632f30a2c576a18bf9e4bc8
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
-<<<<<<< HEAD
   Realm: 9357c3589555793e1860a7104a7412bca4a48d99
   RealmSwift: 402f1e379a8ef82c635313037b043f0f06de880c
-  SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
-  YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
-
-PODFILE CHECKSUM: 44e2bf7f9cc69891cdc8d0dd3f1de9f7a165913c
-=======
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 61794df01170a927de5ccde4a01a72bee2c9587d
->>>>>>> master
+PODFILE CHECKSUM: 3b0d2c93dff96b1114742bc78f4fe029b96be193
 
 COCOAPODS: 1.8.4
