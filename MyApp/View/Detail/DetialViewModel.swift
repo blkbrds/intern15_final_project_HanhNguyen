@@ -125,6 +125,20 @@ final class DetailViewModel {
            }
        }
 
+    func loadVideoDuration(at indexPath: IndexPath, completion: @escaping ApiComletion) {
+        let params = Api.Detail.VideoDetailParams(part: "contentDetails", id: video.relatedVideos[indexPath.row].id, key: App.String.apiKey)
+        Api.Detail.getVideoDuration(params: params) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success(let duration):
+                this.video.relatedVideos[indexPath.row].duration = duration
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     func numberOfItems(section: Int) -> Int {
         guard let sectionType = SectionType(rawValue: section) else { return 0 }
         switch sectionType {
