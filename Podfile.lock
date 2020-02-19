@@ -10,6 +10,7 @@ PODS:
   - Realm/Headers (4.3.0)
   - RealmSwift (4.3.0):
     - Realm (= 4.3.0)
+  - SVProgressHUD (2.2.5)
   - SwiftLint (0.38.2)
   - YoutubePlayer-in-WKWebView (0.3.4)
 
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - MVVM-Swift
   - ObjectMapper
   - RealmSwift
+  - SVProgressHUD
   - SwiftLint
   - YoutubePlayer-in-WKWebView
 
@@ -32,6 +34,7 @@ SPEC REPOS:
     - ObjectMapper
     - Realm
     - RealmSwift
+    - SVProgressHUD
     - SwiftLint
     - YoutubePlayer-in-WKWebView
 
@@ -43,9 +46,10 @@ SPEC CHECKSUMS:
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   Realm: 9357c3589555793e1860a7104a7412bca4a48d99
   RealmSwift: 402f1e379a8ef82c635313037b043f0f06de880c
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 44e2bf7f9cc69891cdc8d0dd3f1de9f7a165913c
+PODFILE CHECKSUM: 3b0d2c93dff96b1114742bc78f4fe029b96be193
 
 COCOAPODS: 1.8.4

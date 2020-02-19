@@ -88,7 +88,9 @@ final class DetailViewModel {
             guard let this = self else { return }
             switch result {
             case .success(let channel):
-                this.video.channel = channel
+                if let channel = channel {
+                    this.video.channel = channel
+                }
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))

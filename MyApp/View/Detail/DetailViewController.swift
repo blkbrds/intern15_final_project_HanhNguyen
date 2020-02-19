@@ -8,15 +8,18 @@
 
 import UIKit
 import YoutubePlayer_in_WKWebView
+import SVProgressHUD
+
 final class DetailViewController: UIViewController {
 
     @IBOutlet weak var videoView: WKYTPlayerView!
     @IBOutlet weak var tableView: UITableView!
 
     var viewModel = DetailViewModel()
-
+    let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigation()
         setupUI()
         setupData()
     }
@@ -26,13 +29,21 @@ final class DetailViewController: UIViewController {
     }
 
     func fetchData() {
+        SVProgressHUD.show()
         viewModel.loadApiVideoDetail { [weak self] (result) in
+            SVProgressHUD.dismiss()
             guard let this = self else { return }
             switch result {
             case .success:
+                SVProgressHUD.show()
+                this.fetchDataChannel()
                 this.fetchDataRelated()
                 this.fetchDataComment(isLoadMore: false)
-                this.fetchDataChannel()
+
+                this.dispatchGroup.notify(queue: .main) {
+                    SVProgressHUD.dismiss()
+                    this.updateUI()
+                }
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -40,30 +51,35 @@ final class DetailViewController: UIViewController {
     }
 
     func fetchDataChannel() {
+        dispatchGroup.enter()
         viewModel.loadApiVideoChannel { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success:
-                this.updateUI()
+                break
             case .failure(let error):
                 this.alert(error: error)
             }
+            this.dispatchGroup.leave()
         }
     }
 
     func fetchDataRelated() {
+        dispatchGroup.enter()
         viewModel.loadApiRelatedVideo { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success:
-                this.updateUI()
+                break
             case .failure(let error):
                 this.alert(error: error)
             }
+            this.dispatchGroup.leave()
         }
     }
 
     func fetchDataComment(isLoadMore: Bool) {
+        dispatchGroup.enter()
         viewModel.loadApiComment(isLoadMore: isLoadMore) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
@@ -71,12 +87,13 @@ final class DetailViewController: UIViewController {
                 if isLoadMore == true {
                     this.tableView.reloadSections(IndexSet(integer: 3), with: .none)
                 } else {
-                    this.setupUI()
+                    break
                 }
             case .failure(let error):
                 this.alert(error: error)
             }
-             this.viewModel.isLoading = false
+            this.viewModel.isLoading = false
+            this.dispatchGroup.leave()
         }
     }
 
@@ -88,14 +105,35 @@ final class DetailViewController: UIViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
+    func setupNavigation() {
+        configBackButton()
+        configFavoriteButton(isFavorite: false)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+    func configBackButton() {
+        let backButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic-back"), style: .plain, target: self, action: #selector(backButtonTouchUpInside))
+        backButtonItem.tintColor = #colorLiteral(red: 0.3764705882, green: 0.3764705882, blue: 0.3764705882, alpha: 1)
+        navigationItem.leftBarButtonItem = backButtonItem
+    }
+
+    func configFavoriteButton(isFavorite: Bool) {
+        var color: UIColor?
+        if isFavorite {
+            color = #colorLiteral(red: 0.9960784314, green: 0, blue: 0, alpha: 1)
+        } else {
+            color = #colorLiteral(red: 0.3764705882, green: 0.3764705882, blue: 0.3764705882, alpha: 1)
+        }
+        let favoriteButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic-favorite"), style: .plain, target: self, action: #selector(handleFavoriteButton))
+        navigationItem.rightBarButtonItem = favoriteButtonItem
+        favoriteButtonItem.tintColor = color
+    }
+
+    @objc func handleFavoriteButton() {
+
+    }
+
+    @objc func backButtonTouchUpInside() {
+        navigationController?.popViewController(animated: true)
     }
 
     func setupUI() {
