@@ -32,6 +32,7 @@ final class DetailViewModel {
         let params = Api.Detail.CommentParams(part: "snippet", videoId: video.id, key: App.String.apiKey, maxResults: 5, pageToken: pageToken)
         Api.Detail.getComments(params: params) { [weak self] (result) in
             guard let this = self else { return }
+            this.isLoading = false
             switch result {
             case .success(let result):
                 if isLoadMore {
@@ -88,7 +89,9 @@ final class DetailViewModel {
             guard let this = self else { return }
             switch result {
             case .success(let channel):
-                this.video.channel = channel
+                if let channel = channel {
+                    this.video.channel = channel
+                }
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))

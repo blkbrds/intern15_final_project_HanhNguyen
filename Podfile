@@ -19,6 +19,7 @@ target 'MyApp' do
     # Utils
     pod 'SwiftLint' # A tool to enforce Swift style and conventions.
     pod 'Kingfisher' #download image
+    pod 'SVProgressHUD'
     pod 'YoutubePlayer-in-WKWebView'
     pod 'RealmSwift'
 
