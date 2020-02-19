@@ -14,12 +14,16 @@ typealias JSArray = [JSObject]
 
 typealias Completion<T> = (Result<T>) -> Void
 typealias ApiComletion = (APIResult) -> Void
+typealias RealmComletion = (RealmResult) -> Void
 
 enum APIResult {
     case success
     case failure(Error)
 }
-
+enum RealmResult {
+    case success(Data?)
+    case failure(Error)
+}
 let api = ApiManager()
 
 final class ApiManager {

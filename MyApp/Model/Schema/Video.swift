@@ -49,4 +49,8 @@ import RealmSwift
         dislikeCount <- map["statistics.dislikeCount"]
         commentCount <- map["statistics.commentCount"]
     }
+
+    override static func primaryKey() -> String? {
+      return "id"
+    }
 }
