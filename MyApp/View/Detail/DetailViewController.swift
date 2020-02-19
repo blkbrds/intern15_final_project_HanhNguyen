@@ -83,10 +83,8 @@ final class DetailViewController: UIViewController {
             switch result {
             case .success:
                 if isLoadMore == true {
-                    this.tableView.reloadSections(IndexSet(integer: 3), with: .none)
-                } else {
-                    break
-                }
+                    this.tableView.reloadSections(IndexSet(integer: DetailViewModel.SectionType.comment.rawValue), with: .none)
+                } 
             case .failure(let error):
                 this.alert(error: error)
             }
