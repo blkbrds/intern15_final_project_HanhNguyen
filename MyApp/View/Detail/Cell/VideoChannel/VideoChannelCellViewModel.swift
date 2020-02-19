@@ -8,13 +8,18 @@
 
 import Foundation
 final class VideoChannelCellViewModel {
-    var avatar: String
+    var avatar: String?
     var title: String
     var subscriberCount: Int
-    
+
     init(video: Video) {
-        self.avatar = video.channel.imageURL ?? ""
-        self.title = video.channel.title
-        self.subscriberCount = Int(video.channel.subscriberCount) ?? 0
+        if let channel = video.channel {
+            avatar = channel.imageURL
+            title = channel.title
+            subscriberCount = Int(channel.subscriberCount) ?? 0
+        } else {
+            title = ""
+            subscriberCount = 0
+        }
     }
 }

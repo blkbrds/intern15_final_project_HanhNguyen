@@ -52,12 +52,15 @@ final class ChildPopularViewModel {
     }
 
     func loadImageChannel(at indexPath: IndexPath, completion: @escaping ApiComletion) {
-        let params = Api.Popular.ImageChannelParmas(part: "snippet", id: videos[indexPath.row].channel.id, key: App.String.apiKey)
+        guard let id = videos[indexPath.row].channel?.id else {
+            completion(.failure(Api.Error.invalidRequest))
+            return }
+        let params = Api.Popular.ImageChannelParmas(part: "snippet", id: id, key: App.String.apiKey)
         Api.Popular.getImageChannel(params: params) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success(let channel):
-                this.videos[indexPath.row].channel.imageURL = channel.imageURL
+                this.videos[indexPath.row].channel?.imageURL = channel.imageURL
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))

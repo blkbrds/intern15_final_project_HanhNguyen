@@ -8,24 +8,24 @@
 
 import Foundation
 import ObjectMapper
+import RealmSwift
 
-final class Video: Mappable {
-    var id: String = ""
-    var imageURL: String = ""
-    var title: String = ""
-    var channel: Channel = Channel()
-    var relatedVideos: [Video] = []
-    var comments: [Comment] = []
-    var createdTime: Date = Date()
-    var viewCount: String = ""
-    var likeCount: String = ""
-    var dislikeCount: String = ""
-    var description: String = ""
-    var commentCount: String = ""
-    var tags: [String] = []
-    var duration: String?
-    
-    init() { }
+@objcMembers final class Video: Object, Mappable {
+    dynamic var id: String = ""
+    dynamic var imageURL: String = ""
+    dynamic var title: String = ""
+    dynamic var channel: Channel?
+    var relatedVideos = List<Video>()
+    var comments = List<Comment>()
+    dynamic var createdTime: Date = Date()
+    dynamic var viewCount: String = ""
+    dynamic var likeCount: String = ""
+    dynamic var dislikeCount: String = ""
+    dynamic var commentCount: String = ""
+    var tags = List<String>()
+    dynamic var duration: String?
+
+    required init() { }
 
     init?(map: Map) { }
 
@@ -40,12 +40,13 @@ final class Video: Mappable {
         imageURL <- map["snippet.thumbnails.high.url"]
         title <- map["snippet.title"]
         createdTime <- map["snippet.publishedAt"]
+        let channel = Channel()
         channel.id <- map["snippet.channelId"]
         channel.title <- map["snippet.channelTitle"]
+        self.channel = channel
         viewCount <- map["statistics.viewCount"]
         likeCount <- map["statistics.likeCount"]
         dislikeCount <- map["statistics.dislikeCount"]
-        description <- map["snippet.description"]
         commentCount <- map["statistics.commentCount"]
     }
 }
