@@ -110,8 +110,8 @@ final class DetailViewModel {
             completion(.failure(error))
         }
     }
-    
-    func loadFavoriteStatus(completion: (Bool) -> (Void)) {
+
+    func loadFavoriteStatus(completion: (Bool) -> ()) {
            do {
                let realm = try Realm()
                let object = realm.objects(Video.self).filter("id = %d AND isFavorite == true", video.id)

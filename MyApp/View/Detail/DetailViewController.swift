@@ -135,7 +135,8 @@ final class DetailViewController: UIViewController {
             guard let this = self else { return }
             switch result {
             case .success:
-                this.updateUI()
+                let isFavorite = this.viewModel.video.isFavorite
+                this.configFavoriteButton(isFavorite: isFavorite)
             case .failure(let error):
                 this.alert(error: error)
             }
