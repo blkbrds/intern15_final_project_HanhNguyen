@@ -32,6 +32,7 @@ final class DetailViewModel {
         let params = Api.Detail.CommentParams(part: "snippet", videoId: video.id, key: App.String.apiKey, maxResults: 5, pageToken: pageToken)
         Api.Detail.getComments(params: params) { [weak self] (result) in
             guard let this = self else { return }
+            this.isLoading = false
             switch result {
             case .success(let result):
                 if isLoadMore {
