@@ -24,9 +24,9 @@ import RealmSwift
     var commentCount: String = ""
     var tags: [String] = []
     dynamic var duration: String?
-    dynamic var isFavorite: Bool = false
+    var isFavorite: Bool = false
     dynamic var favoriteTime: Date = Date()
-    
+
     required init() { }
 
     init?(map: Map) { }
@@ -57,6 +57,6 @@ import RealmSwift
     }
 
      override class func ignoredProperties() -> [String] {
-        return ["relatedVideos", "comments", "viewCount", "likeCount", "dislikeCount", "tags"]
+        return ["relatedVideos", "comments", "viewCount", "likeCount", "dislikeCount", "tags", "isFavorite"]
     }
 }
