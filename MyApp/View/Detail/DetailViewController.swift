@@ -31,9 +31,7 @@ final class DetailViewController: UIViewController {
     }
 
     func fetchData() {
-        SVProgressHUD.show()
         viewModel.loadApiVideoDetail { [weak self] (result) in
-            SVProgressHUD.dismiss()
             guard let this = self else { return }
             switch result {
             case .success:
@@ -87,14 +85,11 @@ final class DetailViewController: UIViewController {
             switch result {
             case .success:
                 if isLoadMore == true {
-                    this.tableView.reloadSections(IndexSet(integer: 3), with: .none)
-                } else {
-                    break
-                }
+                    this.tableView.reloadSections(IndexSet(integer: DetailViewModel.SectionType.comment.rawValue), with: .none)
+                } 
             case .failure(let error):
                 this.alert(error: error)
             }
-            this.viewModel.isLoading = false
             this.dispatchGroup.leave()
         }
     }
@@ -192,6 +187,8 @@ extension DetailViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.relatedVideoCell.rawValue, for: indexPath) as? RelatedVideoCell else {
                 return UITableViewCell()
             }
+            cell.delegate = self
+            cell.indexPath = indexPath
             cell.viewModel = viewModel.viewModelForRelatedCell(at: indexPath)
             return cell
         case .comment:
@@ -269,6 +266,26 @@ extension DetailViewController: UITableViewDelegate {
         let contentHeight = scrollView.contentSize.height
         if offsetY >= contentHeight - scrollView.frame.size.height {
             fetchDataComment(isLoadMore: true)
+        }
+    }
+}
+
+extension DetailViewController: RelatedVideoCellDelegate {
+    func cell(_ cell: RelatedVideoCell, needPerforms action: RelatedVideoCell.Action) {
+        switch action {
+        case .getDuration(let indexPath):
+            if let indexPath = indexPath {
+                viewModel.loadVideoDuration(at: indexPath) { [weak self] (result) in
+                    guard let this = self else { return }
+                    switch result {
+                    case .success:
+                        if this.tableView.indexPathsForVisibleRows?.contains(indexPath) == true {
+                            this.tableView.reloadRows(at: [indexPath], with: .none)
+                        }
+                    case .failure: break
+                    }
+                }
+            }
         }
     }
 }
