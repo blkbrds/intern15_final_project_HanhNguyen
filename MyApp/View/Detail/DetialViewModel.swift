@@ -44,6 +44,7 @@ final class DetailViewModel {
                 completion(.failure(error))
             }
         }
+        isLoading = false
     }
 
     func loadApiVideoDetail(completion: @escaping ApiComletion) {

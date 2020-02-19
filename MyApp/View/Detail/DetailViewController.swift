@@ -29,9 +29,7 @@ final class DetailViewController: UIViewController {
     }
 
     func fetchData() {
-        SVProgressHUD.show()
         viewModel.loadApiVideoDetail { [weak self] (result) in
-            SVProgressHUD.dismiss()
             guard let this = self else { return }
             switch result {
             case .success:
@@ -92,7 +90,6 @@ final class DetailViewController: UIViewController {
             case .failure(let error):
                 this.alert(error: error)
             }
-            this.viewModel.isLoading = false
             this.dispatchGroup.leave()
         }
     }
