@@ -45,8 +45,8 @@ extension Api.Popular {
             resultsPerPage <- map["pageInfo.resultsPerPage"]
         }
     }
-
-    struct ImageChannelParmas {
+    
+    struct ImageChannelParams {
         var part: String
         var id: String
         var key: String
@@ -79,7 +79,7 @@ extension Api.Popular {
     }
 
     @discardableResult
-    static func getImageChannel(params: ImageChannelParmas, completion: @escaping Completion<Channel>) -> Request? {
+    static func getImageChannel(params: ImageChannelParams, completion: @escaping Completion<Channel>) -> Request? {
         let path = Api.Path.Popular.imageChannel
         return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
             DispatchQueue.main.async {
@@ -91,6 +91,30 @@ extension Api.Popular {
                         completion(.failure(Api.Error.json))
                         return }
                     completion(.success(channel))
+                }
+            }
+        }
+    }
+
+    @discardableResult
+    static func getVideoDuration(params: ImageChannelParams, completion: @escaping Completion<String>) -> Request? {
+        let path = Api.Path.Popular.path
+        return api.request(method: .get, urlString: path, parameters: params.toJSON()) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let json):
+                    guard let json = json as? JSObject,
+                        let items = json["items"] as? JSArray,
+                        let item = items.first,
+                        let contentDetails = item["contentDetails"] as? JSObject,
+                        let duration = contentDetails["duration"] as? String
+                        else {
+                            completion(.failure(Api.Error.json))
+                            return
+                    }
+                    completion(.success(duration))
                 }
             }
         }
