@@ -96,6 +96,28 @@ final class DetailViewModel {
         }
     }
 
+    func saveToRealm(completion: @escaping RealmComletion) {
+        do {
+            let realm = try Realm()
+            let objects = realm.objects(Video.self)
+            if objects.isEmpty {
+                try realm.write {
+                    realm.add(video)
+                }
+            } else {
+                let ids = objects.map { $0.id }
+                if !ids.contains(video.id) {
+                    try realm.write {
+                        realm.add(video)
+                    }
+                }
+            }
+            completion(.success(nil))
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
     func numberOfItems(section: Int) -> Int {
         guard let sectionType = SectionType(rawValue: section) else { return 0 }
         switch sectionType {
