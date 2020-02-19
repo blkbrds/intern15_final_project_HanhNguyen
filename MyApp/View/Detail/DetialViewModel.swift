@@ -14,6 +14,7 @@ final class DetailViewModel {
     var video: Video = Video()
     var isLoading: Bool = false
     var pageToken: String = ""
+    var isFavorite: Bool = false
 
     init(id: String = "") {
         video.id = id
@@ -102,10 +103,15 @@ final class DetailViewModel {
         do {
             let realm = try Realm()
             try realm.write {
-                video.isFavorite = !video.isFavorite
                 video.favoriteTime = Date()
-                realm.create(Video.self, value: video, update: .modified)
+                if !isFavorite {
+                    realm.add(video)
+                } else {
+                     let object = realm.objects(Video.self).filter("id = %d", video.id)
+                    realm.delete(object)
+                }
             }
+            isFavorite = !isFavorite
             completion(.success(nil))
         } catch {
             completion(.failure(error))
@@ -115,8 +121,8 @@ final class DetailViewModel {
     func loadFavoriteStatus(completion: (Bool) -> ()) {
         do {
             let realm = try Realm()
-            let object = realm.objects(Video.self).filter("id = %d AND isFavorite == true", video.id)
-            video.isFavorite = !object.isEmpty
+            let object = realm.objects(Video.self).filter("id = %d", video.id)
+            isFavorite = !object.isEmpty
             completion(!object.isEmpty)
         } catch {
             completion(false)

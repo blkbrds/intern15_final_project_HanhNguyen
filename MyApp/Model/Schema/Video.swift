@@ -24,7 +24,6 @@ import RealmSwift
     var commentCount: String = ""
     var tags: [String] = []
     dynamic var duration: String?
-    dynamic var isFavorite: Bool = false
     dynamic var favoriteTime: Date = Date()
 
     required init() { }

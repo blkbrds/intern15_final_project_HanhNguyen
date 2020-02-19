@@ -29,7 +29,7 @@ final class LibraryViewModel {
     func loadData(completion: RealmComletion) {
         do {
             let realm = try Realm()
-            let object = realm.objects(Video.self).filter("isFavorite == true").sorted(byKeyPath: "favoriteTime", ascending: false)
+            let object = realm.objects(Video.self).sorted(byKeyPath: "favoriteTime", ascending: false)
             videos = Array(object)
             completion(.success(nil))
         } catch {
