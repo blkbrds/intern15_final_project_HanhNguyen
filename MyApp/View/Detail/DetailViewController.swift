@@ -20,7 +20,6 @@ final class DetailViewController: UIViewController {
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
         setupNavigation()
         setupUI()
         setupData()
@@ -136,7 +135,7 @@ final class DetailViewController: UIViewController {
             }
         }
     }
-    
+
     func fetchDataRealm() {
         viewModel.loadFavoriteStatus { [weak self] (isFavorite) in
             self?.configFavoriteButton(isFavorite: isFavorite)
