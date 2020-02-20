@@ -14,16 +14,18 @@ import RealmSwift
     dynamic var id: String = ""
     dynamic var imageURL: String = ""
     dynamic var title: String = ""
-    dynamic var channel: Channel?
-    var relatedVideos = List<Video>()
-    var comments = List<Comment>()
+    var channel: Channel?
+    var relatedVideos: [Video] = []
+    var comments: [Comment] = []
     dynamic var createdTime: Date = Date()
-    dynamic var viewCount: String = ""
-    dynamic var likeCount: String = ""
-    dynamic var dislikeCount: String = ""
-    dynamic var commentCount: String = ""
-    var tags = List<String>()
+    var viewCount: String = ""
+    var likeCount: String = ""
+    var dislikeCount: String = ""
+    var commentCount: String = ""
+    var tags: [String] = []
     dynamic var duration: String?
+    var isFavorite: Bool = false
+    dynamic var favoriteTime: Date = Date()
 
     required init() { }
 
@@ -52,5 +54,9 @@ import RealmSwift
 
     override static func primaryKey() -> String? {
       return "id"
+    }
+
+     override class func ignoredProperties() -> [String] {
+        return ["relatedVideos", "comments", "viewCount", "likeCount", "dislikeCount", "tags", "isFavorite"]
     }
 }

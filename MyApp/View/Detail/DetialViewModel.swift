@@ -36,10 +36,9 @@ final class DetailViewModel {
             switch result {
             case .success(let result):
                 if isLoadMore {
-                    this.video.comments.append(objectsIn: result.comments)
+                    this.video.comments.append(contentsOf: result.comments)
                 } else {
-                    this.video.comments.removeAll()
-                    this.video.comments.append(objectsIn: result.comments)
+                    this.video.comments = result.comments
                 }
                 this.pageToken = result.pageToken
                 completion(.success)
@@ -70,7 +69,7 @@ final class DetailViewModel {
             guard let this = self else { return }
             switch result {
             case .success(let videos):
-                this.video.relatedVideos.append(objectsIn: videos)
+                this.video.relatedVideos.append(contentsOf: videos)
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))
@@ -98,6 +97,34 @@ final class DetailViewModel {
             }
         }
     }
+
+    func handleFavoriteVideo(completion: @escaping RealmComletion) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                video.isFavorite = !video.isFavorite
+                video.favoriteTime = Date()
+                realm.create(Video.self, value: video, update: .modified)
+            }
+            completion(.success(nil))
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
+    func loadFavoriteStatus(completion: (Bool) -> (Void)) {
+           do {
+               let realm = try Realm()
+               let objects = realm.objects(Video.self).filter("id = %d", video.id)
+               if !objects.isEmpty {
+                   completion(true)
+               } else {
+                   completion(false)
+               }
+           } catch {
+               completion(false)
+           }
+       }
 
     func loadVideoDuration(at indexPath: IndexPath, completion: @escaping ApiComletion) {
         let params = Api.Detail.VideoDetailParams(part: "contentDetails", id: video.relatedVideos[indexPath.row].id, key: App.String.apiKey)
