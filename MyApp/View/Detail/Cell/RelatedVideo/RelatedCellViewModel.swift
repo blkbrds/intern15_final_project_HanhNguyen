@@ -16,14 +16,6 @@ final class RelatedCellViewModel {
     var duration: String?
     
     init(video: Video) {
-        self.imgaeURL = video.imageURL
-        self.title = video.title
-        if let channelTitle = video.channel?.title {
-            self.channelTitle = channelTitle
-        } else {
-            self.channelTitle = ""
-        }
-        self.view = video.viewCount
         imgaeURL = video.imageURL
         title = video.title
         channelTitle = video.channel?.title ?? ""
