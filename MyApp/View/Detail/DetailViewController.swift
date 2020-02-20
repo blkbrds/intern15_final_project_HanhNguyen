@@ -20,7 +20,6 @@ final class DetailViewController: UIViewController {
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
         setupNavigation()
         setupUI()
         setupData()
