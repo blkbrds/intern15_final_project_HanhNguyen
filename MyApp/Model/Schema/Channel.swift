@@ -8,13 +8,14 @@
 
 import Foundation
 import ObjectMapper
-final class Channel: Mappable {
-    var id: String = ""
-    var imageURL: String?
-    var title: String = ""
-    var subscriberCount: String = ""
+import RealmSwift
+@objcMembers final class Channel: Object, Mappable {
+    dynamic var id: String = ""
+    dynamic var imageURL: String?
+    dynamic var title: String = ""
+    dynamic var subscriberCount: String = ""
 
-    init() { }
+    required init() { }
 
     init?(map: Map) { }
 
@@ -23,5 +24,9 @@ final class Channel: Mappable {
         title <- map["snippet.title"]
         imageURL <- map["snippet.thumbnails.high.url"]
         subscriberCount <- map["statistics.subscriberCount"]
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

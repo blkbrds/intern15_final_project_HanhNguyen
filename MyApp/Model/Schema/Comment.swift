@@ -8,16 +8,18 @@
 
 import Foundation
 import ObjectMapper
+import RealmSwift
+@objcMembers final class Comment: Object, Mappable {
 
-final class Comment: Mappable {
-
-    var id: String = ""
-    var publishedAt: Date = Date()
-    var authorDisplayName: String = ""
-    var authorProfileImageUrl: String = ""
-    var textDisplay: String = ""
+    dynamic var id: String = ""
+    dynamic var publishedAt: Date = Date()
+    dynamic var authorDisplayName: String = ""
+    dynamic var authorProfileImageUrl: String = ""
+    dynamic var textDisplay: String = ""
 
     init(map: Map) { }
+
+    required init() {  }
 
     func mapping(map: Map) {
         id <- map["id"]

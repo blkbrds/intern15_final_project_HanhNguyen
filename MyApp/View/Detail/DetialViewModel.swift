@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 final class DetailViewModel {
 
     var video: Video = Video()
@@ -35,9 +36,10 @@ final class DetailViewModel {
             switch result {
             case .success(let result):
                 if isLoadMore {
-                    this.video.comments.append(contentsOf: result.comments)
+                    this.video.comments.append(objectsIn: result.comments)
                 } else {
-                    this.video.comments = result.comments
+                    this.video.comments.removeAll()
+                    this.video.comments.append(objectsIn: result.comments)
                 }
                 this.pageToken = result.pageToken
                 completion(.success)
@@ -68,7 +70,7 @@ final class DetailViewModel {
             guard let this = self else { return }
             switch result {
             case .success(let videos):
-                this.video.relatedVideos = videos
+                this.video.relatedVideos.append(objectsIn: videos)
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))
@@ -77,8 +79,12 @@ final class DetailViewModel {
     }
 
     func loadApiVideoChannel(completion: @escaping ApiComletion) {
+        guard let id = video.channel?.id else {
+            completion(.failure(Api.Error.invalidRequest))
+            return
+        }
         let part: [String] = ["snippet", "statistics"]
-        let parms = Api.Detail.VideoChannelParams(part: part.joined(separator: ","), key: App.String.apiKey, id: video.channel.id)
+        let parms = Api.Detail.VideoChannelParams(part: part.joined(separator: ","), key: App.String.apiKey, id: id)
         Api.Detail.getVideoChannel(params: parms) { [weak self] (result) in
             guard let this = self else { return }
             switch result {

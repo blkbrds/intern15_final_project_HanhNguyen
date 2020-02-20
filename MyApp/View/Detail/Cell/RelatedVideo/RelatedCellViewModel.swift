@@ -18,7 +18,7 @@ final class RelatedCellViewModel {
     init(video: Video) {
         imgaeURL = video.imageURL
         title = video.title
-        channelTitle = video.channel.title
+        channelTitle = video.channel?.title ?? ""
         view = video.viewCount
         duration = video.duration
     }

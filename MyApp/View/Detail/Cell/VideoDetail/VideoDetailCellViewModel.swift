@@ -20,7 +20,7 @@ final class VideoDetailCellViewModel {
         self.viewCount = Int(video.viewCount) ?? 0
         self.likeCount = Int(video.likeCount) ?? 0
         self.disLikeCount = Int(video.dislikeCount) ?? 0
-        getTagFromDescription(tags: video.tags)
+        getTagFromDescription(tags: Array(video.tags))
     }
 
     func getTagFromDescription(tags: [String]) {

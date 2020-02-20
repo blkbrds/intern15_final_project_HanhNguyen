@@ -61,12 +61,16 @@ final class HomeViewModel {
     }
     
     func loadImageChannel(at indexPath: IndexPath, completion: @escaping ApiComletion) {
-        let params = Api.Home.ChannelParams(part: "snippet", id: videos[indexPath.row].channel.id, key: App.String.apiKey)
+        guard let id = videos[indexPath.row].channel?.id else {
+            completion(.failure(Api.Error.invalidRequest))
+            return
+        }
+        let params = Api.Home.ChannelParams(part: "snippet", id: id, key: App.String.apiKey)
         Api.Home.getImageChannel(params: params) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success(let imageChannel):
-                this.videos[indexPath.row].channel.imageURL = imageChannel.imageURL
+                this.videos[indexPath.row].channel?.imageURL = imageChannel.imageURL
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))

@@ -21,6 +21,7 @@ target 'MyApp' do
     pod 'Kingfisher' #download image
     pod 'SVProgressHUD'
     pod 'YoutubePlayer-in-WKWebView'
+    pod 'RealmSwift'
 
   target 'MyAppTests' do
     inherit! :search_paths
