@@ -56,7 +56,6 @@ final class ChildPopularViewModel {
             completion(.failure(Api.Error.invalidRequest))
             return }
         let params = Api.Popular.ImageChannelParams(part: "snippet", id: id, key: App.String.apiKey)
-
         Api.Popular.getImageChannel(params: params) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
