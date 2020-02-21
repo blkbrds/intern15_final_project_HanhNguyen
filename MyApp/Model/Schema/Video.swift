@@ -25,6 +25,7 @@ import RealmSwift
     var tags: [String] = []
     dynamic var duration: String?
     dynamic var favoriteTime: Date = Date()
+    dynamic var isFavorite: Bool = false
 
     required init() { }
 

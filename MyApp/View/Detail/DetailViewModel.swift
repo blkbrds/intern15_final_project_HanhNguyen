@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import RealmSwift
 
-//protocol DetailViewModelDelegate: class {
-//    func viewModel(_ viewModel: DetailViewModel, needperfomAction action: DetailViewModel.Action)
-//}
+protocol DetailViewModelDelegate: class {
+    func viewModel(_ viewModel: DetailViewModel, needperfomAction action: DetailViewModel.Action)
+}
 
 final class DetailViewModel {
 
@@ -22,8 +22,7 @@ final class DetailViewModel {
     var video: Video = Video()
     var isLoading: Bool = false
     var pageToken: String = ""
-    var isFavorite: Bool = false
-//    weak var delegate: DetailViewModelDelegate?
+    weak var delegate: DetailViewModelDelegate?
     var notification: NotificationToken?
 
     init(id: String = "") {
@@ -110,59 +109,28 @@ final class DetailViewModel {
     }
 
     func handleFavoriteVideo(completion: RealmCompletion) {
-        if !isFavorite {
-            addToRealm(completion: completion)
-        } else {
-            handleUnfavoriteVideo(completion: completion)
-        }
-    }
-
-    private func addToRealm(completion: RealmCompletion) {
         do {
             let realm = try Realm()
             try realm.write {
-                realm.create(Video.self, value: video, update: .all)
+                video.isFavorite = !video.isFavorite
                 video.favoriteTime = Date()
+                realm.create(Video.self, value: video, update: .modified)
             }
-            isFavorite = !isFavorite
             completion(.success(nil))
         } catch {
             completion(.failure(error))
         }
-    }
-
-    private func removeVideoFromRealm(completion: RealmCompletion) {
-        do {
-            let realm = try Realm()
-            let objects = realm.objects(Video.self).filter("id = %d", video.id)
-            try realm.write {
-                realm.delete(objects)
-            }
-            isFavorite = !isFavorite
-            completion(.success(nil))
-        } catch {
-            completion(.failure(error))
-        }
-    }
-
-    private func handleUnfavoriteVideo(completion: RealmCompletion) {
-        guard let id = video.channel?.id else { return }
-        do {
-            let realm = try Realm()
-            let objects = realm.objects(Channel.self).filter("id = %d", id)
-            try realm.write {
-                realm.delete(objects)
-            }
-        } catch { }
-        removeVideoFromRealm(completion: completion)
     }
 
     func loadFavoriteStatus(completion: (Bool) -> ()) {
         do {
             let realm = try Realm()
-            let objects = realm.objects(Video.self).filter("id = %d", video.id)
-            isFavorite = !objects.isEmpty
-            completion(!objects.isEmpty)
+            let objects = realm.objects(Video.self).filter("id = %d AND isFavorite == true", video.id)
+            if !objects.isEmpty {
+                completion(true)
+            } else {
+                completion(false)
+            }
         } catch {
             completion(false)
         }
@@ -182,23 +150,26 @@ final class DetailViewModel {
         }
     }
 
-//    func setupObserver() {
-//        do {
-//            let realm = try Realm()
-//            let objects = realm.objects(Video.self).filter("id = %d", video.id)
-//            notification = objects.first?.observe({ [weak self] (change) in
-//                guard let this = self else { return }
-//                switch change {
-//                case .change(let properties):
-//                    if !objects.isEmpty && objects != nil {
-//
-//                    }
-//                default:
-//                    break
-//                }
-//            })
-//        } catch { }
-//    }
+    func setupObserver() {
+        do {
+            let realm = try Realm()
+            let objects = realm.objects(Video.self).filter("id = %d", video.id)
+            notification = objects.first?.observe({ [weak self] (change) in
+                guard let this = self else { return }
+                switch change {
+                case .change(let properties):
+                    for item in properties {
+                        if item.name == "isFavorite", let newValue = item.newValue as? Bool {
+                            this.video.isFavorite = newValue
+                            this.delegate?.viewModel(this, needperfomAction: .reloadData)
+                        }
+                    }
+                default:
+                    break
+                }
+            })
+        } catch { }
+    }
 
     func numberOfItems(section: Int) -> Int {
         guard let sectionType = SectionType(rawValue: section) else { return 0 }

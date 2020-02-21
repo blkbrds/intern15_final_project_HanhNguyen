@@ -12,7 +12,7 @@ import SVProgressHUD
 import RealmSwift
 
 final class DetailViewController: UIViewController {
-    
+
     @IBOutlet weak var videoView: WKYTPlayerView!
     @IBOutlet weak var tableView: UITableView!
 
@@ -24,13 +24,12 @@ final class DetailViewController: UIViewController {
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
-//        viewModel.delegate = self
-//        viewModel.setupObserver()
+        viewModel.delegate = self
+        viewModel.setupObserver()
         setupUI()
         setupData()
         setupNavigation()
-//        addObserver(<#T##observer: NSObject##NSObject#>, forKeyPath: <#T##String#>, options: <#T##NSKeyValueObservingOptions#>, context: <#T##UnsafeMutableRawPointer?#>)
+
     }
 
     func setupData() {
@@ -137,7 +136,7 @@ final class DetailViewController: UIViewController {
             guard let this = self else { return }
             switch result {
             case .success:
-                let isFavorite = this.viewModel.isFavorite
+                let isFavorite = this.viewModel.video.isFavorite
                 this.configFavoriteButton(isFavorite: isFavorite)
             case .failure(let error):
                 this.alert(error: error)
@@ -297,11 +296,11 @@ extension DetailViewController: RelatedVideoCellDelegate {
     }
 }
 
-//extension DetailViewController: DetailViewModelDelegate {
-//    func viewModel(_ viewModel: DetailViewModel, needperfomAction action: DetailViewModel.Action) {
-//        switch action {
-//        case .reloadData:
-//            updateUI()
-//        }
-//    }
-//}
+extension DetailViewController: DetailViewModelDelegate {
+    func viewModel(_ viewModel: DetailViewModel, needperfomAction action: DetailViewModel.Action) {
+        switch action {
+        case .reloadData:
+            configFavoriteButton(isFavorite: viewModel.video.isFavorite)
+        }
+    }
+}

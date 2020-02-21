@@ -37,12 +37,11 @@ final class LibraryViewController: UIViewController {
 
     func updateUI() {
         tableView.reloadData()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "videoHaseBeenDeleted"), object: nil)
     }
 
     @objc func deleteAll() {
-        let alertButton = UIAlertAction(title: App.String.yes, style: .default) { (action) in
-            self.viewModel.removeAllFavoriteVideos{ [weak self] (result) in
+        let alertButton = UIAlertAction(title: App.String.yes, style: .default) { _ in
+            self.viewModel.removeAllFavoriteVideos { [weak self] (result) in
                 guard let this = self else { return }
                 switch result {
                 case .success:
