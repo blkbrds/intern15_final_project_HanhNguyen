@@ -24,7 +24,7 @@ final class LibraryViewController: UIViewController {
     func setupUI() {
         let barButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic-trash"), style: .plain, target: self, action: #selector(deleteAll))
         navigationItem.rightBarButtonItem = barButtonItem
-        barButtonItem.tintColor = .black
+        barButtonItem.tintColor = #colorLiteral(red: 0.3764705882, green: 0.3764705882, blue: 0.3764705882, alpha: 1)
 
         tableView.register(name: CellIdentifier.relatedVideoCell.rawValue)
         tableView.delegate = self
