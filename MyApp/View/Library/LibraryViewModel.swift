@@ -26,7 +26,7 @@ final class LibraryViewModel {
         return videos.count
     }
 
-    func loadData(completion: RealmComletion) {
+    func loadData(completion: @escaping RealmCompletion) {
         do {
             let realm = try Realm()
             let object = realm.objects(Video.self).sorted(byKeyPath: "favoriteTime", ascending: false)
@@ -55,4 +55,44 @@ final class LibraryViewModel {
             })
         } catch { }
     }
+
+    private func removeVideoFromRealm(at indexPath: IndexPath, completion: RealmCompletion) {
+        do {
+            let realm = try Realm()
+            let object = realm.objects(Video.self).filter("id = %d", videos[indexPath.row].id)
+                try realm.write {
+                    realm.delete(object)
+                }
+            completion(.success(nil))
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
+    func handleUnfavorite(at indexPath: IndexPath, completion: RealmCompletion) {
+        guard let id = videos[indexPath.row].channel?.id else { return }
+        do {
+            let realm = try Realm()
+            let object = realm.objects(Channel.self).filter("id = %d", id)
+            try realm.write {
+                realm.delete(object)
+            }
+        } catch { }
+        removeVideoFromRealm(at: indexPath, completion: completion)
+    }
+
+//    func removeAllFavoriteRepo(completion: RealmCompletion) {
+//        do {
+//            let realm = try Realm()
+//            let object = realm.objects(Video.self)
+//            for item in object {
+//                try realm.write {
+//                    realm.deleteAll()
+//                }
+//            }
+//            completion(.success(nil))
+//        } catch {
+//            completion(.failure(error))
+//        }
+//    }
 }

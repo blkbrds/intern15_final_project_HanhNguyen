@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     }
 
     func setupUI() {
+        navigationController?.navigationBar.backgroundColor = .brown
+        navigationController?.navigationBar.isTranslucent = false
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
         let logo = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
         logo.image = #imageLiteral(resourceName: "ic-logo-youtube.png")

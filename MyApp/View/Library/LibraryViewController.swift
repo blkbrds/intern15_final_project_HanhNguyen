@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class LibraryViewController: ViewController {
+final class LibraryViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -17,18 +17,26 @@ final class LibraryViewController: ViewController {
         super.viewDidLoad()
         viewModel.delegate = self
         viewModel.setupObserver()
+        setupData()
+        setupUI()
     }
 
-    override func setupUI() {
-        super.setupUI()
+    func setupUI() {
+        let barButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic-trash"), style: .plain, target: self, action: #selector(deleteAll))
+        navigationItem.rightBarButtonItem = barButtonItem
+        barButtonItem.tintColor = .black
+
         tableView.register(name: CellIdentifier.relatedVideoCell.rawValue)
         tableView.delegate = self
         tableView.dataSource = self
     }
 
-    override func setupData() {
-        super.setupData()
+    func setupData() {
         fetchData()
+    }
+    
+    @objc func deleteAll() {
+        
     }
 
     func fetchData() {
@@ -69,5 +77,23 @@ extension LibraryViewController: LibraryViewModelDelegate {
         case .reloadData:
             fetchData()
         }
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            viewModel.handleUnfavorite(at: indexPath) { [weak self] (result) in
+                guard let this = self else { return }
+                switch result {
+                case .success:
+                    this.tableView.reloadData()
+                case .failure(let error):
+                    this.alert(error: error)
+                }
+            }
+        }
+    }
+
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "\(App.String.delete)"
     }
 }

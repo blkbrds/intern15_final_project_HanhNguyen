@@ -21,6 +21,8 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
+        viewModel.delegate = self
+        viewModel.setupObserver()
         setupNavigation()
         setupUI()
         setupData()
@@ -86,7 +88,7 @@ final class DetailViewController: UIViewController {
             case .success:
                 if isLoadMore == true {
                     this.tableView.reloadSections(IndexSet(integer: DetailViewModel.SectionType.comment.rawValue), with: .none)
-                } 
+                }
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -137,7 +139,7 @@ final class DetailViewController: UIViewController {
             }
         }
     }
-    
+
     func fetchDataRealm() {
         viewModel.loadFavoriteStatus { [weak self] (isFavorite) in
             self?.configFavoriteButton(isFavorite: isFavorite)
@@ -286,6 +288,15 @@ extension DetailViewController: RelatedVideoCellDelegate {
                     }
                 }
             }
+        }
+    }
+}
+
+extension DetailViewController: DetailViewModelDelegate {
+    func viewModel(_ viewModel: DetailViewModel, needperfomAction action: DetailViewModel.Action) {
+        switch action {
+        case .reloadData:
+            updateUI()
         }
     }
 }
