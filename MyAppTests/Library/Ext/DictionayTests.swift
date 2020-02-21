@@ -10,5 +10,5 @@ import XCTest
 @testable import MyApp
 
 final class DictionayTests: XCTestCase {
-    
+
 }

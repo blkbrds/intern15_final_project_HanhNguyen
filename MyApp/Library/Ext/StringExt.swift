@@ -45,7 +45,7 @@ extension String {
         }
         return ""
     }
-    
+
     func getFormattedDuration() -> String {
         var duration: String = ""
         let stringArray = self.components(separatedBy: CharacterSet.decimalDigits.inverted)

@@ -12,20 +12,25 @@ import SVProgressHUD
 import RealmSwift
 
 final class DetailViewController: UIViewController {
-
+    
     @IBOutlet weak var videoView: WKYTPlayerView!
     @IBOutlet weak var tableView: UITableView!
+
+    enum Action {
+        case reloadData
+    }
 
     var viewModel = DetailViewModel()
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
         print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
-        viewModel.delegate = self
-        viewModel.setupObserver()
-        setupNavigation()
+//        viewModel.delegate = self
+//        viewModel.setupObserver()
         setupUI()
         setupData()
+        setupNavigation()
+//        addObserver(<#T##observer: NSObject##NSObject#>, forKeyPath: <#T##String#>, options: <#T##NSKeyValueObservingOptions#>, context: <#T##UnsafeMutableRawPointer?#>)
     }
 
     func setupData() {
@@ -292,11 +297,11 @@ extension DetailViewController: RelatedVideoCellDelegate {
     }
 }
 
-extension DetailViewController: DetailViewModelDelegate {
-    func viewModel(_ viewModel: DetailViewModel, needperfomAction action: DetailViewModel.Action) {
-        switch action {
-        case .reloadData:
-            updateUI()
-        }
-    }
-}
+//extension DetailViewController: DetailViewModelDelegate {
+//    func viewModel(_ viewModel: DetailViewModel, needperfomAction action: DetailViewModel.Action) {
+//        switch action {
+//        case .reloadData:
+//            updateUI()
+//        }
+//    }
+//}

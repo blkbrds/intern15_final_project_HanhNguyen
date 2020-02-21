@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 final class ChildPopularViewController: ViewController {
 
@@ -51,7 +52,9 @@ final class ChildPopularViewController: ViewController {
     }
 
     func fetchData(isLoadMore: Bool) {
+        SVProgressHUD.show()
         viewModel.loadApiPopular(isLoadMore: isLoadMore) { [weak self] (result) in
+            SVProgressHUD.dismiss()
             guard let this = self else { return }
             switch result {
             case .success:

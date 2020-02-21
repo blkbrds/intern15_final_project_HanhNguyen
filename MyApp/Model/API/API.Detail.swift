@@ -159,7 +159,7 @@ extension Api.Detail {
             }
         }
     }
-    
+
     @discardableResult
     static func getVideoDuration(params: VideoDetailParams, completion: @escaping Completion<String>) -> Request? {
         let path = Api.Path.Detail.videos

@@ -34,9 +34,29 @@ final class LibraryViewController: UIViewController {
     func setupData() {
         fetchData()
     }
-    
+
+    func updateUI() {
+        tableView.reloadData()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "videoHaseBeenDeleted"), object: nil)
+    }
+
     @objc func deleteAll() {
-        
+        let alertButton = UIAlertAction(title: App.String.yes, style: .default) { (action) in
+            self.viewModel.removeAllFavoriteVideos{ [weak self] (result) in
+                guard let this = self else { return }
+                switch result {
+                case .success:
+                    this.updateUI()
+                case .failure(let error):
+                    this.alert(error: error)
+                }
+            }
+        }
+        let cancelButton = UIAlertAction(title: App.String.no, style: .cancel, handler: nil)
+        let alert = UIAlertController(title: App.String.warning, message: App.String.removeAll, preferredStyle: .alert)
+        alert.addAction(alertButton)
+        alert.addAction(cancelButton)
+        present(alert, animated: true, completion: nil)
     }
 
     func fetchData() {
@@ -85,7 +105,7 @@ extension LibraryViewController: LibraryViewModelDelegate {
                 guard let this = self else { return }
                 switch result {
                 case .success:
-                    this.tableView.reloadData()
+                    this.updateUI()
                 case .failure(let error):
                     this.alert(error: error)
                 }
