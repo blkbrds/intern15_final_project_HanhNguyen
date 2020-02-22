@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 final class HomeViewController: ViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -42,7 +42,9 @@ final class HomeViewController: ViewController {
     }
 
     func fetchData(isLoadMore: Bool) {
+        SVProgressHUD.show()
         viewModel.loadVideos(isLoadMore: isLoadMore) { [weak self] (result) in
+            SVProgressHUD.dismiss()
             guard let this = self else { return }
             switch result {
             case .success:

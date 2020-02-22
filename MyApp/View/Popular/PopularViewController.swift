@@ -45,12 +45,9 @@ final class PopularViewController: ViewController {
         buttonBar.translatesAutoresizingMaskIntoConstraints = false
         buttonBar.backgroundColor = #colorLiteral(red: 0.9960784314, green: 0, blue: 0, alpha: 1)
         view.addSubview(buttonBar)
-        // Constrain the top of the button bar to the bottom of the segmented control
         buttonBar.topAnchor.constraint(equalTo: segmentControl.bottomAnchor).isActive = true
         buttonBar.heightAnchor.constraint(equalToConstant: 3).isActive = true
-        // Constrain the button bar to the left side of the segmented control
         buttonBar.leftAnchor.constraint(equalTo: segmentControl.leftAnchor).isActive = true
-        // Constrain the button bar to the width of the segmented control divided by the number of segments
         buttonBar.widthAnchor.constraint(equalTo: segmentControl.widthAnchor, multiplier: 1 / CGFloat(segmentControl.numberOfSegments)).isActive = true
     }
 
@@ -76,7 +73,13 @@ final class PopularViewController: ViewController {
     @IBAction func sementControlValueChaned(_ sender: UISegmentedControl) {
         UIView.animate(withDuration: 0.3,
                        animations: {
-                        self.buttonBar.frame.origin.x = (self.segmentControl.frame.width / CGFloat(self.segmentControl.numberOfSegments)) * CGFloat(self.segmentControl.selectedSegmentIndex) + 5
+                        var x: CGFloat = 0
+                        if self.segmentControl.selectedSegmentIndex != 0 {
+                            x = 10
+                        } else {
+                            x = 0
+                        }
+                        self.buttonBar.frame.origin.x = (self.segmentControl.frame.width / CGFloat(self.segmentControl.numberOfSegments)) * CGFloat(self.segmentControl.selectedSegmentIndex) + x
         }) { [weak self] _ in
             guard let this = self else {
                 return
