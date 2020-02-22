@@ -24,12 +24,11 @@ final class DetailViewController: UIViewController {
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupData()
+        setupUI()
+        setupNavigation()
         viewModel.delegate = self
         viewModel.setupObserver()
-        setupUI()
-        setupData()
-        setupNavigation()
-
     }
 
     func setupData() {
@@ -91,7 +90,7 @@ final class DetailViewController: UIViewController {
             switch result {
             case .success:
                 if isLoadMore == true {
-                    this.tableView.reloadSections(IndexSet(integer: DetailViewModel.SectionType.comment.rawValue), with: .none)
+                    this.tableView.reloadSections(IndexSet(integer: DetailViewModel.SectionType.comment.rawValue), with: .top)
                 }
             case .failure(let error):
                 this.alert(error: error)

@@ -27,6 +27,7 @@ import RealmSwift
     dynamic var favoriteTime: Date = Date()
     dynamic var isFavorite: Bool = false
 
+
     required init() { }
 
     init?(map: Map) { }
