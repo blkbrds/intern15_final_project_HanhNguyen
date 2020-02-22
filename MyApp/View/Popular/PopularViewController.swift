@@ -30,7 +30,7 @@ final class PopularViewController: ViewController {
     }
 
     private func configSegmentControlUI() {
-        segmentControl.backgroundColor = #colorLiteral(red: 0.06447852011, green: 0.09186394825, blue: 0.2959798357, alpha: 1)
+        segmentControl.backgroundColor = #colorLiteral(red: 0.06274509804, green: 0.09019607843, blue: 0.2941176471, alpha: 1)
         if #available(iOS 13.0, *) {
             self.segmentControl.selectedSegmentTintColor = .clear
         }
@@ -76,7 +76,7 @@ final class PopularViewController: ViewController {
     @IBAction func sementControlValueChaned(_ sender: UISegmentedControl) {
         UIView.animate(withDuration: 0.3,
                        animations: {
-                        self.buttonBar.frame.origin.x = (self.segmentControl.frame.width / CGFloat(self.segmentControl.numberOfSegments)) * CGFloat(self.segmentControl.selectedSegmentIndex) + 2.5
+                        self.buttonBar.frame.origin.x = (self.segmentControl.frame.width / CGFloat(self.segmentControl.numberOfSegments)) * CGFloat(self.segmentControl.selectedSegmentIndex) + 5
         }) { [weak self] _ in
             guard let this = self else {
                 return
