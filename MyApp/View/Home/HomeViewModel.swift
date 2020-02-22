@@ -22,6 +22,9 @@ final class HomeViewModel {
             completion(.failure(Api.Error.invalidRequest))
             return
         }
+        if !isLoadMore {
+            nextPageToken = ""
+        }
         isLoading = true
         let publishedAfter = Date().startOfDate().string(withFormat: App.String.dateFormatYYYYMMDDTHHmmss)
         let params = Api.Home.Params(part: "snippet", publishedAfter: publishedAfter, key: App.String.apiKey, pageToken: nextPageToken)

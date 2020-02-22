@@ -20,8 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dv7-y4-pRf">
-                    <rect key="frame" x="0.0" y="64" width="414" height="32"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dv7-y4-pRf">
+                    <rect key="frame" x="-5" y="64" width="424" height="32"/>
                     <segments>
                         <segment title="Âm Nhạc"/>
                         <segment title="Trò Chơi"/>
@@ -40,9 +40,9 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Bjp-xk-xpN" firstAttribute="top" secondItem="Dv7-y4-pRf" secondAttribute="bottom" constant="15" id="5Ap-HC-eM7"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Dv7-y4-pRf" secondAttribute="trailing" id="8QR-H6-9mU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Dv7-y4-pRf" secondAttribute="trailing" constant="-5" id="8QR-H6-9mU"/>
                 <constraint firstItem="Dv7-y4-pRf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Bx1-H6-VzY"/>
-                <constraint firstItem="Dv7-y4-pRf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="U9a-UO-xN6"/>
+                <constraint firstItem="Dv7-y4-pRf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="-5" id="U9a-UO-xN6"/>
                 <constraint firstItem="Bjp-xk-xpN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aXS-Xg-Zwf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Bjp-xk-xpN" secondAttribute="trailing" id="txk-4p-Dk4"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Bjp-xk-xpN" secondAttribute="bottom" id="wiX-G6-4yP"/>
