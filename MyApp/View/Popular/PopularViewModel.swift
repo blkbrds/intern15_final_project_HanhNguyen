@@ -7,7 +7,7 @@
 //
 
 import Foundation
-enum VideoCategory: Int {
+enum VideoCategory: Int, CaseIterable {
     case music
     case game
     case news

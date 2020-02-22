@@ -17,7 +17,7 @@ extension App {
     struct String {
         static let error = "ERROR"
         static let ok = "OK"
-        static let apiKey = "AIzaSyANcQQLSCP13hAKwNolsyvtfG4QAL1y9Uk"
+        static let apiKey = "AIzaSyBUP6fyucvGvipn7hXVpDvfVeCg9sT3CF4"
         static let dateFormatYYYYMMDDTHHmmss = "yyyy-MM-dd'T'HH:mm:ssZ"
         static let dateFormatYYYYMMDDHHmmss = "yyyy-MM-dd HH:mm:ss"
         static let refresh = "Refreshing Data..."
