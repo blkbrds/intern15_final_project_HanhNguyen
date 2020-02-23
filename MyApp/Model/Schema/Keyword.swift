@@ -11,4 +11,15 @@ import RealmSwift
 @objcMembers final class Keyword: Object {
     dynamic var keyword: String = ""
     dynamic var searchTime: Date = Date()
+
+    init(keyword: String, searchTime: Date) {
+        self.keyword = keyword
+        self.searchTime = searchTime
+    }
+
+    required init() { }
+
+    override static func primaryKey() -> String? {
+      return "keyword"
+    }
 }

@@ -17,10 +17,7 @@ final class SearchViewModel {
     var displayType: DisplayType = .keyword
     var videos: [Video] = []
     var keywords: [Keyword] = []
-    func numberOfRowsInSection(section: Int) -> Int {
-        return videos.count
-    }
-    
+
     func loadKeywords(completion: RealmComletion) {
         do {
             let realm = try Realm()
@@ -31,7 +28,45 @@ final class SearchViewModel {
             completion(.failure(error))
         }
     }
-    
+
+    func loadKeywords(text: String, completion: RealmComletion) {
+        do {
+            let realm = try Realm()
+            var objects: Results<Keyword>
+            if text == "" {
+                objects = realm.objects(Keyword.self).sorted(byKeyPath: "searchTime", ascending: false)
+            } else {
+                objects = realm.objects(Keyword.self).filter("keyword BEGINSWITH[cd] %@", text)
+            }
+            keywords = Array(objects)
+            completion(.success(nil))
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
+    func saveKeyword(text: String, completion: RealmComletion) {
+        do {
+            let realm = try Realm()
+            let keyword = Keyword(keyword: text, searchTime: Date())
+            try realm.write {
+                realm.create(Keyword.self, value: keyword, update: .all)
+            }
+            completion(.success(nil))
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
+    func numberOfRowsInSection(section: Int) -> Int {
+        switch displayType {
+        case .keyword:
+            return keywords.count
+        case .video:
+            return videos.count
+        }
+    }
+
     func viewModelForCell(at indexPath: IndexPath) -> SearchCellViewModel {
         switch displayType {
         case .keyword:

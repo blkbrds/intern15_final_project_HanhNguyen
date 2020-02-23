@@ -22,17 +22,17 @@
             <subviews>
                 <searchBar contentMode="redraw" placeholder="Nhập từ khoá của bạn..." showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="59o-em-I2C">
                     <rect key="frame" x="0.0" y="44" width="414" height="56"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="search"/>
                 </searchBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cxr-TR-epq">
-                    <rect key="frame" x="0.0" y="115" width="414" height="747"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cxr-TR-epq">
+                    <rect key="frame" x="0.0" y="105" width="414" height="757"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Cxr-TR-epq" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="3a0-17-KFg"/>
-                <constraint firstItem="Cxr-TR-epq" firstAttribute="top" secondItem="59o-em-I2C" secondAttribute="bottom" constant="15" id="BG9-MV-9sa"/>
+                <constraint firstItem="Cxr-TR-epq" firstAttribute="top" secondItem="59o-em-I2C" secondAttribute="bottom" constant="5" id="BG9-MV-9sa"/>
                 <constraint firstItem="Cxr-TR-epq" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="E89-XI-6GK"/>
                 <constraint firstItem="Cxr-TR-epq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Xzp-7J-gte"/>
                 <constraint firstItem="59o-em-I2C" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="irX-3X-Zag"/>

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import RealmSwift
 final class SearchViewController: ViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -17,6 +17,7 @@ final class SearchViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
     }
     
     override func setupData() {
@@ -38,8 +39,10 @@ final class SearchViewController: ViewController {
         tableView.register(name: CellIdentifier.searchKeyCell.rawValue)
         tableView.delegate = self
         tableView.dataSource = self
+
+        searchBar.delegate = self
     }
-    
+
     func updateUI() {
         tableView.reloadData()
     }
@@ -75,8 +78,27 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //
+        viewModel.loadKeywords(text: searchText) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.updateUI()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
     }
 
-    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else { return }
+        viewModel.saveKeyword(text: text) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.updateUI()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
 }
