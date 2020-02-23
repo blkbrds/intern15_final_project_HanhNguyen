@@ -16,6 +16,7 @@ final class Api {
     struct Home { }
     struct Detail { }
     struct Popular { }
+    struct Search { }
 }
 
 extension Api.Path {
@@ -56,6 +57,12 @@ extension Api.Path {
 
         static var imageChannel: String {
             return baseURL / "channels"
+        }
+    }
+    
+    struct Search {
+        static var path: String {
+            return baseURL / "search"
         }
     }
 }

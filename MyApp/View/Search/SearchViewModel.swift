@@ -45,16 +45,30 @@ final class SearchViewModel {
         }
     }
 
-    func saveKeyword(text: String, completion: RealmComletion) {
+    func saveKeyword(text: String, completion: @escaping ApiComletion) {
         do {
             let realm = try Realm()
             let keyword = Keyword(keyword: text, searchTime: Date())
             try realm.write {
                 realm.create(Keyword.self, value: keyword, update: .all)
             }
-            completion(.success(nil))
+            searchVideos(keyword: text, completion: completion)
         } catch {
             completion(.failure(error))
+        }
+    }
+
+    private func searchVideos(keyword: String, completion: @escaping ApiComletion) {
+        let params = Api.Search.Params(part: "snippet", q: keyword, key: App.String.apiKeySearch, type: "video")
+        Api.Search.searchVideos(params: params) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success(let videos):
+                this.videos = videos
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 

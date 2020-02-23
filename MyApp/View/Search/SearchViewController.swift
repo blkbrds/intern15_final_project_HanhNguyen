@@ -22,6 +22,7 @@ final class SearchViewController: ViewController {
     
     override func setupData() {
         super.setupData()
+        viewModel.displayType = .keyword
         viewModel.loadKeywords { [weak self] (reuslt) in
             guard let this = self else { return }
             switch reuslt {
@@ -39,6 +40,7 @@ final class SearchViewController: ViewController {
         tableView.register(name: CellIdentifier.searchKeyCell.rawValue)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dissmissKeyboard)))
 
         searchBar.delegate = self
     }
@@ -46,7 +48,12 @@ final class SearchViewController: ViewController {
     func updateUI() {
         tableView.reloadData()
     }
+
+    @objc private func dissmissKeyboard() {
+        view.endEditing(true)
+    }
 }
+
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRowsInSection(section: section)
@@ -91,6 +98,8 @@ extension SearchViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else { return }
+        dissmissKeyboard()
+        viewModel.displayType = .video
         viewModel.saveKeyword(text: text) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
@@ -100,5 +109,10 @@ extension SearchViewController: UISearchBarDelegate {
                 this.alert(error: error)
             }
         }
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        setupData()
     }
 }
