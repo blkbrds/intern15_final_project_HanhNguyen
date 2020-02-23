@@ -12,7 +12,7 @@ final class SearchKeyCell: UITableViewCell {
 
     @IBOutlet weak var keyLabel: UILabel!
     
-    var viewModel: SearchKeyViewModel? {
+    var viewModel: SearchKeyCellViewModel? {
         didSet {
             updateUI()
         }

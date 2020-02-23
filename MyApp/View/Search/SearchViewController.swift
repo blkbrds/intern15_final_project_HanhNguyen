@@ -9,7 +9,8 @@
 import UIKit
 
 final class SearchViewController: ViewController {
-    @IBOutlet weak var textField: UITextField!
+
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     var viewModel = SearchViewModel()
@@ -17,12 +18,30 @@ final class SearchViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func setupData() {
+        super.setupData()
+        viewModel.loadKeywords { [weak self] (reuslt) in
+            guard let this = self else { return }
+            switch reuslt {
+            case .success:
+                this.updateUI()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
 
     override func setupUI() {
         super.setupUI()
         tableView.register(name: CellIdentifier.relatedVideoCell.rawValue)
+        tableView.register(name: CellIdentifier.searchKeyCell.rawValue)
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    func updateUI() {
+        tableView.reloadData()
     }
 }
 extension SearchViewController: UITableViewDataSource {
@@ -31,14 +50,33 @@ extension SearchViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.relatedVideoCell.rawValue, for: indexPath) as? RelatedVideoCell else {
-            return UITableViewCell()
+        if let cellViewModel = viewModel.viewModelForCell(at: indexPath) as? SearchKeyCellViewModel {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchKeyCell.rawValue, for: indexPath) as? SearchKeyCell else {
+                return UITableViewCell()
+            }
+            cell.viewModel = cellViewModel
+            return cell
+        } else if let cellViewModel = viewModel.viewModelForCell(at: indexPath) as? RelatedCellViewModel {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.relatedVideoCell.rawValue, for: indexPath) as? RelatedVideoCell else {
+                return UITableViewCell()
+            }
+            cell.viewModel = cellViewModel
+            return cell
         }
-        return cell
+        return UITableViewCell()
     }
 }
+
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //
+    }
+
+    
 }

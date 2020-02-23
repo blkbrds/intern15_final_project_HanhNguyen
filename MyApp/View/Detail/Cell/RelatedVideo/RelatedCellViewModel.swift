@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class RelatedCellViewModel {
+final class RelatedCellViewModel: SearchCellViewModel {
     var imgaeURL: String
     var title: String
     var channelTitle: String

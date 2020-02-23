@@ -1,5 +1,5 @@
 //
-//  SearchKeyViewModel.swift
+//  SearchKeyCellViewModel.swift
 //  MyApp
 //
 //  Created by ANH NGUYỄN on 2/23/20.
@@ -7,7 +7,10 @@
 //
 
 import Foundation
-final class SearchKeyViewModel {
+
+protocol SearchCellViewModel { }
+
+final class SearchKeyCellViewModel: SearchCellViewModel {
     var key: String
     
     init(key: String) {

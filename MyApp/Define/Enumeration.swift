@@ -13,6 +13,7 @@ enum CellIdentifier: String {
     case videoChannelCell = "VideoChannelCell" 
     case videoDetailCell = "VideoDetailCell"
     case relatedVideoCell = "RelatedVideoCell"
+    case searchKeyCell = "SearchKeyCell"
     case addCommentCell = "AddCommentCell"
     case commentCell = "CommentCell"
 }
