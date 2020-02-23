@@ -15,10 +15,6 @@ final class HomeViewController: ViewController {
     var viewModel = HomeViewModel()
     private let tableRefreshControl = UIRefreshControl()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     override func setupUI() {
         super.setupUI()
         tableRefreshControl.tintColor = .black
@@ -70,6 +66,7 @@ final class HomeViewController: ViewController {
         tableView.reloadData()
         tableRefreshControl.endRefreshing()
     }
+
 }
 
 extension HomeViewController: UITableViewDataSource {

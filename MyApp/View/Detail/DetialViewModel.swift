@@ -29,7 +29,7 @@ final class DetailViewModel {
             return
         }
         isLoading = true
-        let params = Api.Detail.CommentParams(part: "snippet", videoId: video.id, key: App.String.apiKey, maxResults: 5, pageToken: pageToken)
+        let params = Api.Detail.CommentParams(part: "snippet", videoId: video.id, key: App.String.apiKeyDetail, maxResults: 5, pageToken: pageToken)
         Api.Detail.getComments(params: params) { [weak self] (result) in
             guard let this = self else { return }
             this.isLoading = false
@@ -50,7 +50,7 @@ final class DetailViewModel {
 
     func loadApiVideoDetail(completion: @escaping ApiComletion) {
         let part: [String] = ["snippet", "statistics"]
-        let parms = Api.Detail.VideoDetailParams(part: part.joined(separator: ","), id: video.id, key: App.String.apiKey)
+        let parms = Api.Detail.VideoDetailParams(part: part.joined(separator: ","), id: video.id, key: App.String.apiKeyDetail)
         Api.Detail.getVideoDetail(params: parms) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
@@ -64,7 +64,7 @@ final class DetailViewModel {
     }
 
     func loadApiRelatedVideo(completion: @escaping ApiComletion) {
-        let parms = Api.Detail.RelatedVideoParams(part: "snippet", relatedToVideoId: video.id, type: "video", key: App.String.apiKey, maxResults: 16)
+        let parms = Api.Detail.RelatedVideoParams(part: "snippet", relatedToVideoId: video.id, type: "video", key: App.String.apiKeyDetail, maxResults: 16)
         Api.Detail.getRelatedVideos(params: parms) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
@@ -83,7 +83,7 @@ final class DetailViewModel {
             return
         }
         let part: [String] = ["snippet", "statistics"]
-        let parms = Api.Detail.VideoChannelParams(part: part.joined(separator: ","), key: App.String.apiKey, id: id)
+        let parms = Api.Detail.VideoChannelParams(part: part.joined(separator: ","), key: App.String.apiKeyDetail, id: id)
         Api.Detail.getVideoChannel(params: parms) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
@@ -127,7 +127,7 @@ final class DetailViewModel {
        }
 
     func loadVideoDuration(at indexPath: IndexPath, completion: @escaping ApiComletion) {
-        let params = Api.Detail.VideoDetailParams(part: "contentDetails", id: video.relatedVideos[indexPath.row].id, key: App.String.apiKey)
+        let params = Api.Detail.VideoDetailParams(part: "contentDetails", id: video.relatedVideos[indexPath.row].id, key: App.String.apiKeyDetail)
         Api.Detail.getVideoDuration(params: params) { [weak self] (result) in
             guard let this = self else { return }
             switch result {

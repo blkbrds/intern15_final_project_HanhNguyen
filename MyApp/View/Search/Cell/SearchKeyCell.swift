@@ -8,17 +8,17 @@
 
 import UIKit
 
-class SearchKeyCell: UITableViewCell {
+final class SearchKeyCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBOutlet weak var keyLabel: UILabel!
+    
+    var viewModel: SearchKeyViewModel? {
+        didSet {
+            updateUI()
+        }
     }
     
+    private func updateUI() {
+        self.keyLabel.text = viewModel?.key
+    }
 }

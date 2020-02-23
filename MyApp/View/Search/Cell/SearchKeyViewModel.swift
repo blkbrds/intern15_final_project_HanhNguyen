@@ -7,3 +7,10 @@
 //
 
 import Foundation
+final class SearchKeyViewModel {
+    var key: String
+    
+    init(key: String) {
+        self.key = key
+    }
+}

@@ -11,7 +11,7 @@ import YoutubePlayer_in_WKWebView
 import SVProgressHUD
 import RealmSwift
 
-final class DetailViewController: UIViewController {
+final class DetailViewController: ViewController {
 
     @IBOutlet weak var videoView: WKYTPlayerView!
     @IBOutlet weak var tableView: UITableView!
@@ -20,12 +20,13 @@ final class DetailViewController: UIViewController {
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigation()
+        configFavoriteButton(isFavorite: false)
         setupUI()
         setupData()
     }
 
-    func setupData() {
+    override func setupData() {
+        super.setupData()
         fetchData()
     }
 
@@ -101,17 +102,6 @@ final class DetailViewController: UIViewController {
         }
     }
 
-    func setupNavigation() {
-        configBackButton()
-        configFavoriteButton(isFavorite: false)
-    }
-
-    func configBackButton() {
-        let backButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic-back"), style: .plain, target: self, action: #selector(backButtonTouchUpInside))
-        backButtonItem.tintColor = #colorLiteral(red: 0.3764705882, green: 0.3764705882, blue: 0.3764705882, alpha: 1)
-        navigationItem.leftBarButtonItem = backButtonItem
-    }
-
     func configFavoriteButton(isFavorite: Bool) {
         var color: UIColor?
         if isFavorite {
@@ -142,11 +132,8 @@ final class DetailViewController: UIViewController {
         }
     }
 
-    @objc func backButtonTouchUpInside() {
-        navigationController?.popViewController(animated: true)
-    }
-
-    func setupUI() {
+    override func setupUI() {
+        super.setupUI()
         tableView.register(name: CellIdentifier.videoChannelCell.rawValue)
         tableView.register(name: CellIdentifier.videoDetailCell.rawValue)
         tableView.register(name: CellIdentifier.relatedVideoCell.rawValue)

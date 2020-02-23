@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+final class SearchViewModel {
+    var videos: [Video] = []
+    
+    func numberOfRowsInSection(section: Int) -> Int {
+        return videos.count
+    }
+}
