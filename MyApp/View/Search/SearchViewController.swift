@@ -40,7 +40,6 @@ final class SearchViewController: ViewController {
         tableView.register(name: CellIdentifier.searchKeyCell.rawValue)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dissmissKeyboard)))
 
         searchBar.delegate = self
     }
@@ -49,8 +48,23 @@ final class SearchViewController: ViewController {
         tableView.reloadData()
     }
 
-    @objc private func dissmissKeyboard() {
+    private func dissmissKeyboard() {
         view.endEditing(true)
+    }
+    
+    private func handleSearch() {
+        guard let text = searchBar.text else { return }
+        dissmissKeyboard()
+        viewModel.displayType = .video
+        viewModel.saveKeyword(text: text) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.updateUI()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
     }
 }
 
@@ -76,10 +90,21 @@ extension SearchViewController: UITableViewDataSource {
         return UITableViewCell()
     }
 }
-
+//MARK: - UITableViewDelegate
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (tableView.cellForRow(at: indexPath) as? SearchKeyCell) != nil {
+            searchBar.text = viewModel.getKeyword(at: indexPath)
+            handleSearch()
+        } else if (tableView.cellForRow(at: indexPath) as? RelatedVideoCell) != nil {
+            let vc = DetailViewController()
+            vc.viewModel = viewModel.viewModelForDetail(at: indexPath)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 
@@ -97,22 +122,16 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text else { return }
-        dissmissKeyboard()
-        viewModel.displayType = .video
-        viewModel.saveKeyword(text: text) { [weak self] (result) in
-            guard let this = self else { return }
-            switch result {
-            case .success:
-                this.updateUI()
-            case .failure(let error):
-                this.alert(error: error)
-            }
-        }
+        handleSearch()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         setupData()
+    }
+}
+extension SearchViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        dissmissKeyboard()
     }
 }

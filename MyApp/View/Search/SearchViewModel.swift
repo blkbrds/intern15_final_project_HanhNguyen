@@ -89,4 +89,12 @@ final class SearchViewModel {
             return RelatedCellViewModel(video: videos[indexPath.row])
         }
     }
+    
+    func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
+        return DetailViewModel(id: videos[indexPath.row].id)
+    }
+    
+    func getKeyword(at indexPath: IndexPath) -> String {
+        return keywords[indexPath.row].keyword
+    }
 }

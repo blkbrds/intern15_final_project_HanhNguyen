@@ -77,7 +77,7 @@
                 <outlet property="titleLabel" destination="Icm-KN-420" id="z6M-Hg-sIz"/>
                 <outlet property="videoImageView" destination="ZiL-bf-PV9" id="wkF-It-ebc"/>
             </connections>
-            <point key="canvasLocation" x="-139" y="67"/>
+            <point key="canvasLocation" x="-267" y="38"/>
         </tableViewCell>
     </objects>
 </document>
