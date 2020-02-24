@@ -31,8 +31,7 @@ final class DetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.unFavorite()
-        configFavoriteButton(isFavorite: viewModel.video.isFavorite)
+        fetchDataRealm()
     }
 
     func setupData() {

@@ -121,16 +121,6 @@ final class DetailViewModel {
         }
     }
 
-    func unFavorite() {
-        do {
-            let realm = try Realm()
-            let objects = realm.objects(Video.self).filter("id = %d", video.id)
-            for item in objects {
-                video.isFavorite = item.isFavorite
-            }
-        } catch { }
-    }
-
     func loadFavoriteStatus(completion: (Bool) -> Void) {
         do {
             let realm = try Realm()
