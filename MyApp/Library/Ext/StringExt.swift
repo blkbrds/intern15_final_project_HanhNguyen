@@ -45,7 +45,7 @@ extension String {
         }
         return ""
     }
-    
+
     func getFormattedDuration() -> String {
         var duration: String = ""
         let stringArray = self.components(separatedBy: CharacterSet.decimalDigits.inverted)
@@ -56,5 +56,22 @@ extension String {
         }
         duration.remove(at: duration.index(before: duration.endIndex))
         return duration
+    }
+}
+
+// HTML to string
+extension String {
+
+    func convertHtml() -> NSAttributedString? {
+        guard let data = data(using: .utf8) else { return nil }
+        do {
+            return try NSAttributedString(data: data,
+            options: [
+                      .documentType: NSAttributedString.DocumentType.html,
+                      .characterEncoding: String.Encoding.utf8.rawValue
+                     ], documentAttributes: nil)
+        } catch {
+            return nil
+        }
     }
 }

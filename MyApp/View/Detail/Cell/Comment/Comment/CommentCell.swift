@@ -29,6 +29,8 @@ final class CommentCell: UITableViewCell {
         guard let viewModel = viewModel else { return }
         avatarImageView.setImage(url: viewModel.avatar)
         descriptionLabel.text = "\(viewModel.name) • \(viewModel.publishedAt.string(withFormat: App.String.dateFormatYYYYMMDDHHmmss))"
-        commentLabel.text = viewModel.comment
+        if let comment = viewModel.comment.convertHtml() {
+            commentLabel.attributedText = comment
+        }
     }
 }
