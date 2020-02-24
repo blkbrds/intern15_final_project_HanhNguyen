@@ -16,7 +16,7 @@ extension Api.Search {
         var q: String
         var key: String
         var type: String
-        
+
         func toJSON() -> [String: Any] {
             return [
                 "part": part,
@@ -26,7 +26,7 @@ extension Api.Search {
             ]
         }
     }
-    
+
     @discardableResult
     static func searchVideos(params: Params, completion: @escaping Completion<[Video]>) -> Request? {
         let path = Api.Path.Search.path

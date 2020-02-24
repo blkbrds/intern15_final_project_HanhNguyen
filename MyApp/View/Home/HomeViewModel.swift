@@ -59,7 +59,7 @@ final class HomeViewModel {
             }
         }
     }
-    
+
     func loadImageChannel(at indexPath: IndexPath, completion: @escaping ApiComletion) {
         guard let id = videos[indexPath.row].channel?.id else {
             completion(.failure(Api.Error.invalidRequest))

@@ -21,7 +21,7 @@ final class HomeCell: UITableViewCell {
     @IBOutlet weak var channelImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    
+
     enum Action {
         case getImageCollection(indexPath: IndexPath?)
         case getDuration(indexPath: IndexPath?)

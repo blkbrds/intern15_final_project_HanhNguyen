@@ -86,7 +86,7 @@ final class DetailViewController: ViewController {
             case .success:
                 if isLoadMore == true {
                     this.tableView.reloadSections(IndexSet(integer: DetailViewModel.SectionType.comment.rawValue), with: .none)
-                } 
+} 
             case .failure(let error):
                 this.alert(error: error)
             }

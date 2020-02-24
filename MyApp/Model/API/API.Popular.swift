@@ -120,4 +120,3 @@ extension Api.Popular {
         }
     }
 }
-

@@ -59,7 +59,7 @@ extension Api.Path {
             return baseURL / "channels"
         }
     }
-    
+
     struct Search {
         static var path: String {
             return baseURL / "search"

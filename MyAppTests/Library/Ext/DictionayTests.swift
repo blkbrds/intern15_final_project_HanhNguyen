@@ -9,6 +9,4 @@
 import XCTest
 @testable import MyApp
 
-final class DictionayTests: XCTestCase {
-    
-}
+final class DictionayTests: XCTestCase { }

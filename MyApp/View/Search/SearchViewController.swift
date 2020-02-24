@@ -12,14 +12,13 @@ final class SearchViewController: ViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    
+
     var viewModel = SearchViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
     }
-    
+
     override func setupData() {
         super.setupData()
         viewModel.displayType = .keyword
@@ -51,7 +50,7 @@ final class SearchViewController: ViewController {
     private func dissmissKeyboard() {
         view.endEditing(true)
     }
-    
+
     private func handleSearch() {
         guard let text = searchBar.text else { return }
         dissmissKeyboard()
