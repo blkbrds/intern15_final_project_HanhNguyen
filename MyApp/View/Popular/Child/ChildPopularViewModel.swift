@@ -30,7 +30,7 @@ final class ChildPopularViewModel {
             nextPageToken = ""
         }
         isLoading = true
-        let params = Api.Popular.Params(part: "snippet", chart: "mostPopular", regionCode: "VN", key: App.String.apiKey, videoCategoryId: videoCategory.id, pageToken: nextPageToken)
+        let params = Api.Popular.Params(part: "snippet", chart: "mostPopular", regionCode: "VN", key: App.String.apiKeyPopular, videoCategoryId: videoCategory.id, pageToken: nextPageToken)
         Api.Popular.getPopularVideos(params: params) { [weak self] (result) in
             guard let this = self else {
                 completion(.failure(Api.Error.invalidRequest))
@@ -58,7 +58,7 @@ final class ChildPopularViewModel {
         guard let id = videos[indexPath.row].channel?.id else {
             completion(.failure(Api.Error.invalidRequest))
             return }
-        let params = Api.Popular.ImageChannelParams(part: "snippet", id: id, key: App.String.apiKey)
+        let params = Api.Popular.ImageChannelParams(part: "snippet", id: id, key: App.String.apiKeyPopular)
         Api.Popular.getImageChannel(params: params) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
@@ -72,7 +72,7 @@ final class ChildPopularViewModel {
     }
 
     func loadVideoDuration(at indexPath: IndexPath, completion: @escaping ApiComletion) {
-        let params = Api.Popular.ImageChannelParams(part: "contentDetails", id: videos[indexPath.row].id, key: App.String.apiKey)
+        let params = Api.Popular.ImageChannelParams(part: "contentDetails", id: videos[indexPath.row].id, key: App.String.apiKeyPopular)
         Api.Popular.getVideoDuration(params: params) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
