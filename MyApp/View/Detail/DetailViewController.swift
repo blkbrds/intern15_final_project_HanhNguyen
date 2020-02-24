@@ -16,13 +16,19 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var videoView: WKYTPlayerView!
     @IBOutlet weak var tableView: UITableView!
 
+    enum Action {
+        case reloadData
+    }
+
     var viewModel = DetailViewModel()
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigation()
-        setupUI()
         setupData()
+        setupUI()
+        setupNavigation()
+        viewModel.delegate = self
+        viewModel.setupObserver()
     }
 
     func setupData() {
@@ -84,8 +90,8 @@ final class DetailViewController: UIViewController {
             switch result {
             case .success:
                 if isLoadMore == true {
-                    this.tableView.reloadSections(IndexSet(integer: DetailViewModel.SectionType.comment.rawValue), with: .none)
-                } 
+                    this.tableView.reloadSections(IndexSet(integer: DetailViewModel.SectionType.comment.rawValue), with: .top)
+                }
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -129,7 +135,8 @@ final class DetailViewController: UIViewController {
             guard let this = self else { return }
             switch result {
             case .success:
-                this.updateUI()
+                let isFavorite = this.viewModel.video.isFavorite
+                this.configFavoriteButton(isFavorite: isFavorite)
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -284,6 +291,15 @@ extension DetailViewController: RelatedVideoCellDelegate {
                     }
                 }
             }
+        }
+    }
+}
+
+extension DetailViewController: DetailViewModelDelegate {
+    func viewModel(_ viewModel: DetailViewModel, needperfomAction action: DetailViewModel.Action) {
+        switch action {
+        case .reloadData:
+            configFavoriteButton(isFavorite: viewModel.video.isFavorite)
         }
     }
 }

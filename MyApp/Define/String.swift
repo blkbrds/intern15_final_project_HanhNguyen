@@ -16,10 +16,14 @@ import Foundation
 extension App {
     struct String {
         static let error = "ERROR"
-        static let ok = "OK"
-        static let apiKey = "AIzaSyApe_mRkbDf7BBOSAxJOeqaORg7I2NpbNI"
+        static let yes = "Có"
+        static let apiKey = "AIzaSyBUP6fyucvGvipn7hXVpDvfVeCg9sT3CF4"
         static let dateFormatYYYYMMDDTHHmmss = "yyyy-MM-dd'T'HH:mm:ssZ"
         static let dateFormatYYYYMMDDHHmmss = "yyyy-MM-dd HH:mm:ss"
         static let refresh = "Refreshing Data..."
+        static let delete = "Xoá"
+        static let warning = "CẢNH BÁO"
+        static let no = "Không"
+        static let removeAll = "Bạn có chắc chắn muốn xoá danh sách yêu thích của mình không?"
     }
 }
