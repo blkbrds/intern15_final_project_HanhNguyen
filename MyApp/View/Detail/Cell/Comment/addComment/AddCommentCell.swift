@@ -9,10 +9,10 @@
 import UIKit
 
 final class AddCommentCell: UITableViewCell {
-    
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var commentTextField: UITextField!
-    
+
+    @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var commentTextField: UITextField!
+
     var viewModel: AddCommentCellViewModel? {
         didSet {
             setupUI()

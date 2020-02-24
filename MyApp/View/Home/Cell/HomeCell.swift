@@ -15,13 +15,13 @@ protocol HomeTableViewCellDelagete: class {
 
 final class HomeCell: UITableViewCell {
 
-    @IBOutlet weak var videoImageView: UIImageView!
-    @IBOutlet weak var durationView: UIView!
-    @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var channelImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    
+    @IBOutlet private weak var videoImageView: UIImageView!
+    @IBOutlet private weak var durationView: UIView!
+    @IBOutlet private weak var durationLabel: UILabel!
+    @IBOutlet private weak var channelImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+
     enum Action {
         case getImageCollection(indexPath: IndexPath?)
         case getDuration(indexPath: IndexPath?)

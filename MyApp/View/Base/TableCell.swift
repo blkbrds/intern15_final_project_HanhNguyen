@@ -14,7 +14,7 @@ class TableCell: UITableViewCell, MVVM.View {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configView()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         configView()

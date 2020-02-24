@@ -9,19 +9,19 @@
 import UIKit
 
 final class VideoDetailCell: UITableViewCell {
-    
-    @IBOutlet weak var tagLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var viewCountLabel: UILabel!
-    @IBOutlet weak var likeCountLabel: UILabel!
-    @IBOutlet weak var disLikeConutLabel: UILabel!
+
+    @IBOutlet private weak var tagLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var viewCountLabel: UILabel!
+    @IBOutlet private weak var likeCountLabel: UILabel!
+    @IBOutlet private weak var disLikeConutLabel: UILabel!
 
     var viewModel: VideoDetailCellViewModel? {
         didSet {
             setupUI()
         }
     }
-    
+
     private func setupUI() {
         guard let viewModel = viewModel else {
             return

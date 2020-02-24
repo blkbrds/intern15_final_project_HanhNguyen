@@ -27,7 +27,6 @@ final class DetailViewController: UIViewController {
         setupNavigation()
         setupData()
         setupUI()
-        print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
     }
 
     override func viewWillAppear(_ animated: Bool) {

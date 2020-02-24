@@ -77,7 +77,7 @@ final class HomeViewController: ViewController {
 extension HomeViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.videos.count
+        return viewModel.numberOfRowsInSection(section: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -144,7 +144,7 @@ extension HomeViewController: HomeTableViewCellDelagete {
                         if this.tableView.indexPathsForVisibleRows?.contains(indexPath) == true {
                                 this.tableView.reloadRows(at: [indexPath], with: .none)
                             }
-                        case .failure: break
+                    case .failure: break
                     }
                 }
             }

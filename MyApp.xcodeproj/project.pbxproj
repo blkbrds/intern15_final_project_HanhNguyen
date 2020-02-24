@@ -387,9 +387,9 @@
 		8AC6F06823F7F8EE000D0851 /* Child */ = {
 			isa = PBXGroup;
 			children = (
+				8AC6F06D23F7FDDB000D0851 /* ChildPopularViewModel.swift */,
 				8AC6F06923F7F922000D0851 /* ChildPopularViewController.swift */,
 				8AC6F06A23F7F922000D0851 /* ChildPopularViewController.xib */,
-				8AC6F06D23F7FDDB000D0851 /* ChildPopularViewModel.swift */,
 			);
 			path = Child;
 			sourceTree = "<group>";

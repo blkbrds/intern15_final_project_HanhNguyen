@@ -12,7 +12,6 @@ import RealmSwift
 
 final class DetailViewModel {
 
-
     var video: Video = Video()
     var isLoading: Bool = false
     var pageToken: String = ""
@@ -132,7 +131,7 @@ final class DetailViewModel {
         } catch { }
     }
 
-    func loadFavoriteStatus(completion: (Bool) -> ()) {
+    func loadFavoriteStatus(completion: (Bool) -> Void) {
         do {
             let realm = try Realm()
             let objects = realm.objects(Video.self).filter("id = %d AND isFavorite == true", video.id)
