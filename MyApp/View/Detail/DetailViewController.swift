@@ -13,8 +13,8 @@ import RealmSwift
 
 final class DetailViewController: UIViewController {
 
-    @IBOutlet weak var videoView: WKYTPlayerView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var videoView: WKYTPlayerView!
+    @IBOutlet private weak var tableView: UITableView!
 
     enum Action {
         case reloadData
@@ -24,11 +24,16 @@ final class DetailViewController: UIViewController {
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigation()
         setupData()
         setupUI()
-        setupNavigation()
-        viewModel.delegate = self
-        viewModel.setupObserver()
+        print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.unFavorite()
+        configFavoriteButton(isFavorite: viewModel.video.isFavorite)
     }
 
     func setupData() {
@@ -291,15 +296,6 @@ extension DetailViewController: RelatedVideoCellDelegate {
                     }
                 }
             }
-        }
-    }
-}
-
-extension DetailViewController: DetailViewModelDelegate {
-    func viewModel(_ viewModel: DetailViewModel, needperfomAction action: DetailViewModel.Action) {
-        switch action {
-        case .reloadData:
-            configFavoriteButton(isFavorite: viewModel.video.isFavorite)
         }
     }
 }

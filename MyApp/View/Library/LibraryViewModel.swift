@@ -56,18 +56,7 @@ final class LibraryViewModel {
         } catch { }
     }
 
-    private func removeVideoFromRealm(at indexPath: IndexPath, completion: RealmCompletion) {
-        do {
-            let realm = try Realm()
-            let objects = realm.objects(Video.self).filter("id = %d", videos[indexPath.row].id)
-            try realm.write {
-                realm.delete(objects)
-            }
-            completion(.success(nil))
-        } catch { }
-    }
-
-    func handleUnfavorite(at indexPath: IndexPath, completion: @escaping RealmCompletion) {
+    func handleUnfavorite(at indexPath: IndexPath, completion: RealmCompletion) {
         do {
             let realm = try Realm()
             if let object = realm.object(ofType: Video.self, forPrimaryKey: videos[indexPath.row].id) {
