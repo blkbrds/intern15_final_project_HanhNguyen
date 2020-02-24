@@ -22,11 +22,17 @@ final class HomeViewModel {
             completion(.failure(Api.Error.invalidRequest))
             return
         }
+        if !isLoadMore {
+            nextPageToken = ""
+        }
         isLoading = true
         let publishedAfter = Date().startOfDate().string(withFormat: App.String.dateFormatYYYYMMDDTHHmmss)
         let params = Api.Home.Params(part: "snippet", publishedAfter: publishedAfter, key: App.String.apiKey, pageToken: nextPageToken)
         Api.Home.getPlaylist(params: params) { [weak self] (result) in
-            guard let this = self else { return }
+            guard let this = self else {
+                completion(.failure(Api.Error.invalidRequest))
+                return
+            }
             switch result {
             case .success(let result):
                 if isLoadMore {
@@ -49,7 +55,10 @@ final class HomeViewModel {
     func loadVideoDuration(at indexPath: IndexPath, completion: @escaping ApiComletion) {
         let params = Api.Home.DurationParams(part: "contentDetails", key: App.String.apiKey, id: videos[indexPath.row].id)
         Api.Home.getVideoDuration(params: params) { [weak self] (result) in
-            guard let this = self else { return }
+            guard let this = self else {
+                completion(.failure(Api.Error.invalidRequest))
+                return
+            }
             switch result {
             case .success(let duration):
                 this.videos[indexPath.row].duration = duration
@@ -59,7 +68,7 @@ final class HomeViewModel {
             }
         }
     }
-    
+
     func loadImageChannel(at indexPath: IndexPath, completion: @escaping ApiComletion) {
         guard let id = videos[indexPath.row].channel?.id else {
             completion(.failure(Api.Error.invalidRequest))
@@ -67,7 +76,9 @@ final class HomeViewModel {
         }
         let params = Api.Home.ChannelParams(part: "snippet", id: id, key: App.String.apiKey)
         Api.Home.getImageChannel(params: params) { [weak self] (result) in
-            guard let this = self else { return }
+            guard let this = self else {
+                completion(.failure(Api.Error.invalidRequest))
+                return }
             switch result {
             case .success(let imageChannel):
                 this.videos[indexPath.row].channel?.imageURL = imageChannel.imageURL

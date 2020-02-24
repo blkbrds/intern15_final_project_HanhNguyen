@@ -14,11 +14,7 @@ final class ChildPopularViewController: ViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private let tableRefreshControl = UIRefreshControl()
-    var viewModel = ChildPopularViewModel() {
-        didSet {
-            fetchData(isLoadMore: true)
-        }
-    }
+    var viewModel = ChildPopularViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
