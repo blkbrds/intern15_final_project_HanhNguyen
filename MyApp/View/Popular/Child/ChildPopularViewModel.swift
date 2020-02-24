@@ -32,7 +32,10 @@ final class ChildPopularViewModel {
         isLoading = true
         let params = Api.Popular.Params(part: "snippet", chart: "mostPopular", regionCode: "VN", key: App.String.apiKeyPopular, videoCategoryId: videoCategory.id, pageToken: nextPageToken)
         Api.Popular.getPopularVideos(params: params) { [weak self] (result) in
-            guard let this = self else { return }
+            guard let this = self else {
+                completion(.failure(Api.Error.invalidRequest))
+                return
+            }
             switch result {
             case .success(let result):
                 let totalPage = result.totalResults / result.resultsPerPage

@@ -13,16 +13,26 @@ import RealmSwift
 
 final class DetailViewController: ViewController {
 
-    @IBOutlet weak var videoView: WKYTPlayerView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var videoView: WKYTPlayerView!
+    @IBOutlet private weak var tableView: UITableView!
+
+    enum Action {
+        case reloadData
+    }
 
     var viewModel = DetailViewModel()
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
-        configFavoriteButton(isFavorite: false)
-        setupUI()
         setupData()
+        setupUI()
+        print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.unFavorite()
+        configFavoriteButton(isFavorite: viewModel.video.isFavorite)
     }
 
     override func setupData() {
@@ -31,17 +41,17 @@ final class DetailViewController: ViewController {
     }
 
     func fetchData() {
+        SVProgressHUD.show()
         viewModel.loadApiVideoDetail { [weak self] (result) in
+            SVProgressHUD.dismiss()
             guard let this = self else { return }
             switch result {
             case .success:
-                SVProgressHUD.show()
                 this.fetchDataChannel()
                 this.fetchDataRelated()
                 this.fetchDataComment(isLoadMore: false)
                 this.fetchDataRealm()
                 this.dispatchGroup.notify(queue: .main) {
-                    SVProgressHUD.dismiss()
                     this.updateUI()
                 }
             case .failure(let error):
@@ -85,8 +95,8 @@ final class DetailViewController: ViewController {
             switch result {
             case .success:
                 if isLoadMore == true {
-                    this.tableView.reloadSections(IndexSet(integer: DetailViewModel.SectionType.comment.rawValue), with: .none)
-} 
+                    this.tableView.reloadSections(IndexSet(integer: DetailViewModel.SectionType.comment.rawValue), with: .top)
+                }
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -119,7 +129,8 @@ final class DetailViewController: ViewController {
             guard let this = self else { return }
             switch result {
             case .success:
-                this.updateUI()
+                let isFavorite = this.viewModel.video.isFavorite
+                this.configFavoriteButton(isFavorite: isFavorite)
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -141,6 +152,8 @@ final class DetailViewController: ViewController {
         tableView.register(name: CellIdentifier.commentCell.rawValue)
         tableView.delegate = self
         tableView.dataSource = self
+
+        configFavoriteButton(isFavorite: false)
     }
 }
 extension DetailViewController: UITableViewDataSource {

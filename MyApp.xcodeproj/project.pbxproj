@@ -38,7 +38,7 @@
 		8AC1EDEF23F0F380009E95FD /* PopularViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC1EDEE23F0F380009E95FD /* PopularViewModel.swift */; };
 		8AC1EDF323F115D1009E95FD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC1EDF123F115D1009E95FD /* DetailViewController.swift */; };
 		8AC1EDF423F115D1009E95FD /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC1EDF223F115D1009E95FD /* DetailViewController.xib */; };
-		8AC1EDF623F117FD009E95FD /* DetialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC1EDF523F117FD009E95FD /* DetialViewModel.swift */; };
+		8AC1EDF623F117FD009E95FD /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC1EDF523F117FD009E95FD /* DetailViewModel.swift */; };
 		8AC1EDFA23F13D3A009E95FD /* VideoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC1EDF823F13D3A009E95FD /* VideoDetailCell.swift */; };
 		8AC1EDFB23F13D3A009E95FD /* VideoDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC1EDF923F13D3A009E95FD /* VideoDetailCell.xib */; };
 		8AC1EE0023F13D9C009E95FD /* RelatedVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC1EDFE23F13D9C009E95FD /* RelatedVideoCell.swift */; };
@@ -159,7 +159,7 @@
 		8AC1EDEE23F0F380009E95FD /* PopularViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewModel.swift; sourceTree = "<group>"; };
 		8AC1EDF123F115D1009E95FD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8AC1EDF223F115D1009E95FD /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
-		8AC1EDF523F117FD009E95FD /* DetialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetialViewModel.swift; sourceTree = "<group>"; };
+		8AC1EDF523F117FD009E95FD /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		8AC1EDF823F13D3A009E95FD /* VideoDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailCell.swift; sourceTree = "<group>"; };
 		8AC1EDF923F13D3A009E95FD /* VideoDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoDetailCell.xib; sourceTree = "<group>"; };
 		8AC1EDFE23F13D9C009E95FD /* RelatedVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedVideoCell.swift; sourceTree = "<group>"; };
@@ -346,7 +346,7 @@
 				8AC1EDF723F13CE0009E95FD /* Cell */,
 				8AC1EDF123F115D1009E95FD /* DetailViewController.swift */,
 				8AC1EDF223F115D1009E95FD /* DetailViewController.xib */,
-				8AC1EDF523F117FD009E95FD /* DetialViewModel.swift */,
+				8AC1EDF523F117FD009E95FD /* DetailViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -907,7 +907,7 @@
 				8A284F3023ED44E20095052E /* LibraryViewController.swift in Sources */,
 				ECF23AB41E9B869B008C23C1 /* ApiManager.swift in Sources */,
 				ECEC0C5A1ED44D4100F6760A /* UIViewControllerExt.swift in Sources */,
-				8AC1EDF623F117FD009E95FD /* DetialViewModel.swift in Sources */,
+				8AC1EDF623F117FD009E95FD /* DetailViewModel.swift in Sources */,
 				8AC3EA0323F5353E008CE18C /* IntExt.swift in Sources */,
 				8AC3E9FA23F3911D008CE18C /* Comment.swift in Sources */,
 				8AC6F06E23F7FDDB000D0851 /* ChildPopularViewModel.swift in Sources */,

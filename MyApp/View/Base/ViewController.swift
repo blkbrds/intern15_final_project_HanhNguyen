@@ -13,8 +13,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configNavigation()
-        setupUI()
         setupData()
+        setupUI()
     }
 
     func setupUI() { }

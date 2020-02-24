@@ -7,17 +7,14 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 final class ChildPopularViewController: ViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
     private let tableRefreshControl = UIRefreshControl()
-    var viewModel = ChildPopularViewModel() {
-        didSet {
-            fetchData(isLoadMore: true)
-        }
-    }
+    var viewModel = ChildPopularViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +48,9 @@ final class ChildPopularViewController: ViewController {
     }
 
     func fetchData(isLoadMore: Bool) {
+        SVProgressHUD.show()
         viewModel.loadApiPopular(isLoadMore: isLoadMore) { [weak self] (result) in
+            SVProgressHUD.dismiss()
             guard let this = self else { return }
             switch result {
             case .success:

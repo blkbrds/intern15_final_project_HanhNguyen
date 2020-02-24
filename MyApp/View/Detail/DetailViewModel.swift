@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 import RealmSwift
+
 final class DetailViewModel {
+
 
     var video: Video = Video()
     var isLoading: Bool = false
@@ -52,7 +54,10 @@ final class DetailViewModel {
         let part: [String] = ["snippet", "statistics"]
         let parms = Api.Detail.VideoDetailParams(part: part.joined(separator: ","), id: video.id, key: App.String.apiKeyDetail)
         Api.Detail.getVideoDetail(params: parms) { [weak self] (result) in
-            guard let this = self else { return }
+            guard let this = self else {
+                completion(.failure(Api.Error.invalidRequest))
+                return
+            }
             switch result {
             case .success(let video):
                 this.video = video
@@ -66,7 +71,9 @@ final class DetailViewModel {
     func loadApiRelatedVideo(completion: @escaping ApiComletion) {
         let parms = Api.Detail.RelatedVideoParams(part: "snippet", relatedToVideoId: video.id, type: "video", key: App.String.apiKeyDetail, maxResults: 16)
         Api.Detail.getRelatedVideos(params: parms) { [weak self] (result) in
-            guard let this = self else { return }
+            guard let this = self else {
+                completion(.failure(Api.Error.invalidRequest))
+                return }
             switch result {
             case .success(let videos):
                 this.video.relatedVideos.append(contentsOf: videos)
@@ -85,7 +92,10 @@ final class DetailViewModel {
         let part: [String] = ["snippet", "statistics"]
         let parms = Api.Detail.VideoChannelParams(part: part.joined(separator: ","), key: App.String.apiKeyDetail, id: id)
         Api.Detail.getVideoChannel(params: parms) { [weak self] (result) in
-            guard let this = self else { return }
+            guard let this = self else {
+                completion(.failure(Api.Error.invalidRequest))
+                return
+            }
             switch result {
             case .success(let channel):
                 if let channel = channel {
@@ -98,7 +108,7 @@ final class DetailViewModel {
         }
     }
 
-    func handleFavoriteVideo(completion: @escaping RealmComletion) {
+    func handleFavoriteVideo(completion: RealmCompletion) {
         do {
             let realm = try Realm()
             try realm.write {
@@ -112,24 +122,37 @@ final class DetailViewModel {
         }
     }
 
-    func loadFavoriteStatus(completion: (Bool) -> (Void)) {
-           do {
-               let realm = try Realm()
-               let objects = realm.objects(Video.self).filter("id = %d", video.id)
-               if !objects.isEmpty {
-                   completion(true)
-               } else {
-                   completion(false)
-               }
-           } catch {
-               completion(false)
-           }
-       }
+    func unFavorite() {
+        do {
+            let realm = try Realm()
+            let objects = realm.objects(Video.self).filter("id = %d", video.id)
+            for item in objects {
+                video.isFavorite = item.isFavorite
+            }
+        } catch { }
+    }
+
+    func loadFavoriteStatus(completion: (Bool) -> ()) {
+        do {
+            let realm = try Realm()
+            let objects = realm.objects(Video.self).filter("id = %d AND isFavorite == true", video.id)
+            if !objects.isEmpty {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        } catch {
+            completion(false)
+        }
+    }
 
     func loadVideoDuration(at indexPath: IndexPath, completion: @escaping ApiComletion) {
         let params = Api.Detail.VideoDetailParams(part: "contentDetails", id: video.relatedVideos[indexPath.row].id, key: App.String.apiKeyDetail)
         Api.Detail.getVideoDuration(params: params) { [weak self] (result) in
-            guard let this = self else { return }
+            guard let this = self else {
+                completion(.failure(Api.Error.invalidRequest))
+                return
+            }
             switch result {
             case .success(let duration):
                 this.video.relatedVideos[indexPath.row].duration = duration

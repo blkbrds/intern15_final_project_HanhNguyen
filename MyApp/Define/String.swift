@@ -16,14 +16,17 @@ import Foundation
 extension App {
     struct String {
         static let error = "ERROR"
-        static let ok = "OK"
-        static let apiKeyHome = "AIzaSyA2uK2G44N0FfuJhboZ5BVpxj-_pB2XwaQ"
-        static let apiKey = "AIzaSyC7YU4bo4f7cEaa_koveOGhi-kDy8w6qng"
-        static let apiKeyDetail = "AIzaSyA790TZ1NAfkubwNHUTOF0F2UfGK1dvKuI"
-        static let apiKeyPopular = "AIzaSyDMzYJLHg_ynvI_EJHdqpU9qBsoOi3f95A"
-        static let apiKeySearch = "AIzaSyANcQQLSCP13hAKwNolsyvtfG4QAL1y9Uk"
+        static let yes = "Có"
+        static let apiKeyHome = "AIzaSyDMzYJLHg_ynvI_EJHdqpU9qBsoOi3f95A"
+        static let apiKeyDetail = "AIzaSyANcQQLSCP13hAKwNolsyvtfG4QAL1y9Uk"
+        static let apiKeyPopular = "AIzaSyA790TZ1NAfkubwNHUTOF0F2UfGK1dvKuI"
+        static let apiKeySearch = "AIzaSyBq2DwWIYCWg6vJBHSn2_wtJgZTgJyDFWo"
         static let dateFormatYYYYMMDDTHHmmss = "yyyy-MM-dd'T'HH:mm:ssZ"
         static let dateFormatYYYYMMDDHHmmss = "yyyy-MM-dd HH:mm:ss"
         static let refresh = "Refreshing Data..."
+        static let delete = "Xoá"
+        static let warning = "CẢNH BÁO"
+        static let no = "Không"
+        static let removeAll = "Bạn có chắc chắn muốn xoá danh sách yêu thích của mình không?"
     }
 }

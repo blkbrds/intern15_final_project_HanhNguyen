@@ -20,7 +20,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dv7-y4-pRf">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ey-Mu-G6W">
+                    <rect key="frame" x="0.0" y="64" width="414" height="31"/>
+                    <color key="backgroundColor" red="0.062745098039215685" green="0.090196078431372548" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dv7-y4-pRf">
                     <rect key="frame" x="0.0" y="64" width="414" height="32"/>
                     <segments>
                         <segment title="Âm Nhạc"/>
@@ -42,8 +46,12 @@
                 <constraint firstItem="Bjp-xk-xpN" firstAttribute="top" secondItem="Dv7-y4-pRf" secondAttribute="bottom" constant="15" id="5Ap-HC-eM7"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Dv7-y4-pRf" secondAttribute="trailing" id="8QR-H6-9mU"/>
                 <constraint firstItem="Dv7-y4-pRf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Bx1-H6-VzY"/>
+                <constraint firstItem="Dv7-y4-pRf" firstAttribute="leading" secondItem="1Ey-Mu-G6W" secondAttribute="leading" id="I7e-EH-16j"/>
                 <constraint firstItem="Dv7-y4-pRf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="U9a-UO-xN6"/>
                 <constraint firstItem="Bjp-xk-xpN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aXS-Xg-Zwf"/>
+                <constraint firstItem="Dv7-y4-pRf" firstAttribute="height" secondItem="1Ey-Mu-G6W" secondAttribute="height" id="lno-ze-QxN"/>
+                <constraint firstItem="Dv7-y4-pRf" firstAttribute="width" secondItem="1Ey-Mu-G6W" secondAttribute="width" id="m1d-7h-aKc"/>
+                <constraint firstItem="Dv7-y4-pRf" firstAttribute="top" secondItem="1Ey-Mu-G6W" secondAttribute="top" id="n6z-Do-Wz2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Bjp-xk-xpN" secondAttribute="trailing" id="txk-4p-Dk4"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Bjp-xk-xpN" secondAttribute="bottom" id="wiX-G6-4yP"/>
             </constraints>

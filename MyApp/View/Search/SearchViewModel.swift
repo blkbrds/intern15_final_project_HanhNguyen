@@ -18,7 +18,7 @@ final class SearchViewModel {
     var videos: [Video] = []
     var keywords: [Keyword] = []
 
-    func loadKeywords(completion: RealmComletion) {
+    func loadKeywords(completion: RealmCompletion) {
         do {
             let realm = try Realm()
             let objects = realm.objects(Keyword.self).sorted(byKeyPath: "searchTime", ascending: false)
@@ -29,7 +29,7 @@ final class SearchViewModel {
         }
     }
 
-    func loadKeywords(text: String, completion: RealmComletion) {
+    func loadKeywords(text: String, completion: RealmCompletion) {
         do {
             let realm = try Realm()
             var objects: Results<Keyword>
@@ -89,11 +89,11 @@ final class SearchViewModel {
             return RelatedCellViewModel(video: videos[indexPath.row])
         }
     }
-    
+
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
         return DetailViewModel(id: videos[indexPath.row].id)
     }
-    
+
     func getKeyword(at indexPath: IndexPath) -> String {
         return keywords[indexPath.row].keyword
     }
