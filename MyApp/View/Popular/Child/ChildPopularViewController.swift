@@ -11,7 +11,7 @@ import SVProgressHUD
 
 final class ChildPopularViewController: ViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
 
     private let tableRefreshControl = UIRefreshControl()
     var viewModel = ChildPopularViewModel()

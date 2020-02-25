@@ -14,7 +14,7 @@ final class RelatedCellViewModel {
     var channelTitle: String
     var view: String
     var duration: String?
-    
+
     init(video: Video) {
         imgaeURL = video.imageURL
         title = video.title

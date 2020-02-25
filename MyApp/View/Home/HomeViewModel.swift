@@ -10,7 +10,7 @@ import Foundation
 final class HomeViewModel {
 
     var videos: [Video] = []
-    var nextPageToken: String = ""
+    private var nextPageToken: String = ""
     var isLoading: Bool = false
 
     func viewModelForCell(at indexPath: IndexPath) -> HomeCellViewModel {
@@ -87,5 +87,9 @@ final class HomeViewModel {
                 completion(.failure(error))
             }
         }
+    }
+
+    func numberOfRowsInSection(section: Int) -> Int {
+        return videos.count
     }
 }

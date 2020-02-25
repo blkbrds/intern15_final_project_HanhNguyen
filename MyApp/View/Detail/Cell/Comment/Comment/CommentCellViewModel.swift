@@ -12,11 +12,11 @@ final class CommentCellViewModel {
     var avatar: String
     var comment: String
     var publishedAt: Date
-    
+
     init(comment: Comment) {
         self.name = comment.authorDisplayName
         self.avatar = comment.authorProfileImageUrl
         self.comment = comment.textDisplay
-        self.publishedAt  = comment.publishedAt
+        self.publishedAt = comment.publishedAt
     }
 }

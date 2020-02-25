@@ -10,7 +10,7 @@ import UIKit
 
 final class LibraryViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
 
     var viewModel = LibraryViewModel()
     override func viewDidLoad() {

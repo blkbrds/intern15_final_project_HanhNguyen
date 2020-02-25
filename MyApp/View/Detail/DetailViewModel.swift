@@ -12,13 +12,16 @@ import RealmSwift
 
 final class DetailViewModel {
 
-
     var video: Video = Video()
     var isLoading: Bool = false
     var pageToken: String = ""
 
     init(id: String = "") {
         video.id = id
+    }
+
+    init(video: Video) {
+        self.video = video
     }
 
     func numberOfSections() -> Int {
@@ -122,17 +125,7 @@ final class DetailViewModel {
         }
     }
 
-    func unFavorite() {
-        do {
-            let realm = try Realm()
-            let objects = realm.objects(Video.self).filter("id = %d", video.id)
-            for item in objects {
-                video.isFavorite = item.isFavorite
-            }
-        } catch { }
-    }
-
-    func loadFavoriteStatus(completion: (Bool) -> ()) {
+    func loadFavoriteStatus(completion: (Bool) -> Void) {
         do {
             let realm = try Realm()
             let objects = realm.objects(Video.self).filter("id = %d AND isFavorite == true", video.id)

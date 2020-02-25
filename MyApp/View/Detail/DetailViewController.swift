@@ -16,10 +16,6 @@ final class DetailViewController: UIViewController {
     @IBOutlet private weak var videoView: WKYTPlayerView!
     @IBOutlet private weak var tableView: UITableView!
 
-    enum Action {
-        case reloadData
-    }
-
     var viewModel = DetailViewModel()
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
@@ -27,13 +23,11 @@ final class DetailViewController: UIViewController {
         setupNavigation()
         setupData()
         setupUI()
-        print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.unFavorite()
-        configFavoriteButton(isFavorite: viewModel.video.isFavorite)
+        fetchDataRealm()
     }
 
     func setupData() {

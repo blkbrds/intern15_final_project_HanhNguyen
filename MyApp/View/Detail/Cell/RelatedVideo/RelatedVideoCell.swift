@@ -14,11 +14,11 @@ protocol RelatedVideoCellDelegate: class {
 
 final class RelatedVideoCell: UITableViewCell {
 
-    @IBOutlet weak var videoImageView: UIImageView!
-    @IBOutlet weak var durationView: UIView!
-    @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var channelNameLabel: UILabel!
+    @IBOutlet private weak var videoImageView: UIImageView!
+    @IBOutlet private weak var durationView: UIView!
+    @IBOutlet private weak var durationLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var channelNameLabel: UILabel!
 
     enum Action {
         case getDuration(indexPath: IndexPath?)

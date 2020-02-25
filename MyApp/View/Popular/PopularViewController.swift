@@ -10,8 +10,8 @@ import UIKit
 
 final class PopularViewController: ViewController {
 
-    @IBOutlet weak var segmentControl: UISegmentedControl!
-    @IBOutlet weak var contentView: UIView!
+    @IBOutlet  private weak var segmentControl: UISegmentedControl!
+    @IBOutlet private weak var contentView: UIView!
     private var buttonBar: UIView!
     private var pageViewController: UIPageViewController!
     private var rootViewControllers: [ChildPopularViewController] = []
@@ -38,7 +38,7 @@ final class PopularViewController: ViewController {
             NSAttributedString.Key.foregroundColor: UIColor.white
             ], for: .normal)
 
-        segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.9960784314, green: 0, blue: 0, alpha: 1)
+        segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.996_078_431_4, green: 0, blue: 0, alpha: 1)
             ], for: .selected)
 
         buttonBar = UIView()
@@ -80,12 +80,12 @@ final class PopularViewController: ViewController {
                             x = 0
                         }
                         self.buttonBar.frame.origin.x = (self.segmentControl.frame.width / CGFloat(self.segmentControl.numberOfSegments)) * CGFloat(self.segmentControl.selectedSegmentIndex) + x
-        }) { [weak self] _ in
+        }, completion: { [weak self] _ in
             guard let this = self else {
                 return
             }
             let vc = this.rootViewControllers[sender.selectedSegmentIndex]
             this.pageViewController.setViewControllers([vc], direction: .reverse, animated: false, completion: nil)
-        }
+        })
     }
 }

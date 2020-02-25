@@ -10,7 +10,7 @@ import Foundation
 
 enum CellIdentifier: String {
     case homeCell = "HomeCell"
-    case videoChannelCell = "VideoChannelCell" 
+    case videoChannelCell = "VideoChannelCell"
     case videoDetailCell = "VideoDetailCell"
     case relatedVideoCell = "RelatedVideoCell"
     case addCommentCell = "AddCommentCell"

@@ -9,17 +9,17 @@
 import UIKit
 
 final class VideoChannelCell: UITableViewCell {
-    
-    @IBOutlet weak var avatarImgaeView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subscriberCountLabel: UILabel!
-    
+
+    @IBOutlet private weak var avatarImgaeView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subscriberCountLabel: UILabel!
+
     var viewModel: VideoChannelCellViewModel? {
         didSet {
             setupUI()
         }
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         avatarImgaeView.layer.cornerRadius = avatarImgaeView.frame.width / 2
