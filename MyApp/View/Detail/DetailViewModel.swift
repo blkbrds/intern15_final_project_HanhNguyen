@@ -20,6 +20,10 @@ final class DetailViewModel {
         video.id = id
     }
 
+    init(video: Video) {
+        self.video = video
+    }
+
     func numberOfSections() -> Int {
         return SectionType.allCases.count
     }

@@ -16,10 +16,6 @@ final class DetailViewController: UIViewController {
     @IBOutlet private weak var videoView: WKYTPlayerView!
     @IBOutlet private weak var tableView: UITableView!
 
-    enum Action {
-        case reloadData
-    }
-
     var viewModel = DetailViewModel()
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
