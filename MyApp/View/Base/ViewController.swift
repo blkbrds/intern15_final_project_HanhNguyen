@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         let image = #imageLiteral(resourceName: "ic-search").withRenderingMode(.alwaysTemplate)
         searchButton.setImage(image, for: .normal)
         searchButton.tintColor = #colorLiteral(red: 0.3764705882, green: 0.3764705882, blue: 0.3764705882, alpha: 1)
-        searchButton.addTarget(self, action: #selector(searchButtonTouchUpInside), for: .allEvents)
+        searchButton.addTarget(self, action: #selector(searchButtonTouchUpInside), for: .touchUpInside)
 
         let accountButton = UIButton(type: .custom)
         accountButton.frame = CGRect(x: 50, y: 0, width: 30, height: 30)
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         accountButton.layer.cornerRadius = 15
         accountButton.layer.masksToBounds = true
         accountButton.addTarget(self, action:
-                #selector(accountTouchUpInside), for: .allEvents)
+                #selector(accountTouchUpInside), for: .touchUpInside)
 
         let rightView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 30))
         rightView.addSubview(searchButton)
