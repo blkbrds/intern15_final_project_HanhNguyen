@@ -12,15 +12,11 @@ import RealmSwift
 
 final class DetailViewModel {
 
-    var video: Video = Video()
+    var video: Video
     var isLoading: Bool = false
     var pageToken: String = ""
 
-    init(id: String = "") {
-        video.id = id
-    }
-
-    init(video: Video) {
+    init(video: Video = Video()) {
         self.video = video
     }
 
@@ -207,7 +203,7 @@ final class DetailViewModel {
     }
 
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
-        return DetailViewModel(id: video.relatedVideos[indexPath.row].id)
+        return DetailViewModel(video: video.relatedVideos[indexPath.row])
     }
 }
 extension DetailViewModel {

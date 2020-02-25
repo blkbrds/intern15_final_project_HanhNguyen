@@ -49,7 +49,7 @@ final class HomeViewModel {
     }
 
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
-        return DetailViewModel(id: videos[indexPath.row].id)
+        return DetailViewModel(video: videos[indexPath.row])
     }
 
     func loadVideoDuration(at indexPath: IndexPath, completion: @escaping ApiComletion) {
