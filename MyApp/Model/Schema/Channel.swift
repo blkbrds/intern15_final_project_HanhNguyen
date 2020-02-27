@@ -9,6 +9,7 @@
 import Foundation
 import ObjectMapper
 import RealmSwift
+
 @objcMembers final class Channel: Object, Mappable {
     dynamic var id: String = ""
     dynamic var imageURL: String?

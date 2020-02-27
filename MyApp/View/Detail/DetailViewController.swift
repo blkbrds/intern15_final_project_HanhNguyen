@@ -56,29 +56,15 @@ final class DetailViewController: UIViewController {
 
     func fetchDataChannel() {
         dispatchGroup.enter()
-        viewModel.loadApiVideoChannel { [weak self] (result) in
-            guard let this = self else { return }
-            switch result {
-            case .success:
-                break
-            case .failure(let error):
-                this.alert(error: error)
-            }
-            this.dispatchGroup.leave()
+        viewModel.loadApiVideoChannel { [weak self] _ in
+            self?.dispatchGroup.leave()
         }
     }
 
     func fetchDataRelated() {
         dispatchGroup.enter()
-        viewModel.loadApiRelatedVideo { [weak self] (result) in
-            guard let this = self else { return }
-            switch result {
-            case .success:
-                break
-            case .failure(let error):
-                this.alert(error: error)
-            }
-            this.dispatchGroup.leave()
+        viewModel.loadApiRelatedVideo { [weak self] _ in
+            self?.dispatchGroup.leave()
         }
     }
 
@@ -92,7 +78,9 @@ final class DetailViewController: UIViewController {
                     this.tableView.reloadSections(IndexSet(integer: DetailViewModel.SectionType.comment.rawValue), with: .top)
                 }
             case .failure(let error):
-                this.alert(error: error)
+                if isLoadMore {
+                    this.alert(error: error)
+                }
             }
             this.dispatchGroup.leave()
         }
