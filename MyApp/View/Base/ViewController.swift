@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     private func configNavigationBar() {
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
         let logo = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        logo.image = #imageLiteral(resourceName: "ic-logo-youtube.png")
+        logo.image = #imageLiteral(resourceName: "ic-logo-youtube")
         leftView.addSubview(logo)
         let leftBarButton = UIBarButtonItem(customView: leftView)
         self.navigationItem.leftBarButtonItem = leftBarButton

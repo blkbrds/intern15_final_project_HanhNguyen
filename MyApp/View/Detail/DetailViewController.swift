@@ -16,23 +16,17 @@ final class DetailViewController: ViewController {
     @IBOutlet private weak var videoView: WKYTPlayerView!
     @IBOutlet private weak var tableView: UITableView!
 
-    enum Action {
-        case reloadData
-    }
-
     var viewModel = DetailViewModel()
     let dispatchGroup = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupData()
         setupUI()
-        print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteURL)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.unFavorite()
-        configFavoriteButton(isFavorite: viewModel.video.isFavorite)
+        fetchDataRealm()
     }
 
     override func setupData() {
@@ -62,29 +56,15 @@ final class DetailViewController: ViewController {
 
     func fetchDataChannel() {
         dispatchGroup.enter()
-        viewModel.loadApiVideoChannel { [weak self] (result) in
-            guard let this = self else { return }
-            switch result {
-            case .success:
-                break
-            case .failure(let error):
-                this.alert(error: error)
-            }
-            this.dispatchGroup.leave()
+        viewModel.loadApiVideoChannel { [weak self] _ in
+            self?.dispatchGroup.leave()
         }
     }
 
     func fetchDataRelated() {
         dispatchGroup.enter()
-        viewModel.loadApiRelatedVideo { [weak self] (result) in
-            guard let this = self else { return }
-            switch result {
-            case .success:
-                break
-            case .failure(let error):
-                this.alert(error: error)
-            }
-            this.dispatchGroup.leave()
+        viewModel.loadApiRelatedVideo { [weak self] _ in
+            self?.dispatchGroup.leave()
         }
     }
 
@@ -98,7 +78,9 @@ final class DetailViewController: ViewController {
                     this.tableView.reloadSections(IndexSet(integer: DetailViewModel.SectionType.comment.rawValue), with: .top)
                 }
             case .failure(let error):
-                this.alert(error: error)
+                if isLoadMore {
+                    this.alert(error: error)
+                }
             }
             this.dispatchGroup.leave()
         }

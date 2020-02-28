@@ -9,10 +9,10 @@
 import UIKit
 import Kingfisher
 final class CommentCell: UITableViewCell {
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var commentLabel: UILabel!
-    
+    @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var commentLabel: UILabel!
+
     var viewModel: CommentCellViewModel? {
         didSet {
             setupUI()

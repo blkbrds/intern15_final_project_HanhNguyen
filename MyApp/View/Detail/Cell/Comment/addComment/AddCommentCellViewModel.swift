@@ -10,7 +10,7 @@ import Foundation
 final class AddCommentCellViewModel {
     var avatar: String
     var comment: String
-    
+
     init(avatar: String, comment: String) {
         self.avatar = avatar
         self.comment = comment
