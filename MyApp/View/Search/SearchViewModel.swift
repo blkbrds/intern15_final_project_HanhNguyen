@@ -17,7 +17,7 @@ final class SearchViewModel {
     var displayType: DisplayType = .keyword
     var videos: [Video] = []
     var keywords: [Keyword] = []
-
+    
     func loadKeywords(completion: RealmCompletion) {
         do {
             let realm = try Realm()
