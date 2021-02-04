@@ -56,6 +56,8 @@
 		8AC6F07023F8155F000D0851 /* API.Popular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC6F06F23F8155F000D0851 /* API.Popular.swift */; };
 		8AE6AD2223FCEF68009D8304 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE6AD2123FCEF68009D8304 /* LibraryViewModel.swift */; };
 		BEC9596B95AE9DF3CE6DA172 /* Pods_MyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE12F04FB7F219FB9E6D3D6 /* Pods_MyApp.framework */; };
+		EB543D6225CA5D4B005AD87C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB543D6025CA5D4B005AD87C /* MapViewController.swift */; };
+		EB543D6325CA5D4B005AD87C /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB543D6125CA5D4B005AD87C /* MapViewController.xib */; };
 		EC0105521E8F8AE000CE013D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC0105401E8F8ADF00CE013D /* Assets.xcassets */; };
 		EC0105541E8F8AE000CE013D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0105441E8F8ADF00CE013D /* AppDelegate.swift */; };
 		EC2C488D1EAF011C00B22F4B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2C488C1EAF011C00B22F4B /* Utils.swift */; };
@@ -166,6 +168,8 @@
 		8AC6F06F23F8155F000D0851 /* API.Popular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Popular.swift; sourceTree = "<group>"; };
 		8AE6AD2123FCEF68009D8304 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
 		DB69669865989B28D1BB192F /* Pods-MyAppTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAppTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-MyAppTests/Pods-MyAppTests.staging.xcconfig"; sourceTree = "<group>"; };
+		EB543D6025CA5D4B005AD87C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		EB543D6125CA5D4B005AD87C /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		EC0105401E8F8ADF00CE013D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC0105421E8F8ADF00CE013D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC0105441E8F8ADF00CE013D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -397,6 +401,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EB543D5F25CA5D17005AD87C /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				EB543D6025CA5D4B005AD87C /* MapViewController.swift */,
+				EB543D6125CA5D4B005AD87C /* MapViewController.xib */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		EC0105381E8F8ADF00CE013D /* MyApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,6 +458,7 @@
 		EC0105431E8F8ADF00CE013D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EB543D5F25CA5D17005AD87C /* Map */,
 				8AC1EDF023F115B1009E95FD /* Detail */,
 				8A284F2D23ED44CD0095052E /* Library */,
 				8A284F2823ED44B40095052E /* Channel */,
@@ -620,6 +634,7 @@
 				ECCCCB161E7A40D00073D923 /* Resources */,
 				EC01052F1E8F895300CE013D /* Embed Frameworks */,
 				475EECBF17C35A7C3773CDCF /* [CP] Embed Pods Frameworks */,
+				7A1A783775EE1CDF39908FF6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -701,6 +716,7 @@
 				EC5337BA1EF78E4D00ACE038 /* Localizable.strings in Resources */,
 				8A7BD79823EE8DDE00F67146 /* GoogleService-Info.plist in Resources */,
 				8AC6F06C23F7F922000D0851 /* ChildPopularViewController.xib in Resources */,
+				EB543D6325CA5D4B005AD87C /* MapViewController.xib in Resources */,
 				8A284F2C23ED44C10095052E /* ChannelViewController.xib in Resources */,
 				8A284F3123ED44E20095052E /* LibraryViewController.xib in Resources */,
 				8A284F2723ED449E0095052E /* PopularViewController.xib in Resources */,
@@ -756,6 +772,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyApp/Pods-MyApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A1A783775EE1CDF39908FF6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyApp/Pods-MyApp-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyApp/Pods-MyApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B0E09827A261C794A6F031AA /* [CP] Check Pods Manifest.lock */ = {
@@ -848,6 +884,7 @@
 				F537DDD22397969900638CB4 /* NSDataExt.swift in Sources */,
 				8A284F3023ED44E20095052E /* LibraryViewController.swift in Sources */,
 				ECF23AB41E9B869B008C23C1 /* ApiManager.swift in Sources */,
+				EB543D6225CA5D4B005AD87C /* MapViewController.swift in Sources */,
 				ECEC0C5A1ED44D4100F6760A /* UIViewControllerExt.swift in Sources */,
 				8AC1EDF623F117FD009E95FD /* DetailViewModel.swift in Sources */,
 				8AC3EA0323F5353E008CE18C /* IntExt.swift in Sources */,

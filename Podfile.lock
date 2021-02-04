@@ -2,6 +2,13 @@ PODS:
   - Alamofire (4.9.1)
   - AlamofireNetworkActivityIndicator (2.4.0):
     - Alamofire (~> 4.8)
+  - GoogleMaps (4.1.0):
+    - GoogleMaps/Maps (= 4.1.0)
+  - GoogleMaps/Base (4.1.0)
+  - GoogleMaps/Maps (4.1.0):
+    - GoogleMaps/Base
+  - GooglePlaces (4.1.0):
+    - GoogleMaps/Base (= 4.1.0)
   - Kingfisher (4.10.1)
   - MVVM-Swift (1.1.0)
   - ObjectMapper (3.5.1)
@@ -17,6 +24,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireNetworkActivityIndicator
+  - GoogleMaps
+  - GooglePlaces
   - Kingfisher
   - MVVM-Swift
   - ObjectMapper
@@ -29,6 +38,8 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireNetworkActivityIndicator
+    - GoogleMaps
+    - GooglePlaces
     - Kingfisher
     - MVVM-Swift
     - ObjectMapper
@@ -41,6 +52,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireNetworkActivityIndicator: 9acc3de3ca6645bf0efed462396b0df13dd3e7b8
+  GoogleMaps: 008e2c80e38605b56b560e8deb73d4194ff30bef
+  GooglePlaces: a058b776259c13e1323c9ff135549cb1b13ad8e7
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   MVVM-Swift: 54749cc12bb30af41632f30a2c576a18bf9e4bc8
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
@@ -50,6 +63,6 @@ SPEC CHECKSUMS:
   SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 3b0d2c93dff96b1114742bc78f4fe029b96be193
+PODFILE CHECKSUM: f6c169e370c86d7b9987ad7bca2f7b77bc82302e
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

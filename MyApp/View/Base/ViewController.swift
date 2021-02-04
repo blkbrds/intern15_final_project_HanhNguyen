@@ -41,10 +41,19 @@ class ViewController: UIViewController {
         accountButton.layer.masksToBounds = true
         accountButton.addTarget(self, action:
                 #selector(accountTouchUpInside), for: .touchUpInside)
+        
+        let mapButton = UIButton(type: .custom)
+        mapButton.frame = CGRect(x: 100, y: 0, width: 30, height: 30)
+        mapButton.setImage(#imageLiteral(resourceName: "ic-map"), for: .normal)
+        mapButton.tintColor = #colorLiteral(red: 0.3764705882, green: 0.3764705882, blue: 0.3764705882, alpha: 1)
+        mapButton.layer.masksToBounds = true
+        mapButton.addTarget(self, action:
+                #selector(mapAccountTouchUpInside), for: .touchUpInside)
 
-        let rightView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 30))
+        let rightView = UIView(frame: CGRect(x: 0, y: 0, width: 130, height: 30))
         rightView.addSubview(searchButton)
         rightView.addSubview(accountButton)
+        rightView.addSubview(mapButton)
 
         let rightBarButtonItem = UIBarButtonItem(customView: rightView)
         navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -56,6 +65,11 @@ class ViewController: UIViewController {
 
     @objc func accountTouchUpInside() {
 
+    }
+    
+    @objc func mapAccountTouchUpInside() {
+        let vc = MapViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     func setupData() { }

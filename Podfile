@@ -22,6 +22,8 @@ target 'MyApp' do
     pod 'SVProgressHUD'
     pod 'YoutubePlayer-in-WKWebView'
     pod 'RealmSwift'
+    pod 'GooglePlaces'
+    pod 'GoogleMaps'
 
   target 'MyAppTests' do
     inherit! :search_paths
