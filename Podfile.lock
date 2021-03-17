@@ -35,7 +35,7 @@ DEPENDENCIES:
   - YoutubePlayer-in-WKWebView
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireNetworkActivityIndicator
     - GoogleMaps
@@ -65,4 +65,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f6c169e370c86d7b9987ad7bca2f7b77bc82302e
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.5.3

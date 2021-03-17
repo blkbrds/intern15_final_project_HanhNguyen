@@ -28,8 +28,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         configNetwork()
         window = UIWindow(frame: UIScreen.main.bounds)
-//        GMSServices.provideAPIKey("AIzaSyDeVQbwAubockVacUiA4Xf63QuNhyZJVCk")
-//        GMSPlacesClient.provideAPIKey("AIzaSyDeVQbwAubockVacUiA4Xf63QuNhyZJVCk")
+        GMSServices.provideAPIKey("AIzaSyDL7iRut5QXrv0ScEdPzRyV0HBRrPjMEYk")
+        GMSPlacesClient.provideAPIKey("AIzaSyDL7iRut5QXrv0ScEdPzRyV0HBRrPjMEYk")
         createTabbar()
         window?.makeKeyAndVisible()
         return true

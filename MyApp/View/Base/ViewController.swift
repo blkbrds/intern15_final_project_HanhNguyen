@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         accountButton.layer.masksToBounds = true
         accountButton.addTarget(self, action:
                 #selector(accountTouchUpInside), for: .touchUpInside)
-        
+    
         let mapButton = UIButton(type: .custom)
         mapButton.frame = CGRect(x: 100, y: 0, width: 30, height: 30)
         mapButton.setImage(#imageLiteral(resourceName: "ic-map"), for: .normal)
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
     @objc func accountTouchUpInside() {
 
     }
-    
+
     @objc func mapAccountTouchUpInside() {
         let vc = MapViewController()
         navigationController?.pushViewController(vc, animated: true)
